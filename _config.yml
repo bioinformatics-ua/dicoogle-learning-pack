@@ -26,7 +26,7 @@ github:
 
 github_username:  bioinformatics-ua
 
-logo: /images/dicoogle-lp-logo-white.png
+logo: https://enet4.github.io/dicoogle-learning-pack/images/dicoogle-lp-logo-white.png
 
 # Build settings
 markdown: kramdown
