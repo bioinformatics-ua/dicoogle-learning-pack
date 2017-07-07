@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: default
 ---
 
 # Welcome to the Dicoogle Learning Pack
@@ -26,7 +26,7 @@ Throughout this site, you may find the following notes:
 
 <div class="note warning">
   <h5>Warnings help you not blow things up</h5>
-  <p>Be aware of these messages if you wish to avoid serious consequences, such as losing data.</p>
+  <p>Be aware of these messages if you wish to avoid frustrations or serious consequences, such as losing data.</p>
 </div>
 
 <div class="note unreleased">
