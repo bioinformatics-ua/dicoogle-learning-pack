@@ -1,0 +1,10 @@
+- title: Getting Started
+  docs:
+  - introduction
+  - setup
+  - using
+  - configuring
+# - extra_plugins
+#- title: Plugin Development
+#  docs:
+#  - architecture
