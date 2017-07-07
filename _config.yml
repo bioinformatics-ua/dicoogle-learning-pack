@@ -17,20 +17,20 @@ title: Dicoogle Learning Pack
 email: eduardopinho@ua.pt
 description: > # this means to ignore newlines until "baseurl:"
   Resources for Dicoogle users and developers.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://enet4.github.io/dicoogle-learning-pack" # the base hostname & protocol for your site, e.g. http://example.com
 
-github:
-  repository_url: "https://github.com/Enet4/dicoogle-learning-pack"
-  owner_url: "https://github.com/Enet4"
+baseurl: /dicoogle-learning-pack
+repository: Enet4/dicoogle-learning-pack
 
-github_username:  bioinformatics-ua
+github: [metadata]
 
-logo: https://enet4.github.io/dicoogle-learning-pack/images/dicoogle-lp-logo-white.png
+logo: /images/dicoogle-lp-logo-white.png
 
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-slate
+
+gems:
+ - jekyll-github-metadata
 
 defaults:
   -

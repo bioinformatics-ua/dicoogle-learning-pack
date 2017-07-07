@@ -9,11 +9,11 @@ In this section, we will be taking advantage of our newly deployed instance of D
 
 The web services are all served over the 8080 port by default. Let's open the page http://localhost:8080. You should be greeted with this page.
 
-![The login page of the web app.]({{ site.github.url }}/images/screenshot_login.png)
+![The login page of the web app.]({{ site.baseurl }}/images/screenshot_login.png)
 
 The default administration credentials are **dicoogle** for the username and, likewise, **dicoogle** for the password. Input these credentials to enter the main page.
 
-![The main page of the web app.]({{ site.github.url }}/images/screenshot_main.png)
+![The main page of the web app.]({{ site.baseurl }}/images/screenshot_main.png)
 
 ### Obtaining a repository
 
@@ -36,7 +36,7 @@ Retrieve one or more data sets and place them in a new folder where all our DICO
 
 Indexing a directory is done simply by accessing the Indexer page, on the side bar. In this page, there is a form that can be used to force Dicoogle to index the contents of a folder. For this example, we wish to index our data set by specifying its base directory. Dicoogle will recursively attempt to index all files in the folder, while traversing all folders within. Files that are not DICOM may be either ignored or trigger a warning, without further consequences.
 
-![The indexer form.]({{ site.github.url }}/images/screenshot_index.png)
+![The indexer form.]({{ site.baseurl }}/images/screenshot_index.png)
 
 <div class="note info">
   <h5>The “Index directory” field is a URI!</h5>
@@ -59,17 +59,17 @@ The Search page enables users to execute queries over the indexed meta-data. It 
 
 The query syntax is the same as Lucene's, which supports free text searches. Let us search for all CT scans by typing "CT" in the query box and pressing Enter:
 
-![The search interface, followed by results.]({{ site.github.url }}/images/screenshot_search.png)
+![The search interface, followed by results.]({{ site.baseurl }}/images/screenshot_search.png)
 
 After running a query, the result browser shows up, giving the user an intuitive hierarchical view of the results. Results are navigated according to the DIM hierachy: first patients, then studies, then series, and finally the images.
 
-![The search results of a series at the image level.]({{ site.github.url }}/images/screenshot_images.png)
+![The search results of a series at the image level.]({{ site.baseurl }}/images/screenshot_images.png)
 
-We can see the indexed meta-data of an image by pressing the dump button ![]({{ site.github.url }}/images/button_dump.png).
+We can see the indexed meta-data of an image by pressing the dump button ![]({{ site.baseurl }}/images/button_dump.png).
 
-![The meta-data navigator of an image.]({{ site.github.url }}/images/screenshot_dump.png)
+![The meta-data navigator of an image.]({{ site.baseurl }}/images/screenshot_dump.png)
 
-It is also possible to see a larger preview of the image by pressing the eye button ![]({{ site.github.url }}/images/button_eye.png) or by clicking on the image thumbnail.
+It is also possible to see a larger preview of the image by pressing the eye button ![]({{ site.baseurl }}/images/button_eye.png) or by clicking on the image thumbnail.
 
 <div class="note info">
   <h5>The image previewer is not a professional medical image viewer.</h5>
@@ -80,7 +80,7 @@ It is also possible to see a larger preview of the image by pressing the eye but
 
  On this page, there is also an _Export_ button, which is used to export the entire list of results into a comma-separated values (CSV) file. Once clicked, a new form is presented, where we need to specify which tags to consider in the CSV file. These tags are the keywords of the DICOM tag as specified in chapter 6 of the [DICOM standard, PS3.6](http://dicom.nema.org/medical/dicom/current/output/chtml/part06/chapter_6.html). Each tag is separated by a new line. For this example, we will request a few attributes:
 
-![The "Export to CSV" form.]({{ site.github.url }}/images/screenshot_export.png)
+![The "Export to CSV" form.]({{ site.baseurl }}/images/screenshot_export.png)
 
 Now, you may click on the blue _Export_ button, and the browser will download the resulting CSV file.
 
