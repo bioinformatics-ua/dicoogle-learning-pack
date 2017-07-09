@@ -19,6 +19,17 @@
   padding: 50px 10px 10px 10px;
 }
 
+@media (max-width: 768px) {
+  #header_wrap .inner {
+    h1 {
+      font-size: 16pt
+    }
+    h2 {
+      font-size: 14pt
+    }
+  }
+}
+
 #footer_wrap {
   background: #214851;
 }
@@ -191,13 +202,13 @@ article {
 }
 
 @media (max-width: 568px) {
-  article { margin: 0; }
+  article { margin: 0px; }
 }
 
 @media (min-width: 768px) {
   article {
     padding: 20px 40px 20px;
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -212,7 +223,7 @@ article {
 
 .section-nav {
   text-align: center;
-  padding-top: 32px;
+  padding-top: 30px;
   position: relative;
   background: url(../img/article-footer.png) top center no-repeat;
   margin: 35px 0px 35px;

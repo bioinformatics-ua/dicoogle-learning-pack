@@ -1,7 +1,6 @@
 ---
 title: Introduction
 permalink: /docs/introduction/
-layout: docs
 ---
 
 This introductory page answers a few pertinent questions about Dicoogle, so as to explain what it is and how it distinguishes from other PACS archives.

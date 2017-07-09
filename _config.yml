@@ -21,7 +21,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: /dicoogle-learning-pack
 repository: Enet4/dicoogle-learning-pack
 
-github: [metadata]
+#github: [metadata]
 
 logo: /images/dicoogle-lp-logo-white.png
 
