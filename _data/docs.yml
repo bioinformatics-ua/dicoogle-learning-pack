@@ -4,7 +4,15 @@
   - setup
   - using
   - configuring
-# - extra_plugins
-#- title: Plugin Development
-#  docs:
+#  - extra-plugins
+- title: Plugin Development
+  docs:
+  - developing-plugins
+#  - query
+#  - indexer
+#  - storage
+#  - server
+- title: Dicoogle Development
+  docs:
 #  - architecture
+  - building
