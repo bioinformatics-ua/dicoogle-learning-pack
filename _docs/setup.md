@@ -7,7 +7,7 @@ In this page, we will have an instance of Dicoogle running on your machine for t
 
 ### Install Requirements
 
-Before we proceed, make sure that you have an up-to-date version of the Java Virtual Machine. Java SE 7 is supported, but Java 8 is recommended at this time.
+Before we proceed, make sure that you have an up-to-date version of the Java Virtual Machine. It can be downloaded [here](https://java.com/en/download/), or it can be installed using your typical system package manager. Although Java 7 is still supported, we highly recommend having Java 8 at this time.
 
 ### Obtain Dicoogle and Plugins
 
@@ -15,9 +15,9 @@ The website has a [Downloads](http://www.dicoogle.com/download) section, where y
 
 - The main platform program (_"dicoogle.jar"_). 
 
-- The Lucene-based index/query plugin (_"lucene.jar"_). It is based on [Lucene](https://lucene.apache.org) to support indexing and querying of DICOM meta-data. With this plugin set, it is possible to index nearly meta-data and perform free text, keyword-based, and range-based queries.
+- The index/query plugin file (_"lucene.jar"_). It is based on [Lucene](https://lucene.apache.org) and provides indexing and querying of DICOM meta-data. With this plugin set, it is possible to index nearly all meta-data and perform free text, keyword-based, and range-based queries.
 
-- File storage plugin (_"filestorage.jar"_). It is used for storing and retrieving DICOM files in the local file system. This plugin is necessary in order to use Dicoogle as a complete DICOM storage provider. The core platform provides a fallback implementation which supports reading (but not storing) files from the local file system.
+- The file storage plugin (_"filestorage.jar"_). It is used for storing and retrieving DICOM files in the local file system. This plugin is necessary in order to use Dicoogle as a complete DICOM storage provider. The core platform provides a fallback implementation which supports reading (but not storing) files from the  system.
 
 ### Set up the Dicoogle Platform
 
@@ -38,7 +38,7 @@ Next, copy or move the two plugins, _"lucene.jar"_ and _"filestorage.jar"_, into
 
 ### Running Dicoogle
 
-We are not ready to run Dicoogle. The most recommended way is to execute the jar file on a terminal. Open a command line and execute the following command:
+We are now ready to run Dicoogle. The most recommended way is to execute the jar file on a terminal. Open a command line and execute the following command:
 
 ```sh
 java -jar dicoogle.jar -s

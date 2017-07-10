@@ -3,7 +3,7 @@ layout: docs
 title: Welcome to the Dicoogle Learning Pack
 ---
 
-This is a set of tutorials and resources for setting up an instance of Dicoogle, as well as for developing compatible plugins. The contents of the Dicoogle Learning Pack are targetted at future users of Dicoogle, including students and researchers.
+This is a set of tutorials and resources for setting up an instance of Dicoogle, as well as for developing compatible plugins. The contents of the Dicoogle Learning Pack are targeted at future users of Dicoogle, including students and researchers.
 In this site, you will receive guidance on:
 
  - Setting up a PACS archive with basic storage and querying capabilities;

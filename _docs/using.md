@@ -22,14 +22,16 @@ Before we continue, we need a medical imaging data set to work on. Any directory
 Retrieve one or more data sets and place them in a new folder where all our DICOM data will be kept. For this guide, we will create a _"storage"_ folder inside _"DicoogleDir"_. So, we should have this directory tree:
 
 ```
- - DicoogleDir
- |- Plugins
- | | ...
- | |- lucene.jar
- | `- filestorage.jar
- |- storage
- | `  ...
- `- dicoogle.jar
+ .
+ ├── DicoogleDir
+ ├── Plugins
+ |   ├── ...
+ |   ├── lucene.jar
+ |   └── filestorage.jar
+ ├── storage
+ |   ├── «my-dicom-data»
+ |   └── ...
+ └── dicoogle.jar
 ```
 
 ### Indexing a directory
@@ -51,7 +53,8 @@ Indexing a directory is done simply by accessing the Indexer page, on the side b
   <p> Windows file paths are not compatible with the URI format. When specifying a path, <em>always</em> use forward slashes (<code>/</code>) instead of back slashes (<code>\</code>). In addition, make sure that the URI includes the scheme <code>file:</code> as the prefix.</p>
 </div>
 
-A new indexing task will be listed. Once complete, the progress bar will be at 100%, and the task can be closed by pressing the _"Close"_ button. Although a _"Stop"_ button is also provided, it is often not a good idea to cancel tasks prematurely.
+A new indexing task will be listed. Please note that, depending on how many files are in the storage folder, this process may take some time.
+Once complete, the progress bar will be at 100%, and the task can be closed by pressing the _"Close"_ button. Although a _"Stop"_ button is also provided, it is often not a good idea to cancel tasks prematurely.
 
 ### Using the Search Interface
 
@@ -73,12 +76,12 @@ It is also possible to see a larger preview of the image by pressing the eye but
 
 <div class="note info">
   <h5>The image previewer is not a professional medical image viewer.</h5>
-  <p>Medical images often have atypical visualization requirements, such as a larger colour bit depth than 8 bits, voxel-based 3D volumes, or even resolutions at the scale of several Giga-pixels. The built-in image previewer, on the other hand, is very limited and should not be used professional activities such as screening. Such requirements can still be addressed by extending Dicoogle with professional tools.</p>
+  <p>Medical images often have atypical visualization requirements, such as a larger colour bit depth than 8 bits, voxel-based 3D volumes, or even resolutions at the scale of several Giga-pixels. The built-in image previewer, on the other hand, is very limited and should not be used in professional activities such as screening. Such requirements can still be addressed with Dicoogle by extending it with professional tools.</p>
 </div>
 
 ### Exporting Results
 
- On this page, there is also an _Export_ button, which is used to export the entire list of results into a comma-separated values (CSV) file. Once clicked, a new form is presented, where we need to specify which tags to consider in the CSV file. These tags are the keywords of the DICOM tag as specified in chapter 6 of the [DICOM standard, PS3.6](http://dicom.nema.org/medical/dicom/current/output/chtml/part06/chapter_6.html). Each tag is separated by a new line. For this example, we will request a few attributes:
+ On this page, there is also an _Export_ button, which is used to export the entire list of results into a comma-separated values (CSV) file. Once clicked, a new form is presented, where we need to specify which tags to consider in the CSV file. These are DICOM tag keywords, as specified in chapter 6 of the [DICOM standard, PS3.6](http://dicom.nema.org/medical/dicom/current/output/chtml/part06/chapter_6.html). Each tag is separated by a new line. For this example, we will request a few attributes:
 
 ![The "Export to CSV" form.]({{ site.baseurl }}/images/screenshot_export.png)
 
