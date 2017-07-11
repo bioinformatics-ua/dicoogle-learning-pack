@@ -12,6 +12,7 @@
 #  - indexer
 #  - storage
 #  - server
+  - webplugins
 - title: Dicoogle Development
   docs:
 #  - architecture

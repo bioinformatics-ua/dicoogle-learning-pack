@@ -50,6 +50,20 @@ The server needs to be restarted after this modification. When that is done, you
 
 Plugins can have settings of their own as well. Unlike the settings presented so far, these are kept in their own xml file, in a _"settings"_ folder in _"Plugins"_, alongside the plugin jar files. This folder is automatically created, and plugins should automatically generate default configurations there. When configuring a plugin, one should attend to that plugin's documentation.
 
+As an example, the file storage allows the administrator to define a root path where incoming files are stored. Let's modify this property to point to our storage directory. In _"DicoogleDir/Plugins/settings"_, assuming Dicoogle was run at least once, you will find a file named _"file-storage.xml"_. Look for the `root-dir` element:
+
+```xml
+<root-dir>/tmp</root-dir>
+```
+
+And change it to our storage:
+
+```xml
+<root-dir>/path/to/DicoogleDir/storage</root-dir>
+```
+
+As usual, the server needs to be restarted. Now the DICOM storage server can be safely enabled, and incoming C-STORE operations will save DICOM objects in it, organized as a directory tree.
+
 ------------------
 
 This concludes the first chapter, where we have covered how to install Dicoogle in a machine, configure it, and use it for basic purposes. The next chapter is intended for developers wishing to further leverage the capabilities of Dicoogle using plugins.

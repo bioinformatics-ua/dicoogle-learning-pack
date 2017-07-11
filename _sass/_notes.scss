@@ -23,6 +23,7 @@
 
 .note {
   h5,
+  a,
   p {
     margin: 0;
     color: #fff;
@@ -42,6 +43,11 @@
     font-size: .9em;
   }
 
+  a {
+    font-weight: 800;
+    text-decoration-line: underline;
+  }
+
   &:after {
     content: '\2605';
     color: #fc0;
@@ -51,6 +57,11 @@
     font-size: 28px;
     font-weight: 700;
     text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+  }
+
+  code {
+    font-family: monospace, monospace;
+    font-size: 0.8em;
   }
 }
 
