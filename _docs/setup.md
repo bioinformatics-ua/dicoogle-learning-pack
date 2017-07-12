@@ -11,7 +11,7 @@ Before we proceed, make sure that you have an up-to-date version of the Java Vir
 
 ### Obtain Dicoogle and Plugins
 
-The website has a [Downloads](http://www.dicoogle.com/download) section, where you can download Dicoogle and some plugins for free. As an alternative, you can build it from the sources. Once that is done, be sure that you have these three files:
+The website has a [Downloads](http://www.dicoogle.com/?page_id=67) section, where you can download Dicoogle and some plugins for free. As an alternative, you can build it from the sources. Once that is done, be sure that you have these three files:
 
 - The main platform program (_"dicoogle.jar"_). 
 
