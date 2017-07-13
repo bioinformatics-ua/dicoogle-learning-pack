@@ -12,13 +12,15 @@ Dicoogle is extendable in deployment time, thanks to its plugin-based architectu
 - **Rest Web Service** plugins contain a Restlet server resource that can be attached to Dicoogle, also for hosting web services.
 - **Web User Interface** Plugins, unlike other kinds of plugins, are developed in JavaScript and provide new UI components that are automatically loaded into Dicoogle's web application.
 
-## Frequently Asked Questions
+## Basic concepts
 
-Here is a list of tasks frequently performed when developing plugins for Dicoogle.
+All of the necessary data structures and interfaces for plugin development are in the Dicoogle SDK project. Before getting straight to coding, it is important to understand the tools and mechanisms that you will be using.
 
-### How are plugins registered into the platform?
+### Registering Plugins
 
-As mentioned above, this is done with a plugin set. Create a class that implements [`PluginSet`](https://github.com/bioinformatics-ua/dicoogle/blob/master/sdk/src/main/java/pt/ua/dicoogle/sdk/PluginSet.java) and apply the `@PluginImplementation` annotation on the class, which allows the plugin framework to fetch the set from the core platform. The constructors should create one instance of each plugin intended, and the plugin getters should provide an immutable list of plugins. When a plugin set does not provide any plugins of a certain type, the respective getter should return an empty list (such as `Collections.EMPTY_LIST`). Moreover, name getters should provide a simple, unique name for all plugins of that type. For instance, a query provider and indexer can share the same name, but two distinct query providers can not.
+Marking certain classes as plugins is done with a plugin set. Create a class that implements [`PluginSet`](https://github.com/bioinformatics-ua/dicoogle/blob/master/sdk/src/main/java/pt/ua/dicoogle/sdk/PluginSet.java) and apply the `@PluginImplementation` annotation on the class, which allows the plugin framework to fetch the set from the core platform. The constructors should create one instance of each plugin intended, and the plugin getters should provide an immutable list of plugins. When a plugin set does not provide any plugins of a certain type, the respective getter should return an empty list (such as `Collections.EMPTY_LIST`). Moreover, name getters should provide a simple, unique name for all plugins of that type. For instance, a query provider and indexer can share the same name, but two distinct query providers can not.
+
+Here's a minimal example:
 
 ```java
 @PluginImplementation
@@ -55,7 +57,7 @@ public class MyPluginSet implements PluginSet {
 }
 ```
 
-### How do plugins access the platform?
+### Dicoogle Platform API
 
 Interactions with the core platform are made via the [`PlatformInterface`](https://github.com/bioinformatics-ua/dicoogle/blob/master/sdk/src/main/java/pt/ua/dicoogle/sdk/core/DicooglePlatformInterface.java). This is the top-level API of Dicoogle that is exposed to other plugins.
 
@@ -73,6 +75,37 @@ public class MyQueryPlugin
         this.platform = platform;
     }
 ```
+
+This object contains the set of methods that you can use. Here is the full list of methods in version 2.4.0:
+
+```java
+public IndexerInterface requestIndexPlugin(String name);
+public QueryInterface requestQueryPlugin(String name);
+public Collection<IndexerInterface> getAllIndexPlugins();
+public Collection<QueryInterface> getAllQueryPlugins();
+public StorageInterface getStoragePluginForSchema(String scheme);
+public StorageInterface getStorageForSchema(URI location);
+public Iterable<StorageInputStream> resolveURI(URI location, Object ...args);
+public Collection<StorageInterface> getStoragePlugins(boolean onlyEnabled);
+public StorageInterface getStorageForSchema(String scheme);
+public Collection<QueryInterface> getQueryPlugins(boolean onlyEnabled);
+public List<String> getQueryProvidersName(boolean enabled);
+public QueryInterface getQueryProviderByName(String name,
+        boolean onlyEnabled);
+public JointQueryTask queryAll(JointQueryTask holder, String query,
+        Object... parameters) ;
+public Task<Iterable<SearchResult>> query(String querySource, String query,
+        Object... parameters);
+public JointQueryTask query(JointQueryTask holder,
+        List<String> querySources, String query, Object... parameters);
+public List<Task<Report>> index(URI path);
+public List<Report> indexBlocking(URI path);
+public ServerSettingsReader getSettings();
+```
+
+## Frequently Asked Questions
+
+Here is a list of questions frequently made when developing plugins for Dicoogle.
 
 ### How do I query for DICOM meta-data?
 
@@ -161,6 +194,8 @@ public ConfigurationHolder getSettings() {
 ```
 
 Also note that, in the latest version of Dicoogle, the plugin will be disabled if this method throws an unchecked exception.
+
+This regards plugin-specific settings. In order to read and write global Dicoogle settings, the platform API provides the necessary methods.
 
 ### How do I create new web services?
 
