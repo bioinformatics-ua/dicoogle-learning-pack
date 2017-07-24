@@ -6,6 +6,10 @@
   border: none;
 }
 
+#main_content_wrap {
+  background-color: #f8f8f8;
+}
+
 #header_wrap {
   background: #213141;
   background: -moz-linear-gradient(top, #58A2C4, #214851);
@@ -193,8 +197,14 @@ article {
   @include border-radius(5px);
   padding: 10px;
   margin: 0 8px;
-  @include box-shadow(0 3px 8px rgba(0,0,0,.4));
+  @include box-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
   font-size: 14px;
+
+  li {
+    p {
+      margin: 8px 0 8px 0;
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -395,11 +405,6 @@ pre {
 
   code {
     width: auto;
-  }
-  
-  .language-sh {
-    background-color: #121212;
-    color: #ddd;
   }
 }
 

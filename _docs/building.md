@@ -13,6 +13,7 @@ Dicoogle is an open-source project. The official sources are hosted on GitHub [h
       <li>Copyright and license notices must be preserved.</li>
       <li>Contributors provide an express grant of patent rights.</li>
     </ul>
+    <p>When in doubt, please consult the official <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a> website.</p>
   </p>
 </div>
 
@@ -22,18 +23,18 @@ Before building, please make sure that your system contains the following tools:
  - [Maven](https://maven.apache.org/) 3. We use Maven to retrieve dependencies and execute scripts for building, checking and testing projects.
  - Git, to retrieve the source code from the official repository.
 
- 1. Retrieve the full source code from this repository: `git clone https://github.com/bioinformatics-ua/dicoogle.git`
- 2. Navigate to the project's base directory, and build the parent Maven project:
- 
+ 1. Retrieve the full source code from the official repository:
 ```sh
+git clone https://github.com/bioinformatics-ua/dicoogle.git
+```
+ 2. Navigate to the project's base directory, and build the parent Maven project:
+``` sh
 mvn install
 ```
    You can build Dicoogle without the web application by skipping the npm process:
-   
 ```sh
 mvn install -Dskip.npm
 ```
-
  3. The resulting jar file can be found in "./dicoogle/target". Plugins are provided separately, and must be compatible with the built version of Dicoogle.
 
 ### Building and debugging the web application
@@ -129,7 +130,7 @@ The web application can be tested separately without having it embedded in a jar
 2. Navigate to the webapp's source code. Define the URL to Dicoogle's base endpoint using the `DICOOGLE_BASE_URL` environment variable, and bundle the source code: 
 
 ```sh
-`DICOOGLE_BASE_URL=http://localhost:8080 npm run debug
+DICOOGLE_BASE_URL=http://localhost:8080 npm run debug
 ```
 
 When the environment variable `DICOOGLE_BASE_URL` is set, we are instructing our build scripts to use a custom base URL to the server. 

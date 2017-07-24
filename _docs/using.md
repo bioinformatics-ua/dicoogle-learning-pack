@@ -3,7 +3,7 @@ title: Using Dicoogle
 permalink: /docs/using/
 ---
 
-In this section, we will be taking advantage of our newly deployed instance of Dicoogle to index and search in a small repository of medical images. Make sure that 
+In this section, we will be taking advantage of our newly deployed instance of Dicoogle to index and search in a small repository of medical images. Throughout this page, make sure that Dicoogle is currently running in your machine (or deployed in a server).
 
 ### Entering the Web Application
 
