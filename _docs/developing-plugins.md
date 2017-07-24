@@ -79,28 +79,28 @@ public class MyQueryPlugin
 This object contains the set of methods that you can use. Here is the full list of methods in version 2.4.0:
 
 ```java
-public IndexerInterface requestIndexPlugin(String name);
-public QueryInterface requestQueryPlugin(String name);
-public Collection<IndexerInterface> getAllIndexPlugins();
-public Collection<QueryInterface> getAllQueryPlugins();
-public StorageInterface getStoragePluginForSchema(String scheme);
-public StorageInterface getStorageForSchema(URI location);
-public Iterable<StorageInputStream> resolveURI(URI location, Object ...args);
-public Collection<StorageInterface> getStoragePlugins(boolean onlyEnabled);
-public StorageInterface getStorageForSchema(String scheme);
-public Collection<QueryInterface> getQueryPlugins(boolean onlyEnabled);
-public List<String> getQueryProvidersName(boolean enabled);
-public QueryInterface getQueryProviderByName(String name,
+IndexerInterface requestIndexPlugin(String name);
+QueryInterface requestQueryPlugin(String name);
+Collection<IndexerInterface> getAllIndexPlugins();
+Collection<QueryInterface> getAllQueryPlugins();
+StorageInterface getStoragePluginForSchema(String scheme);
+StorageInterface getStorageForSchema(URI location);
+Iterable<StorageInputStream> resolveURI(URI location, Object ...args);
+Collection<StorageInterface> getStoragePlugins(boolean onlyEnabled);
+StorageInterface getStorageForSchema(String scheme);
+Collection<QueryInterface> getQueryPlugins(boolean onlyEnabled);
+List<String> getQueryProvidersName(boolean enabled);
+QueryInterface getQueryProviderByName(String name,
         boolean onlyEnabled);
-public JointQueryTask queryAll(JointQueryTask holder, String query,
+JointQueryTask queryAll(JointQueryTask holder, String query,
         Object... parameters) ;
-public Task<Iterable<SearchResult>> query(String querySource, String query,
+Task<Iterable<SearchResult>> query(String querySource, String query,
         Object... parameters);
-public JointQueryTask query(JointQueryTask holder,
+JointQueryTask query(JointQueryTask holder,
         List<String> querySources, String query, Object... parameters);
-public List<Task<Report>> index(URI path);
-public List<Report> indexBlocking(URI path);
-public ServerSettingsReader getSettings();
+List<Task<Report>> index(URI path);
+List<Report> indexBlocking(URI path);
+ServerSettingsReader getSettings();
 ```
 
 ## Frequently Asked Questions
