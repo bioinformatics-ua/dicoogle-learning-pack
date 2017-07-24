@@ -27,6 +27,8 @@ logo: /images/dicoogle-lp-logo-white.png
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+
 theme: jekyll-theme-slate
 
 gems:

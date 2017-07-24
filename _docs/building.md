@@ -18,27 +18,36 @@ Dicoogle is an open-source project. The official sources are hosted on GitHub [h
 
 Before building, please make sure that your system contains the following tools:
 
- - Java JDK, either Oracle or OpenJDK (at least version 7; JDK 8 is recommended)
- - [Maven](https://maven.apache.org/) 3
- - [Node.js](https://nodejs.org/en/download/) (at least version 4; LTS or Stable versions are recommended) and npm (at least version 2)
+ - Java JDK, either Oracle or OpenJDK (at least version 7; JDK 8 is recommended). This package contains the necessary parts for building Java programs.
+ - [Maven](https://maven.apache.org/) 3. We use Maven to retrieve dependencies and execute scripts for building, checking and testing projects.
  - Git, to retrieve the source code from the official repository.
 
  1. Retrieve the full source code from this repository: `git clone https://github.com/bioinformatics-ua/dicoogle.git`
- 2. Navigate to the project's base directory, and build the parent Maven project by calling `mvn install`.
-    - You can build Dicoogle without the web application by skipping the npm process: `mvn install -Dskip.npm`
+ 2. Navigate to the project's base directory, and build the parent Maven project:
+ 
+```sh
+mvn install
+```
+   You can build Dicoogle without the web application by skipping the npm process:
+   
+```sh
+mvn install -Dskip.npm
+```
+
  3. The resulting jar file can be found in "./dicoogle/target". Plugins are provided separately, and must be compatible with the built version of Dicoogle.
 
 ### Building and debugging the web application
 
 The web app is located in _"dicoogle/src/main/resources/webapp"_. It is possible to work on the web application as a separate project, and configure it to use a Dicoogle instance on a different location.
 
-`npm` version 2 or earlier is required. To build everything for production (ready to be bundled for when creating dicoogle.jar):
+First of all, make sure that [Node.js](https://nodejs.org/en/download/) (LTS or Stable) and [npm](https://npmjs.com) are installed. npm is a popular package manager for JavaScript development, and we'll be using it to automatically retrieve all of the webapp's dependencies and build the resulting parts.
+First of all, you need to call `npm install`:
 
 ```sh
 npm install
 ```
 
-To build all js and html resources:
+The script above is usually sufficient. Regardless, when the dependencies are already installed, we can invoke specific scripts. To build all resources:
 
 ```sh
 npm run debug        # for development
@@ -51,7 +60,7 @@ To build just the css files:
 npm run css
 ```
 
-To watch for changes in JavaScript resources (good for building while developing):
+To watch for changes in JavaScript resources (good for development):
 
 ```sh
 npm run js:watch
@@ -63,13 +72,7 @@ To watch for changes in the SASS resources (thus building css):
 npm run css:watch
 ```
 
-Everything is build for production (js, html and css) in the prepublish script (this is also run automatically for `npm install`):
-
-```sh
-npm run-script prepublish
-```
-
-All of these npm scripts map directly to gulp tasks:
+All of these npm scripts map directly to Gulp tasks. Gulp is the task runner that is currently used by the project.
 
 ```sh
 $ gulp --tasks
@@ -109,8 +112,8 @@ We have included a script for running a static server containing the standalone 
 Otherwise, many static server applications are available, such as the `static-http` package:
 
 ```sh
-npm install -g static-http
-static-http -p 9000
+npm install -g static-http   # install static-http globally
+static-http -p 9000          # serve directory
 ```
 
 #### Debugging the webapp
@@ -123,8 +126,17 @@ The web application can be tested separately without having it embedded in a jar
 <server enable="true" port="8080" allowedOrigins="*" />
 ```
 
-2. Navigate to the webapp's source code. Define the URL to Dicoogle's base endpoint using the `DICOOGLE_BASE_URL` environment variable, and bundle the source code: `DICOOGLE_BASE_URL=http://localhost:8080 npm run debug`. See the **Building** section above for more scripts.
+2. Navigate to the webapp's source code. Define the URL to Dicoogle's base endpoint using the `DICOOGLE_BASE_URL` environment variable, and bundle the source code: 
+
+```sh
+`DICOOGLE_BASE_URL=http://localhost:8080 npm run debug
+```
+
+When the environment variable `DICOOGLE_BASE_URL` is set, we are instructing our build scripts to use a custom base URL to the server. 
+An update to the web application different server only requires a rebuild of the webapp (and a page refresh in your browser). The server itself does not have to be restarted. See the section above on [building scripts]({{ site.baseurl }}/docs/building/#building-and-debugging-the-web-application) section above for more scripts.
 
 3. Start a static server on the web application's base folder. If you have Python, the `run_server` script will do.
 
 4. Open your browser and navigate to the static server: http://localhost:9000
+
+The difference here is that, while the running Dicoogle instance is hosted at http://localhost:8080, the web application is actually served in http://localhost:9000.   REST operations to the server will be properly directed.  
