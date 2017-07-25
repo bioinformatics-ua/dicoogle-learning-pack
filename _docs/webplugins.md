@@ -24,7 +24,7 @@ npm install -g yo generator-dicoogle-webplugin
 <p>On Unix systems, you may need to fix the <a href="https://docs.npmjs.com/getting-started/installing-npm-packages-globally">npm permissions</a>. Although it is not recommended, you can also execute the command as super user (with <code>sudo</code>).</p>
 </div>
 
-This will install the packages `yo` and `generator-dicoogle-webplugin`. The first one is the executable for [Yeoman](yeoman.io), a project scaffolding application with a generator ecosystem. The second one is a Dicoogle web plugin project generator, developed specifically to facilitate the development of this kind of plugins.
+This will install the packages `yo` and `generator-dicoogle-webplugin`. The first one is the executable for [Yeoman](http://yeoman.io), a project scaffolding application with a generator ecosystem. The second one is a Dicoogle web plugin project generator, developed specifically to facilitate the development of this kind of plugins.
 
 While still on a command line, execute the following commands:
 
