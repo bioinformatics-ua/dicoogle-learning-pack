@@ -6,10 +6,10 @@ title: Welcome to the Dicoogle Learning Pack
 This is a set of tutorials and resources for setting up an instance of Dicoogle, as well as for developing compatible plugins. The contents of the Dicoogle Learning Pack are targeted at future users of Dicoogle, including students and researchers.
 In this site, you will receive guidance on:
 
- - Setting up a PACS archive with basic storage and querying capabilities;
- - Using Dicoogle from its web application;
- - Configuring the PACS archive and its plugins;
- - Developing your own plugins for Dicoogle.
+ - [Setting up a PACS archive](docs/setup) with basic storage and querying capabilities;
+ - [Using Dicoogle](docs/using) from its web application;
+ - [Configuring](docs/configuring) the PACS archive and its plugins;
+ - [Developing your own plugins](docs/developing-plugins) for Dicoogle.
 
 Throughout this site, you may find the following notes:
 
@@ -33,6 +33,8 @@ Throughout this site, you may find the following notes:
   <p>Future versions of Dicoogle may have planned features that would influence how certain topics should be handled. Reading these notes is recommended if you wish to contribute to the core project or use bleeding-edge versions of Dicoogle.</p>
 </div>
 
-This site is a work in progress, but all relevant topics should be available in a few months.
+-----------------------------------
 
-Head on to the [Getting Started](docs/introduction) section to begin!
+This site is [hosted on GitHub](https://github.com/Enet4/dicoogle-learning-pack), and contributions from the wider community are welcome. If you would like to propose changes to a particular page, click the pencil at the top-right corner to suggest an edit. If something in the learning pack is unclear or in need of further clarifications, you may [file an issue](https://github.com/Enet4/dicoogle-learning-pack/issues/new) at the repository.
+
+Head on to the [Introduction](docs/introduction) section to begin.

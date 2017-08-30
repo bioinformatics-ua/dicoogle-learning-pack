@@ -65,7 +65,7 @@ In order to obtain this platform interface, plugins (or the plugin set) need to 
 
 ```java
 public class MyQueryPlugin 
-        implements QueryInterface, PlatformCommunicatorInterface
+        implements QueryInterface, PlatformCommunicatorInterface {
     private DicooglePlatformInterface platform;
 
     // ... other content
@@ -74,6 +74,7 @@ public class MyQueryPlugin
     void setPlatformProxy(DicooglePlatformInterface platform) {
         this.platform = platform;
     }
+}
 ```
 
 This object contains the set of methods that you can use. Here is the full list of methods in version 2.4.0:
