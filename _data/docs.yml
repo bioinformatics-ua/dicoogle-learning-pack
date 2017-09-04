@@ -8,7 +8,7 @@
 - title: Plugin Development
   docs:
   - developing-plugins
-#  - query_index
+  - query_index
 #  - storage
 #  - server
   - webplugins
