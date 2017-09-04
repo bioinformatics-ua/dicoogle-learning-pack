@@ -255,3 +255,54 @@ public class RSIWebResource extends ServerResource {
 ```
 
 In either case, do not forget to [register all plugins in the plugin set]({{ site.baseurl }}/docs/developing-plugins#how-are-plugins-registered-into-the-platform).
+
+### Should I use System.out for logging in my plugins?
+
+Printing directly to the standard output is not recommended. Dicoogle uses [slf4j](https://www.slf4j.org/) for all logging purposes, and so its plugins should rely on this API as well. Please see the [slf4j user manual](https://www.slf4j.org/manual.html). The [FAQ](https://www.slf4j.org/faq.html) also provides excellent tips on how to use (and how not to use) the API. In particular:
+
+- Avoid performing concatenations in the logged text (i.e. do not write `logger.info("Status: " + status);`); use template matching instead (e.g. `logger.info("Status: {}", status);`).
+- Do not call `toString()` on the template arguments, as this is done automatically and only when needed.
+- Restrict *ERROR* level log instructions to situations where something critical occurred in the application, often associated to bugs in the software, and that should be attended by an administrator. Less critical issues should be logged with the *WARNING* level or lower.
+- Logging lines for debugging purposes should be at either level *DEBUG* or *TRACE*. You can configure Dicoogle to show these messages with a custom [log4j2 configuration](https://logging.apache.org/log4j/2.x/manual/configuration.html) file, such as the one below. The JVM variable `log4j.configurationFile` should then be defined as thus:
+
+```sh
+java -Dlog4j.configurationFile=log4j2.xml -jar "dicoogle.jar" -s
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%-5p %C{2} (%F:%L) - %m%n"/>
+        </Console>
+        <RollingRandomAccessFile name="Rolling" fileName="dicoogle.log" filePattern="dicoogle-%i.log" >
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} | %-5p [%t] (%F:%L) - %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="2.0 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="STDOUT" level="info" />
+            <AppenderRef ref="Rolling" level="info" />
+        </Root>
+        <Logger name="pt.ua.dicoogle" additivity="false">
+            <AppenderRef ref="STDOUT" level="info" />
+            <AppenderRef ref="Rolling" level="debug" />
+        </Logger>
+        <Logger name="org.eclipse.jetty" additivity="false">
+            <AppenderRef ref="STDOUT" level="warn" />
+            <AppenderRef ref="Rolling" level="info" />
+        </Logger>
+
+        <!-- configure logger/appender pair separately to reduce noise -->
+        <Logger name="pt.ua.dicoogle.my.plugin" additivity="false">
+            <AppenderRef ref="STDOUT" level="trace" />
+            <AppenderRef ref="Rolling" level="trace" />
+        </Logger>
+    </Loggers>
+</Configuration>
+```
