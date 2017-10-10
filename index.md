@@ -35,6 +35,6 @@ Throughout this site, you may find the following notes:
 
 -----------------------------------
 
-This site is [hosted on GitHub](https://github.com/Enet4/dicoogle-learning-pack), and contributions from the wider community are welcome. If you would like to propose changes to a particular page, click the pencil at the top-right corner to suggest an edit. If something in the learning pack is unclear or in need of further clarifications, you may [file an issue](https://github.com/Enet4/dicoogle-learning-pack/issues/new) at the repository.
+This site is [hosted on GitHub](https://github.com/{{ site.repository }}), and contributions from the wider community are welcome. If you would like to propose changes to a particular page, click the pencil at the top-right corner to suggest an edit. If something in the learning pack is unclear or in need of further clarifications, you may [file an issue](https://github.com/{{ site.repository }}/issues/new) at the repository.
 
 Head on to the [Introduction](docs/introduction) section to begin.
