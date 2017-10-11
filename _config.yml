@@ -19,7 +19,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Resources for Dicoogle users and developers.
 
 baseurl: /dicoogle-learning-pack
-repository: Enet4/dicoogle-learning-pack
+repository: bioinformatics-ua/dicoogle-learning-pack
 
 #github: [metadata]
 
