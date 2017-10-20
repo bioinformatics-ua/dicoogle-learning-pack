@@ -48,7 +48,7 @@ public interface StorageInterface extends DicooglePlugin {
      * 
      * <pre>
      * for(StorageInputStream dicomObj : storagePlugin.at("file://dataset/")){
-     *      System.err.println(dicomObj.getURI());
+     *      // use dicomObj here
      * }
      * </pre>
      * 
@@ -123,13 +123,19 @@ this behaviour is not required for Dicoogle storages in general.
 
 The `at` method introduces a new abstraction for files in a Dicoogle storage provider. The `StorageInputStream` interface,
 despite the name, represents an item in storage (often a DICOM file). An ordinary Java input stream can be obtained
-by calling `getInputStream()`.
+by calling `getInputStream()`. The code below would allow you to read a file as DICOM data. Indexers and other plugins
+may instead interpret the file as images, or arbitrary binary data, depending on their purpose.
 
-<!-- TODO -->
+```java
+Iterable<StorageInputStream> it = myStorage.at("file:/data/X/000.dcm");
+StorageInputStream f = it.next(); // expect one file
+DicomObject dcm = new DicomInputStream(f.getInputStream()).readObject();
+// use DICOM object
+```
 
 ### Other methods
 
-`getScheme()` should return a constant string compatible with a URI scheme. A basic file storage plugin would use the `file`
+`getScheme()` should constantly return a string compatible with a URI scheme. A basic file storage plugin would use the `file`
 scheme like this:
 
 ```java
