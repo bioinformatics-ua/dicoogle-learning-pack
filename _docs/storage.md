@@ -133,6 +133,16 @@ DicomObject dcm = new DicomInputStream(f.getInputStream()).readObject();
 // use DICOM object
 ```
 
+Storage plugins are required to implement the logic behind obtaining a list of files by URI, as well as a class
+type to be used as a `StorageInputStream`. The following should be kept in mind:
+
+ - If the storage is hierarchical, calling `at` for a parent resource must recursively yield all files inside
+that directory. This also means that `store.at("file:/")` would give us all files in storage.
+ - As stores may end up having millions of entries, it is recommended to build a lazy iterable of the files upon
+a call to `at`. For instance, the iterator may keep a queue of directories yet to be expanded to their respective
+children.
+ - _Never_ return `null` from this method, and _always_ return a valid iterable object, even if it has to be an empty one.
+
 ### Other methods
 
 `getScheme()` should constantly return a string compatible with a URI scheme. A basic file storage plugin would use the `file`
