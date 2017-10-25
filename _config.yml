@@ -46,6 +46,9 @@ collections:
   docs:
     permalink: /:collection/:path/
     output: true
+  slides:
+    permalink: /slides/
+    output: true
 
 sass:
   sass_dir: _sass

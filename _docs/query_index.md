@@ -19,41 +19,46 @@ Let's have a look at this interface and examine each method.
 
 ```java
 /**
- * Index Interface Plugin. Indexers analyze documents for performing queries. They may index
- * documents by DICOM metadata for instance, but other document processing procedures may be involved.
+ * Index Interface Plugin. Indexers analyze documents for performing
+ * queries. They may index documents by DICOM metadata for instance,
+ * but other document processing procedures may be involved.
  */
 public interface IndexerInterface extends DicooglePlugin {
 
     /**
-     * Indexes the file path to the database. Indexation procedures are asynchronous, and will return
-     * immediately after the call. The outcome is a report that can be retrieved from the given task
-     * as a future.
+     * Indexes the file path to the database. Indexing procedures
+     * are asynchronous, and will return immediately after the
+     * call. The outcome is a report that can be retrieved from the
+     * given task as a future.
      *
      * @param file directory or file to index
-     * @return a representation of the asynchronous indexation task
+     * @return a representation of the asynchronous indexing task
      */
     Task<Report> index(StorageInputStream file, Object ... parameters);
 
     /**
-     * Indexes multiple file paths to the database. Indexation procedures are asynchronous, and will return
-     * immediately after the call. The outcomes are aggregated into a single report and can be retrieved from
-     * the given task as a future.
+     * Indexes multiple file paths to the database. Indexing
+     * procedures are asynchronous, and will return immediately
+     * after the call. The outcomes are aggregated into a single
+     * report and can be retrieved from the given task as a future.
      *
      * @param files a collection of directories and/or files to index
-     * @return a representation of the asynchronous indexation task
+     * @return a representation of the asynchronous indexing task
      */
-    Task<Report> index(Iterable<StorageInputStream> files, Object ... parameters);
+    Task<Report> index(Iterable<StorageInputStream> files,
+            Object ... parameters);
 
     
     /**
-     * Checks whether the file in the given path can be indexed by this indexer. The indexer should verify if
-     * the file holds compatible content (e.g. a DICOM file). If this method returns false, the file will not
-     * be indexed.
+     * Checks whether the file in the given path can be indexed by
+     * this indexer. The indexer should verify if the file holds
+     * compatible content (e.g. a DICOM file). If this method
+     * returns false, the file will not be indexed.
      *
      * @param path a URI to the file to check
      * @return whether the indexer can handle the file at the given path
      */
-    boolean handles(URI path);    
+    boolean handles(URI path);
     
     /**
      * Removes the indexed file at the given path from the database.

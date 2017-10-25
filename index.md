@@ -11,6 +11,11 @@ In this site, you will receive guidance on:
  - [Configuring](docs/configuring) the PACS archive and its plugins;
  - [Developing your own plugins](docs/developing-plugins) for Dicoogle.
 
+Also, check out our [introduction slides](slides)!
+
+
+### Reading the pages
+
 Throughout this site, you may find the following notes:
 
 <div class="note">
@@ -33,8 +38,10 @@ Throughout this site, you may find the following notes:
   <p>Future versions of Dicoogle may have planned features that would influence how certain topics should be handled. Reading these notes is recommended if you wish to contribute to the core project or use bleeding-edge versions of Dicoogle.</p>
 </div>
 
------------------------------------
+### Feedback & Contributing
 
-This site is [hosted on GitHub](https://github.com/{{ site.repository }}), and contributions from the wider community are welcome. If you would like to propose changes to a particular page, click the pencil at the top-right corner to suggest an edit. If something in the learning pack is unclear or in need of further clarifications, you may [file an issue](https://github.com/{{ site.repository }}/issues/new) at the repository.
+This site is [hosted on GitHub](https://github.com/{{ site.repository }}). If you would like to propose changes to a particular page, click the pencil (<i class="fa fa-pencil"></i>) found at the top-right corner to suggest an edit. If something in the learning pack is unclear or in need of further clarifications, you may [file an issue](https://github.com/{{ site.repository }}/issues/new) at the repository. Contributions from the wider community are welcome.
 
-Head on to the [Introduction](docs/introduction) section to begin.
+--------
+
+Head on to the [Introduction](docs/introduction) to begin.

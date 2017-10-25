@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="40cm" height="24cm" viewBox="10 0 798 474" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="176" y="2" width="410.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="176" y="2" width="410.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="381.2" y="21">PluginSet</text>
+    <rect style="fill: #ffffff" x="176" y="30" width="410.4" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="176" y="30" width="410.4" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="179" y="44">+getStoragePlugins(): Collection&lt;StorageInterface&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="179" y="60">+getQueryPlugins(): Collection&lt;QueryInterface&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="179" y="76">+getIndexPlugins(): Collection&lt;IndexerInterface&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="179" y="92">+getJettyPlugins(): Collection&lt;JettyPluginInterface&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="179" y="108">+getRestPlugins(): Collection&lt;ServerResource&gt;</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="214.773" y="361.308" width="333.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="214.773" y="361.308" width="333.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="381.473" y="380.308">DicooglePlugin</text>
+    <rect style="fill: #ffffff" x="214.773" y="389.308" width="333.4" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="214.773" y="389.308" width="333.4" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="217.773" y="403.308">+getName(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="217.773" y="419.308">+setEnabled(enable:boolean)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="217.773" y="435.308">+isEnabled(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="217.773" y="451.308">+setSettings(settings:ConfigurationHolder)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="217.773" y="467.308">+getSettings(): ConfigurationHolder</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="473" y="250.118" width="333.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="473" y="250.118" width="333.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="639.7" y="269.118">StorageInterface</text>
+    <rect style="fill: #ffffff" x="473" y="278.118" width="333.4" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="473" y="278.118" width="333.4" height="68"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="476" y="292.118">+getScheme(): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="476" y="308.118">+at(uri:URI): Iterable&lt;StorageInputStream&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="476" y="324.118">+store(obj:DicomObject): URI</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="476" y="340.118">+remove(uri:URI): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="11.2" y="260.446" width="217.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="11.2" y="260.446" width="217.9" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="120.15" y="279.446">IndexerInterface</text>
+    <rect style="fill: #ffffff" x="11.2" y="288.446" width="217.9" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="11.2" y="288.446" width="217.9" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="14.2" y="302.446">+index(files): Task&lt;Report&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="14.2" y="318.446">+unindex(uri:URI): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="206.997" y="167.166" width="348.8" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="206.997" y="167.166" width="348.8" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="381.397" y="186.166">IndexerInterface</text>
+    <rect style="fill: #ffffff" x="206.997" y="195.166" width="348.8" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="206.997" y="195.166" width="348.8" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="209.997" y="209.166">+query(query:String): Iterable&lt;SearchResult&gt;</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="209.997" y="225.166">+unindex(uri:URI): boolean</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="196.537,415.308 120.15,415.308 120.15,324.446 "/>
+    <polygon style="fill: #ffffff" points="196.537,423.308 212.537,415.308 196.537,407.308 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="196.537,423.308 212.537,415.308 196.537,407.308 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="381.473,342.065 381.473,288.237 381.397,288.237 381.397,232.174 "/>
+    <polygon style="fill: #ffffff" points="373.473,342.065 381.473,358.065 389.473,342.065 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="373.473,342.065 381.473,358.065 389.473,342.065 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="566.409,415.308 639.7,415.308 639.7,347.124 "/>
+    <polygon style="fill: #ffffff" points="566.409,407.308 550.409,415.308 566.409,423.308 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="566.409,407.308 550.409,415.308 566.409,423.308 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="150.828,56 120.15,56 120.15,260.446 "/>
+    <polygon style="fill: #000000" points="176,56 162,60.8 148,56 162,51.2 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="176,56 162,60.8 148,56 162,51.2 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="611.572,56 639.7,56 639.7,249.112 "/>
+    <polygon style="fill: #000000" points="586.4,56 600.4,51.2 614.4,56 600.4,60.8 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="586.4,56 600.4,51.2 614.4,56 600.4,60.8 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="381.2,140.179 381.2,147.582 381.397,147.582 381.397,166.158 "/>
+    <polygon style="fill: #000000" points="381.2,115.007 386,129.007 381.2,143.007 376.4,129.007 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="381.2,115.007 386,129.007 381.2,143.007 376.4,129.007 "/>
+  </g>
+</svg>

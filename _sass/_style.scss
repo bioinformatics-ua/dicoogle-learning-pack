@@ -400,12 +400,23 @@ hr {
 
 // code related style
 
+code, .highlighter-rouge {
+  background: none;
+  box-shadow: none;
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+.highlight {
+  background-color: #fff;
+}
+
 pre {
   padding: 6px;
-
   code {
     width: auto;
     font-size: 10pt;
+    font-weight: normal;
   }
 }
 
