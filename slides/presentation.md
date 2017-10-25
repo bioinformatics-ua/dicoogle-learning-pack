@@ -24,6 +24,7 @@ background-color: #cbe0f2
 3. Using Dicoogle
    - Deploying
    - Basic Usage
+4. Developing for Dicoogle
 
 ---
 
@@ -94,13 +95,26 @@ background-color: #cbe0f2
 - Over 25 million images were indexed in Aveiro, Portugal;
 - Has fulfilled a multitude of use cases in research and industry.
 
+--
+
+### The user can:
+
+- Index DICOM files
+- Quick DIM navigation
+- Navigate over meta-data
+- Free text searching
+- Perform advanced boolean queries
+- Export data to CSV
+
 ---
 
 # ![](img/dicoogle-logo.svg)
 
 .exhibit-text-left[
 - Plugin-based architecture
-  - Plugins are developed separately
+  - Empower a PACS archive with additional features
+  - High-level abstractions from DICOM services and resources
+  - Easy to interact with core functionalities
   - _Dicoogle SDK_
 - Plugin-based architecture
 - Built-in DICOM QR + Storage
