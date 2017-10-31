@@ -12,6 +12,8 @@ Dicoogle is extendable in deployment time, thanks to its plugin-based architectu
 - **Rest Web Service** plugins contain a Restlet server resource that can be attached to Dicoogle, also for hosting web services.
 - **Web User Interface** Plugins, unlike other kinds of plugins, are developed in JavaScript and provide new UI components that are automatically loaded into Dicoogle's web application.
 
+This section assumes familiarity with the Java programming language.
+
 ## Basic concepts
 
 All of the necessary data structures and interfaces for plugin development are in the Dicoogle SDK project. Before getting straight to coding, it is important to understand the tools and mechanisms that you will be using.
