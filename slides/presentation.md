@@ -116,7 +116,6 @@ background-color: #cbe0f2
   - High-level abstractions from DICOM services and resources
   - Easy to interact with core functionalities
   - _Dicoogle SDK_
-- Plugin-based architecture
 - Built-in DICOM QR + Storage
 - Web service driven
   - configuration and interaction
