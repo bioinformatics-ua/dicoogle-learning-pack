@@ -322,12 +322,11 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 .block-division-3[
 ### Past Contributors
 
-- António Novo
 - Carlos Ferreira
-- Frederico Silva
 - Frederico Valente
 - Luís Ribeiro
-- Samuel Campos
+- Frederico Silva
+- and many others...
 
 ### R&D Project Managers
 
