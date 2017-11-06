@@ -87,6 +87,7 @@ aside a:hover, a:focus {
 
 article a {
   color: #337ab7 !important;
+  font-weight: 200 !important;
 }
 
 .grid .unit {
@@ -421,6 +422,26 @@ aside {
   }
 }
 
+
+.note {
+  -webkit-border-radius: 0px !important;
+  border-radius: 0px !important;
+  -webkit-box-shadow: none !important; 
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; 
+}
+
+.note h5 {
+  color: white !important;
+}
+
+.note p {
+  color: #EAEAEA !important;
+}
+
+.unreleased:after {
+  font-size: 25px !important;
+}
 
 /* Intro */
 
