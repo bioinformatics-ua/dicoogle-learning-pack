@@ -10,7 +10,7 @@
   - developing-plugins
   - query_index
   - storage
-#  - server
+  - server
   - webplugins
 - title: Dicoogle Development
   docs:
