@@ -141,7 +141,7 @@ Want to try it now? We have a [Live Demo](http://demo.dicoogle.com)!
 
 # Getting Started
 
-- Start by [downloading](http://www.dicoogle.com/?page_id=67) Dicoogle and base plugins.
+- Start by [downloading](http://www.dicoogle.com/downloads/) Dicoogle and base plugins.
    - Or build them from the sources.
 
 - Requires Java 7 (Java 8 recommended).
