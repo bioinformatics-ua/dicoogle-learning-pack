@@ -4,7 +4,16 @@ permalink: /docs/webplugins/
 layout: docs
 ---
 
-Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. This page is a tutorial that will guide you into making your first Dicoogle web plugin: a settings component for reading and modifying the DICOM server's AE title.
+Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. The first section of this page is a tutorial that will guide you into making your first Dicoogle web plugin: a settings component for reading and modifying the DICOM server's AE title. The second section will provide additional details about integrating web plugins and the APIs made available to them.
+
+<div class="note unreleased" >
+<h5>On web UI plugin support</h5>
+<p>The Dicoogle web UI plugin architecture is currently not fully covered by the Dicoogle project's stability guarantees.
+More kinds of web plugins are planned, but not fully supported. Features known to work well with the latest
+stable release of Dicoogle will be documented here in the Learning Pack. When working with development
+versions, the <a href="https://github.com/bioinformatics-ua/dicoogle/tree/master/webcore/README.md">README pages</a> in the webcore sub-project
+will be more up-to-date with changes in web plugin support.</p>
+</div>
 
 ### Setting up a project
 
@@ -39,7 +48,7 @@ The application will now be asking you a series of questions about the project.
 - The **project name** will be the name of the npm project, and also the unique name of the plugin. We can leave the default by pressing Enter.
 - The **description** is just a small text about the plugin, and is completely optional.
 - Next you will be asked about the **type** of web plugin. For this example, we will select the **settings** type.
-- Afterwards, you may select whether you want a JavaScript or a TypeScript project. A JavaScript project will include [Babel](babeljs.io) to guarantee the existence of features that were standardized in ECMAScript 2015 and ECMAScript 2016. A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead. Any of the two kinds of projects should work fine, but you might prefer the JavaScript project if you don't know anything about TypeScript.
+- Afterwards, you may select whether you want a JavaScript or a TypeScript project. A JavaScript project will include [Babel](babeljs.io) to guarantee the existence of features that were standardized in ECMAScript 2015 and ECMAScript 2016. A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead. Any of the two kinds of projects should work fine, but you might prefer the JavaScript project if you don't know anything about TypeScript. On the other hand, a TypeScript project will provide you better IDE integration with static type checking and auto-complete facilities.
 - The **caption** is a label that is shown in the web application. We will set this one to _"AE Title"_.
 - Finally, you are requested additional information about the project, which can be added in case of the project being put into a public repository. They are all optional.
 
@@ -59,8 +68,7 @@ We will now install this plugin as a standalone web plugin. Create a folder _"We
 Afterwards, create a directory _"aetitle"_ in _"WebPlugins"_ and copy the two files above into this folder. The directory tree should look like this:
 
 ```
- .
- ├── DicoogleDir
+ DicoogleDir
  ├── Plugins
  |   └── ...
  ├── WebPlugins
@@ -138,7 +146,7 @@ render(parent, slot) {
 
 A new question should arise here: _How to we interact with Dicoogle from here?_
 
-### Dicoogle API
+### Interacting with Dicoogle
 
 Interfacing with the Dicoogle instance is done through the Dicoogle client API, in the [`dicoogle-client`](https://github.com/bioinformatics-ua/dicoogle-client-js) package.
 The package can be included in separate applications, but when developing web plugins, we don't have to. Instead, a global variable `Dicoogle` is exposed with all of the features. The operations available are all listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/interfaces/_types_dicoogle_client_d_.dicoogleclient.dicoogleaccess.html). In particular, we are looking for two methods:
@@ -201,7 +209,7 @@ render(parent, slot) {
 }
 ```
 
-Let's repeat the installation process by running `npm install` ad copying the updated _"module.js"_ file to the deployment folder. We may now enter the web application again and see that the changes have taken effect.
+Let's repeat the installation process by running `npm install` and copying the updated _"module.js"_ file to the deployment folder. We may now enter the web application again and see that the changes have taken effect.
 
 ![]({{ site.baseurl }}/images/screenshot_webplugin_settings_aetitle.png)
 
@@ -333,6 +341,21 @@ export default class MyPluginModule() {
   }
 };
 ```
+
+### Types of Web Plugins
+
+As previously mentioned, we are requested to specify a a type of plugin, often with the "slot-id" property. This type defines
+how webplugins are attached to the application. The following  Note that not all of them are fully supported at the moment.
+
+- **menu**: Menu plugins are used to augment the main menu. A new entry is added to the side bar (named by the plugin's caption
+  property), and the component is created when the user navigates to that entry.
+- **result-option**: Result option plugins are used to provide advanced operations to a result entry. If the user activates
+  _"Advanced Options"_ in the search results view, these plugins will be attached into a new column, one for each visible result entry.
+- **result-batch**: Result batch plugins are used to provide advanced operations over an existing list of results. These plugins will
+  attach a button (named with the plugin's caption property), which will pop-up a division below the search result view.
+- **settings**: Settings plugins can be used to provide addition management information and control. These plugins will be attached to
+  the _"Plugins & Services"_ tab in the _Management_ menu.
+
 
 ### Dicoogle Web API
 
