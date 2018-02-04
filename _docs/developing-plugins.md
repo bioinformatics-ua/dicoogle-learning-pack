@@ -202,7 +202,7 @@ This regards plugin-specific settings. In order to read and write global Dicoogl
 
 ### How do I create new web services?
 
-Web services are one of the most flexible ways of expanding Dicoogle with new features. Currently, there are two ways to achieve this:
+Web services are one of the most flexible ways of expanding Dicoogle with new features. We have dedicated a section on developing web services [here]({{ site.baseurl }}/docs/server). Currently, there are two ways to achieve this:
 
 - *Jetty Servlets* can be created and registered using a plugin of type [`JettyPluginInterface`](https://github.com/bioinformatics-ua/dicoogle/blob/master/sdk/src/main/java/pt/ua/dicoogle/sdk/JettyPluginInterface.java). Create your own servlets (see [`HttpServlet`](https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html)), then attach them into a handler list in `getJettyHandlers`:
 
@@ -214,11 +214,11 @@ public HandlerList getJettyHandlers() {
     ServletContextHandler handler = new ServletContextHandler();
     handler.setContextPath("/sample");
     handler.addServlet(new ServletHolder(this.webService), "/hello");
-        
+
     // you can retrieve plugin-scoped resources
     URL url = RSIJettyPlugin.class.getResource("/WEBAPP");
     String directoryToServeAssets = url.toString();
-        
+
     // web app contexts are more appropriate for serving web pages
     final WebAppContext webpages = new WebAppContext(directoryToServeAssets, "/dashboardSample");
     webpages.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "true"); // disables directory listing
@@ -237,16 +237,16 @@ public HandlerList getJettyHandlers() {
 
 ```java
 public class RSIWebResource extends ServerResource {
-    
+
     @Get
     public Representation test() {
         StringRepresentation sr = new StringRepresentation("{\"name\":\"rsi\"}");
         sr.setMediaType(MediaType.APPLICATION_JSON);
         return sr;
     }
-    
+
     // You can handle all CRUD operations. More information in the Restlet documentation.
-    
+
     /** `toString` defines the service endpoint. */
     @Override
     public String toString() {
@@ -260,51 +260,4 @@ In either case, do not forget to [register all plugins in the plugin set]({{ sit
 
 ### Should I use System.out for logging in my plugins?
 
-Printing directly to the standard output is not recommended. Dicoogle uses [slf4j](https://www.slf4j.org/) for all logging purposes, and so its plugins should rely on this API as well. Please see the [slf4j user manual](https://www.slf4j.org/manual.html). The [FAQ](https://www.slf4j.org/faq.html) also provides excellent tips on how to use (and how not to use) the API. In particular:
-
-- Avoid performing concatenations in the logged text (i.e. do not write `logger.info("Status: " + status);`); use template matching instead (e.g. `logger.info("Status: {}", status);`).
-- Do not call `toString()` on the template arguments, as this is done automatically and only when needed.
-- Restrict *ERROR* level log instructions to situations where something critical occurred in the application, often associated to bugs in the software, and that should be attended by an administrator. Less critical issues should be logged with the *WARNING* level or lower.
-- Logging lines for debugging purposes should be at either level *DEBUG* or *TRACE*. You can configure Dicoogle to show these messages with a custom [log4j2 configuration](https://logging.apache.org/log4j/2.x/manual/configuration.html) file, such as the one below. The JVM variable `log4j.configurationFile` should then be defined as thus:
-
-```sh
-java -Dlog4j.configurationFile=log4j2.xml -jar "dicoogle.jar" -s
-```
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
-    <Appenders>
-        <Console name="STDOUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="%-5p %C{2} (%F:%L) - %m%n"/>
-        </Console>
-        <RollingRandomAccessFile name="Rolling" fileName="dicoogle.log" filePattern="dicoogle-%i.log" >
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} | %-5p [%t] (%F:%L) - %m%n"/>
-            <Policies>
-                <OnStartupTriggeringPolicy />
-                <SizeBasedTriggeringPolicy size="2.0 MB"/>
-            </Policies>
-        </RollingRandomAccessFile>
-    </Appenders>
-    <Loggers>
-        <Root level="debug">
-            <AppenderRef ref="STDOUT" level="info" />
-            <AppenderRef ref="Rolling" level="info" />
-        </Root>
-        <Logger name="pt.ua.dicoogle" additivity="false">
-            <AppenderRef ref="STDOUT" level="info" />
-            <AppenderRef ref="Rolling" level="debug" />
-        </Logger>
-        <Logger name="org.eclipse.jetty" additivity="false">
-            <AppenderRef ref="STDOUT" level="warn" />
-            <AppenderRef ref="Rolling" level="info" />
-        </Logger>
-
-        <!-- configure logger/appender pair separately to reduce noise -->
-        <Logger name="pt.ua.dicoogle.my.plugin" additivity="false">
-            <AppenderRef ref="STDOUT" level="trace" />
-            <AppenderRef ref="Rolling" level="trace" />
-        </Logger>
-    </Loggers>
-</Configuration>
-```
+Printing directly to the standard output is not recommended. Dicoogle uses [slf4j](https://www.slf4j.org/) for all logging purposes, and so its plugins should rely on this API as well. Please see the [Logging]({{ site.baseurl }}/docs/debugging#logging) sub-section for more information.
