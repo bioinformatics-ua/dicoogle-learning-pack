@@ -27,6 +27,9 @@
   p {
     margin: 0;
     color: #fff;
+    a: {
+      font-weight: 900;
+    }
   }
   li {
     color: #fff;
@@ -62,6 +65,7 @@
   code {
     font-family: monospace, monospace;
     font-size: 0.8em;
+    color: #fff;
   }
 }
 
