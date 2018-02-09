@@ -4,19 +4,41 @@
   margin: 0px 0px -22px 0px;
   box-shadow: 0px 0px 0px;
   border: none;
+  padding-bottom: 7px;
 }
 
 #main_content_wrap {
   background-color: #f8f8f8;
+  border-top: 0px solid #111;
 }
 
 #header_wrap {
-  background: #213141;
-  background: -moz-linear-gradient(top, #58A2C4, #214851);
-  background: -webkit-linear-gradient(top, #58A2C4, #214851);
-  background: -ms-linear-gradient(top, #58A2C4, #214851);
-  background: -o-linear-gradient(top, #58A2C4, #214851);
-  background: linear-gradient(top, #58A2C4, #214851);
+  background: #cbe0f2;
+  font-weight: 600;
+  margin-top: 0px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#forkme_banner {
+  font-size: 12px;
+  background: url(../images/blacktocat.png) #337ab7 no-repeat 95% 50%;
+}
+
+aside li.current a {
+  color: #337ab7 !important;
+}
+aside li a {
+  font-weight: 400 !important;
+}
+
+aside h4 {
+  border-bottom: 2px solid #337ab7 !important;
+}
+
+#project_tagline {
+  color: rgb(81,81,81);
+  text-shadow: none;
 }
 
 #header_wrap .inner {
@@ -35,35 +57,60 @@
 }
 
 #footer_wrap {
-  background: #214851;
+  background: #383838;
+  color: white;
+  // padding: 2.5rem 0;
+}
+
+#footer_wrap footer p{
+  font-size: 12px;
+  font-weight: bold;
 }
 
 h1, h2 {
-  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+  color: rgb(81,81,81);
+  //text-shadow: 0 1px 3px rgba(0,0,0,.4);
 }
 
 h1 {
   a {
-    color: #fff;
-    text-shadow: #111 0px 0px 10px;
+    color: rgb(81,81,81);
+    //text-shadow: #111 0px 0px 10px;
   }
   a:hover {
     border-bottom: none;
     text-decoration: none;
+    color: #356287;
   }
 }
 
-/*
-body {
-  font: 300 20px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #333;
-  -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings: "kern" 1;
-  -o-font-feature-settings: "kern" 1;
-  font-feature-settings: "kern" 1;
-  font-kerning: normal;
+aside a:hover, a:focus {
+  color: #337ab7;
 }
-*/
+
+article a {
+  color: #337ab7;
+  font-weight: 200;
+}
+
+.grid .unit {
+  float: right !important;
+}
+
+body {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.7857;
+  letter-spacing: 0.025em;
+  color: #333333;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(81,81,81) !important;
+}
+
 .main-nav {
   margin-top: 52px;
 
@@ -89,8 +136,8 @@ body {
     &.current {
 
       a {
-        background-color: #0ac;
-        color: #222;
+        background-color: #337ab7;
+        color: #337ab7;
         @include box-shadow(inset 0 1px 0 rgba(255,255,255,.5), 0 1px 5px rgba(0,0,0,.5));
         text-shadow: 0 1px 0 rgba(255,255,255,.3);
       }
@@ -110,7 +157,7 @@ body {
     float: left;
     width: 100%;
     background-color: #333;
-    color: #0ac;
+    color: #337ab7;
     text-align: center;
     text-transform: uppercase;
     font-size: 14px;
@@ -188,7 +235,7 @@ h6:hover .header-link {
 
 .outer {
   .inner {
-    max-width: 960px;
+    max-width: 1170px;
   }
 }
 
@@ -197,7 +244,7 @@ article {
   @include border-radius(5px);
   padding: 10px;
   margin: 0 8px;
-  @include box-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  //@include box-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
   font-size: 14px;
 
   li {
@@ -235,7 +282,7 @@ article {
   text-align: center;
   padding-top: 30px;
   position: relative;
-  background: url(../img/article-footer.png) top center no-repeat;
+  //background: url(../img/article-footer.png) top center no-repeat;
   margin: 35px 0px 35px;
 
   > div { width: 48%; }
@@ -254,8 +301,10 @@ article {
   }
 
   a:hover {
-    background-color: #0aa;
+    //background-color: #0aa;
+    box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.3);
     text-decoration: none;
+    color: #337ab7;
   }
 
   .next,
@@ -268,7 +317,7 @@ article {
     font-weight: 900;
     text-shadow: 0 1px 0 rgba(255,255,255,.4);
     position: absolute;
-    top: -12px;
+    top: -18px;
   }
 
   .next:after {
@@ -331,6 +380,7 @@ article {
 
 aside {
   padding-top: 30px;
+  letter-spacing: 0;
 
   h4 {
     text-transform: uppercase;
@@ -360,7 +410,7 @@ aside {
 
     &.current a:before {
       content: "";
-      border-color: transparent transparent transparent #444;
+      border-color: transparent transparent transparent #337ab7;
       border-style: solid;
       border-width: 9px;
       width: 0;
@@ -375,6 +425,26 @@ aside {
   }
 }
 
+
+.note {
+  -webkit-border-radius: 0px !important;
+  border-radius: 0px !important;
+  -webkit-box-shadow: none !important; 
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; 
+}
+
+.note h5 {
+  color: white !important;
+}
+
+.note p {
+  color: #EAEAEA !important;
+}
+
+.unreleased:after {
+  font-size: 25px !important;
+}
 
 /* Intro */
 

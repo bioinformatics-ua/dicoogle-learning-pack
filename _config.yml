@@ -23,7 +23,7 @@ repository: bioinformatics-ua/dicoogle-learning-pack
 
 #github: [metadata]
 
-logo: /images/dicoogle-lp-logo-white.png
+logo: /images/dicoogle-lp-logo.png
 
 # Build settings
 markdown: kramdown

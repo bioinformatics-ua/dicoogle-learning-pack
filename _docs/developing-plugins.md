@@ -145,7 +145,7 @@ First query the DIM provider for the file with that UID, then retrieve the URI f
 ```java
 String uid = "1.2.3.4";
 QueryInterface dimProvider = this.platform.getQueryProviderByName("lucene", true);
-Iterator<SearchResult>> results = dimProvider.("SOPInstanceUID:" + uid).iterator();
+Iterator<SearchResult>> results = dimProvider.query("SOPInstanceUID:" + uid).iterator();
 if (results.hasNext()) {
     SearchResult res = results.next();
     URI uri = res.getURI();
