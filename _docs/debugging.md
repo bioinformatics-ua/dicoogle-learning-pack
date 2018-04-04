@@ -116,7 +116,7 @@ In this situation, you may consider checking out a released version to ensure co
 git checkout v2.5.0
 ```
 
-The same source code can be downloaded from GitHub in the [Releases](https://github.com/bioinformatics-ua/dicoogle/releases) page. For the plugins, we suppose that you already have their respective source code.
+The same source code can be downloaded from GitHub in the [Releases](https://github.com/bioinformatics-ua/dicoogle/releases) page. For the plugins, we suppose that you already have their respective source code. Nevertheless, if you wish to debug one of the publicly available plugins, we provide the source code on demand via the [Downloads](http://www.dicoogle.com/downloads) page.
 
 ### Preparing the workspace
 
@@ -134,7 +134,7 @@ Before we start using Visual Studio Code, let's create a new folder similar to o
      └── ...
 ```
 
-Basically, we are preparing a working directory for debugging purposes, containing only the necessary plugins (don't forget all the plugins!). If some data is needed, include it as well. We also do not need dicoogle.jar because we'll be using the source code directly to build and run the respective class files.
+Basically, we are preparing a working directory for debugging purposes, containing only the necessary plugins (don't forget the plugins!). If some data is needed, include it as well. We also do not need dicoogle.jar because we'll be using the source code directly to build and run the respective class files.
 
 Open the source code's root folder with Visual Studio Code. Then, include the root folders of each plugin by adding them to your workspace (see the screenshot below). In this example, we will load two plugins that extend Dicoogle with web services: [`dicoogle-nifti`](https://github.com/Enet4/dicoogle-nifti) and [`dicoogle-list`](https://github.com/Enet4/dicoogle-list).
 
@@ -151,8 +151,22 @@ At the top, when requested to choose the type of program, choose Java:
 Visual Studio Code will automatically prepare us most of the configuration required. We still need to perform a few changes:
 
 - Only the "Debug (Launch)-Main&lt;dicoogle&gt;" and "Debug (Attach)" configurations are required. Other stray configurations can be removed from the JSON object.
-- We need to change the `cwd` field to the folder that we created. This is the working directory that the debugger will assume when running Dicoogle. Without it, the debugger will use the root source code folder, and the intended plugins will not be loaded.
+- We need to change the `cwd` field of the _first_ configuration to the folder that we created. This is the working directory that the debugger will assume when running Dicoogle. Without it, the debugger will use the root source code folder, and the intended plugins will not be loaded.
 - We can also add the "-s" flag to the command line arguments to prevent Dicoogle from opening the browser.
+
+```json
+    {
+        "type": "java",
+        "name": "Debug (Launch)-Main<dicoogle>",
+        "request": "launch",
+        "cwd": «PATH TO DICOOGLE DIR»,
+        "console": "internalConsole",
+        "stopOnEntry": false,
+        "mainClass": "pt.ua.dicoogle.Main",
+        "projectName": "dicoogle",
+        "args": "-s"
+    },
+```
 
 The launch.json file should be something similar to the following:
 
