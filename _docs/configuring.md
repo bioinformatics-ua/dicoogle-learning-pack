@@ -25,6 +25,12 @@ In the Management menu, Services and Plugins tab, it is possible to start and/or
 
 ![]({{ site.baseurl }}/images/screenshot_config_service.png)
 
+### Configuring Storage Servers
+
+In the Storage Servers tab, the administrator can record the known list of DICOM storage services. These are also called _move destinations_: Dicoogle will only admit C-MOVE operations towards these endpoints.
+
+![]({{ site.baseurl }}/images/screenshot_storage_servers.png)
+
 ### Configuration file
 
 All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `AETitle`:
