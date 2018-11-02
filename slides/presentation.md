@@ -11,7 +11,7 @@ background-color: #cbe0f2
 <br><br><br>
 <br><br><br>
 
-.footnote[.right[Eduardo Pinho &nbsp; <eduardopinho@ua.pt>]]
+.footnote[.right[The Dicoogle team]]
 
 ---
 
@@ -50,11 +50,11 @@ background-color: #cbe0f2
    - Medical reports: can be structured or unstructured.
 
 .center[
-  <img src="img/metadata.png" width="33%" />
+  <img src="img/metadata.png" width="30%" />
 &nbsp; &nbsp;
-  <img src="img/ct-scan.png" width="20%" />
+  <img src="img/ct-scan.png" width="18%" />
 &nbsp; &nbsp;
-  <img src="img/medical-report-icon.png" width="21%" />
+  <img src="img/medical-report-icon.png" width="18%" />
 ]
 ---
 
@@ -63,15 +63,19 @@ background-color: #cbe0f2
 - The requirements of medical imaging systems are ever increasing.
   - Imaging data output becomes larger and more frequent (Big Data).
   - New and enhanced modalities are emerging (whole-slide microscopy, PET/MRI, ...).
+  - Federated data sharing \& collaboration (telemedicine)
 - Information retrieval is important
+  - Data exploration (patient-centric, DICOM usage, ...)
   - Improved radiology workflows, teaching, researching.
   - New ways to search over medical imaging data.
+
 --
 
-- The great majority of installed information system do not allow such kind of analysis (limited indexing capabilities).
+.bad[
+- The great majority of installed information systems do not allow such kind of analysis (limited indexing capabilities).
 - Few systems enable institutions to continuously monitor and measure the efficiency of medical imaging data produced.
 - DICOM compliance is insufficient for state-of-the-art retrieval capabilities (free text search, query-by-example, ...).
-
+]
 
 ---
 
@@ -83,8 +87,7 @@ background-color: #cbe0f2
    - Image recognition (computer-assisted detection, content-based image retrieval, ...);
 - Knowledge extraction.
    - Obtain healthcare quality indicators.
-   - Analyses of the workflow and productivity.
-
+   - Analyses of workflow and productivity.
 
 ---
 
@@ -117,12 +120,9 @@ background-color: #cbe0f2
   - Easy to interact with core functionalities
   - _Dicoogle SDK_
 - Built-in DICOM QR + Storage
-- Web service driven
-  - configuration and interaction
-- Web user interface
-  - single-page webapp
-- Open-source
-  - GPL 3.0
+- Web service driven (configuration and interaction)
+- Web user interface; single-page webapp
+- Open-source (GPL 3.0)
 ]
 
 <img class="exhibit-right" src="img/architecture.png" width="50%" />
@@ -135,7 +135,7 @@ background-color: #cbe0f2
 - **<i class="fa fa-github fa-lg"></i> View on GitHub**: [github.com/bioinformatics-ua/dicoogle](https://github.com/bioinformatics-ua/dicoogle)
 - **Learning Pack**: [bioinformatics-ua.github.io/dicoogle-learning-pack](https://bioinformatics-ua.github.io/dicoogle-learning-pack)
 
-Want to try it now? We have a [Live Demo](http://demo.dicoogle.com)!
+Want to try it now? We have a live demo! <http://demo.dicoogle.com>
 
 ---
 
@@ -201,10 +201,7 @@ username: `dicoogle` <br> password: `dicoogle`
 
 #### 3. Other issues?
 
-Contact the Maintainers:
-
-- Luís Bastião Silva <bastiao@bmd-software.com> (development leader)
-- Eduardo Pinho <eduardopinho@ua.pt>
+Use our [Contact Us](http://www.dicoogle.com/about) form.
 
 --
 
@@ -235,8 +232,9 @@ background-color: #cbe0f2
 
 # Plugin-based Development
 
-.col-2[A plugin is:
+A plugin is:
 
+.col-2[
 - An extension to Dicoogle.
 - Developed and bundled separately.
 - Loaded at Dicoogle runtime.
@@ -275,8 +273,6 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 - **RESTlet**: web services implemented using RESTlet server resources.
 
---
-
 - **~~Graphical~~**: obsolete
 
 - **Web UI**: Implemented in JavaScript; extend the web user interface.
@@ -314,9 +310,7 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 - Eriksson Monteiro
 - Jorge Silva
-- Leonardo Oliveira
 - Rui Lebre
-- Tiago Godinho
 ]
 
 .block-division-3[
@@ -326,6 +320,8 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 - Frederico Valente
 - Luís Ribeiro
 - Frederico Silva
+- Leonardo Oliveira
+- Tiago Godinho
 - and many others...
 
 ### R&D Project Managers
