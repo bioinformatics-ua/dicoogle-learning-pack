@@ -148,8 +148,17 @@ Want to try it now? We have a live demo! <http://demo.dicoogle.com>
 
 --
 
-- Copy _"dicoogle.jar"_ to a new folder (e.g. _"DicoogleDir"_).
-- Copy the plugin jar files to **Plugins** subfolder (e.g. _"DicoogleDir/Plugins"_).
+- Extract **dicoogle.jar** and **Plugins** subfolder to a new folder (e.g. _"DicoogleDir"_).
+
+```
+ .
+ ├── DicoogleDir
+ ├── Plugins
+ |   ├── ...
+ |   ├── lucene.jar
+ |   └── filestorage.jar
+```
+
 - `java -jar dicoogle.jar`
 - The [Setup](https://bioinformatics-ua.github.io/dicoogle-learning-pack/docs/setup) page of the Learning Pack will guide you with further detail.
 
