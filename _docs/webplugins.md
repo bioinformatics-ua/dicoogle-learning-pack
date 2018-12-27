@@ -47,8 +47,10 @@ The application will now be asking you a series of questions about the project.
 
 - The **project name** will be the name of the npm project, and also the unique name of the plugin. We can leave the default by pressing Enter.
 - The **description** is just a small text about the plugin, and is completely optional.
-- Next you will be asked about the **type** of web plugin. For this example, we will select the **settings** type.
+- Next you will be asked about the **type** of web plugin. For this example, we will select the `settings` type.
 - Afterwards, you may select whether you want a JavaScript or a TypeScript project. A JavaScript project will include [Babel](babeljs.io) to guarantee the existence of features that were standardized in ECMAScript 2015 and ECMAScript 2016. A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead. Any of the two kinds of projects should work fine, but you might prefer the JavaScript project if you don't know anything about TypeScript. On the other hand, a TypeScript project will provide you better IDE integration with static type checking and auto-complete facilities.
+- Since version 0.6.0 of the generator, the **minimum supported version** of Dicoogle can also be specified. Dicoogle 2.5.0 provides a few more mechanisms for retrieving contextual information of the web application. Unless you are still using 2.4.0, you may select **2.5.0** here.
+- You may also choose whether to create an _ECMAScript2016+ project with Babel_ as the transpiler, or a _TypeScript_ project. TypeScript has its own supported set of JavaScript features, and useful type definitions around the Dicoogle development environment are included in the project. ECMAScript2016+ is closer to traditional JavaScript, but can be easily extended with Babel plugins.
 - The **caption** is a label that is shown in the web application. We will set this one to _"AE Title"_.
 - Finally, you are requested additional information about the project, which can be added in case of the project being put into a public repository. They are all optional.
 
@@ -94,7 +96,7 @@ Once we know that it works, it's time to head back to our aetitle project.
 
 ### Implementing an AE Title configurator
 
-At this point, we now want to implement the intended functionality. The plugin should show a text box to see and modify the server's AE Title. The main question that arises would be: _Where do I implement that?_ Let's have a look at the generated source code in _"src/index.js"_.
+At this point, we now want to implement the intended functionality. The plugin should show a text box to see and modify the server's AE Title. The main question that arises would be: _Where do I implement that?_ Let's have a look at the generated source code in _"src/index.js"_ (assuming the _Babel_ project, the TypeScript project would contain the file _"src/index.ts"_ with similar content).
 
 ```javascript
 /* global Dicoogle */
@@ -122,7 +124,7 @@ There may be many parts that are not quite understandable here, but the essentia
 
 - The whole plugin is represented as a class, and this is the module's default export. Typically, you do not have to touch this.
 - The constructor can be used to initialize certain parts of the plugin before any rendering takes place. It is not always needed.
-- The `render' method is the most important portion of the plugin: it is where new HTML elements are created and written to the web app's document. The example shows how this can be done with the standard [Document Object Model (DOM) Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model).
+- The `render` method is the most important portion of the plugin: it is where new HTML elements are created and written to the web app's document. The example shows how this can be done with the standard [Document Object Model (DOM) Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model).
 - In order to develop plugins safely, the elements should be attached as children to the `parent` element.
 
 Instead of creating a div, we will create a text box and a label to provide feedback to the user.
@@ -144,7 +146,7 @@ render(parent, slot) {
 }
 ```
 
-A new question should arise here: _How to we interact with Dicoogle from here?_
+A new question should arise here: _How do we interact with Dicoogle from here?_
 
 ### Interacting with Dicoogle
 
