@@ -101,7 +101,7 @@ When trying to fix bugs in the plugin, sometimes just adding more prints is not 
 First, we need the source code for both Dicoogle and the plugins that we wish to debug. Using a command-line Git client, fetching the source code for Dicoogle is simple:
 
 ```sh
-git clone https://github.com/bioinformatics-ua/dicoogle.git dicoogle-run-debug
+git clone https://github.com/bioinformatics-ua/dicoogle.git
 ```
 
 In this situation, you may consider checking out a released version to ensure compatibility:
@@ -177,3 +177,63 @@ We can now press the "Start Debugging" button on the Debug tab to run Dicoogle t
 ![Finally!]({{ site.baseurl }}/images/screenshot_debug_finally.png)
 
 It is now possible to slowly step through the code and observe the state of your plugin. More information on debugging with Visual Studio Code is available at the official website [here](https://code.visualstudio.com/docs/editor/debugging).
+
+
+
+### IntelliJ IDEA
+
+#### Preparing the IDE
+
+You can download [IntelliJ IDEA](https://www.jetbrains.com/idea/) Community version for free from the official website, compatible with Windows, macOS and Linux.
+
+#### Preparing the workspace
+
+Before we start using IntelliJ IDEA, let's create a new folder similar to our "DicoogleDir" folder, with the following hierarchy:
+
+```plain
+ dicoogle-run-debug
+ .
+ ├── Plugins
+ |   ├── ...
+ |   ├── nifti-plugin.jar
+ |   └── list-plugin.jar
+ ├── storage                (optional)
+ |   ├── «my-dicom-data»
+ |   └── ...
+ └── dicoogle.jar
+```
+
+Basically, we are preparing a working directory for debugging purposes, containing only the necessary plugins (don't forget all the plugins!). If some data is needed, include it as well.
+
+
+Open the source code's root folder with IntelliJ IDEA. 
+
+![Opening source folder]({{ site.baseurl }}/images/screenshot_debug_open_folder.png)
+
+Next, we will configure the Remote Debug in IntelliJ. On the top right corner, open "Add Configuration". From the "+" icon, choose "Remote", as shown in the screenshot below. You can use the default settings from the IntelliJ IDEA Remote run/debug template.
+
+![Add remote configuration]({{ site.baseurl }}/images/screeshot_add_configuration_intellij.png)
+
+
+#### Using the debugger
+
+At this point, all the required settings are completed. To start debugging, start Dicoogle with the flag ```-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005```. Example:
+
+```sh
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -j dicoogle.jar -s
+```
+
+To make sure that everything is properly set up, let's add a breakpoint or two in our code. In one the plugin set classes, add a breakpoint by clicking on the left side of a code line. A red dot should appear where you clicked.
+
+![Adding a breakpoint]({{ site.baseurl }}/images/screenshot_debug_breakpoint_intellij.png)
+
+We can now press the Debug button on top right corner (or by clicking F5) to start debugging. After a few moments, the program should stop at the given breakpoints.
+
+![Click debug]({{ site.baseurl }}/images/start_debugging_intellij.png)
+
+
+In this example, we added some breakpoints in pt.ua.dicoogle.server.web.servlets.accounts.LoginServlet > doPost(), which means that the program should stop when you try to login in Dicoogle on the browser:
+
+![Finally!]({{ site.baseurl }}/images/screenshot_debug_finally_intellij.png)
+
+It is now possible to slowly step through the code and observe the state of your plugin.
