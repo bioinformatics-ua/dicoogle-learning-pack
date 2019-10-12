@@ -94,31 +94,35 @@ java -Dlog4j.configurationFile=log4j2.xml -jar "dicoogle.jar" -s
 
 ## Running a debugger
 
-When trying to fix bugs in the plugin, sometimes just adding more prints is not practical, nor very helpful. Using a debugger to step through the code can be more effective at understanding the current behaviour of the software, including what's wrong with it. A small tutorial follows, we will show the necessary steps to debug Dicoogle plugins using [Visual Studio Code](https://code.visualstudio.com). Although no two IDEs are the same, they will usually involve a very similar process.
-
-### Preparing the IDE
-
-You can download [Visual Studio Code](https://code.visualstudio.com) for free from the official website. Please ensure that you have the latest stable version. In order to debug Java programs, we also need the ["Java Extension Pack"](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack), which can be installed directly from the IDE, in the Extensions Marketplace. Please install this extension pack and reload Visual Studio Code afterwards.
-
-![The Java Extension Pack from the Extension Marketplace.]({{ site.baseurl }}/images/screenshot_debug_extension.png)
+When trying to fix bugs in the plugin, sometimes just adding more prints is not practical, nor very helpful. Using a debugger to step through the code can be more effective at understanding the current behaviour of the software, including what's wrong with it. A small tutorial follows, we will show the necessary steps to debug Dicoogle plugins using [Visual Studio Code](https://code.visualstudio.com) or, alternatively, [IntelliJ IDEA](https://www.jetbrains.com/idea/). Although IDEs are not the same, they will usually involve a very similar process to the shown below.
 
 ### Fetching all source repositories
 
 First, we need the source code for both Dicoogle and the plugins that we wish to debug. Using a command-line Git client, fetching the source code for Dicoogle is simple:
 
 ```sh
-git clone https://github.com/bioinformatics-ua/dicoogle.git
+git clone https://github.com/bioinformatics-ua/dicoogle.git dicoogle-run-debug
 ```
 
 In this situation, you may consider checking out a released version to ensure compatibility:
 
 ```sh
-git checkout v2.5.0
+git checkout 2.5.0
 ```
 
 The same source code can be downloaded from GitHub in the [Releases](https://github.com/bioinformatics-ua/dicoogle/releases) page. For the plugins, we suppose that you already have their respective source code.
 
-### Preparing the workspace
+
+### Visual Studio Code
+
+#### Preparing the IDE
+
+You can download [Visual Studio Code](https://code.visualstudio.com) for free from the official website. Please ensure that you have the latest stable version. In order to debug Java programs, we also need the ["Java Extension Pack"](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack), which can be installed directly from the IDE, in the Extensions Marketplace. Please install this extension pack and reload Visual Studio Code afterwards.
+
+![The Java Extension Pack from the Extension Marketplace.]({{ site.baseurl }}/images/screenshot_debug_extension.png)
+
+
+#### Preparing the workspace
 
 Before we start using Visual Studio Code, let's create a new folder similar to our "DicoogleDir" folder, with the following hierarchy:
 
@@ -162,7 +166,7 @@ Note that The IDE should be able to know where to find the plugins' source code,
 
 ![launch.json with sourcePaths]({{ site.baseurl }}/images/screenshot_debug_configure_launchjson_sourcepaths.png)
 
-### Using the debugger
+#### Using the debugger
 
 To make sure that everything is properly set up, let's add a breakpoint or two in our code. In one the plugin set classes, add a breakpoint by clicking on the left side of a code line. A red dot should appear where you clicked.
 
