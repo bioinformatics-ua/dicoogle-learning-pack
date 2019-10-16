@@ -11,7 +11,7 @@ Start by navigating to the Dicoogle web app and entering the **Management** menu
 
 ![]({{ site.baseurl }}/images/screenshot_config_index.png)
 
-After selecting the configurations, the "Apply Settings" button must be pressed. 
+After selecting the configurations, the "Apply Settings" button must be pressed.
 
 ### Transfer Options
 
@@ -27,15 +27,15 @@ In the Management menu, Services and Plugins tab, it is possible to start and/or
 
 ### Configuration file
 
-All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `AETitle`:
+All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `AETitle` :
 
-```xml
+``` xml
 <AETitle>DICOOGLE-STORAGE</AETitle>
 ```
 
 And modify it to another identifier:
 
-```xml
+``` xml
 <AETitle>PERSONAL-STORAGE</AETitle>
 ```
 
@@ -52,18 +52,45 @@ Plugins can have settings of their own as well. Unlike the settings presented so
 
 As an example, the file storage allows the administrator to define a root path where incoming files are stored. Let's modify this property to point to our storage directory. In _"DicoogleDir/Plugins/settings"_, assuming Dicoogle was run at least once, you will find a file named _"file-storage.xml"_. Look for the `root-dir` element:
 
-```xml
+``` xml
 <root-dir>/tmp</root-dir>
 ```
 
 And change it to our storage:
 
-```xml
+``` xml
 <root-dir>/path/to/DicoogleDir/storage</root-dir>
 ```
 
 As usual, the server needs to be restarted. Now the DICOM storage server can be safely enabled, and incoming C-STORE operations will save DICOM objects in it, organized as a directory tree.
 
+### Adding and removing users
+
+Although Dicoogle does not provide a UI for the managing of the system users, it provides a web service endpoint for creation of new users and removal of existent ones. The actions performed in these endpoints are reflected in the _users.xml_ configuration file and, thus, persisted.
+
+#### Create user
+
+To create a new user in the system, one can perform a HTTP POST in `/user` with `username` and `password` query strings. Example:
+
+``` bash
+  curl -X POST "http://localhost:8080/user?username=johndoe&password=secret"
+```
+
+Alternatively, one may create an administrator user, adding the flag `admin` set to `true` :
+
+``` bash
+  curl -X POST "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
+```
+
+#### Remove user
+
+The removal of the user is executed with the HTTP method DELETE and the parameters are passed as path query to the same endpoint ( `/users` ). Example:
+
+``` bash
+  curl -X POST "http://localhost:8080/user/johndoe"
+```
+
 ------------------
 
 This concludes the first chapter, where we have covered how to install Dicoogle in a machine, configure it, and use it for basic purposes. The next chapter is intended for developers wishing to further leverage the capabilities of Dicoogle using plugins.
+
