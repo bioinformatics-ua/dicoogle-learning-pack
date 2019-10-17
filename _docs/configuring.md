@@ -76,7 +76,7 @@ To create a new user in the system, one can perform a HTTP PUT in `/user` with `
 curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
 ```
 
-Alternatively, one may create an administrator user, adding the flag `admin` set to `true` :
+Alternatively, one may create an administrator user by adding the flag `admin` set to `true`:
 
 ``` bash
   curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
