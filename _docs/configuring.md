@@ -79,7 +79,7 @@ curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
 Alternatively, one may create an administrator user by adding the flag `admin` set to `true`:
 
 ``` bash
-  curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
+curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
 ```
 
 #### Remove user
