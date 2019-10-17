@@ -66,7 +66,7 @@ As usual, the server needs to be restarted. Now the DICOM storage server can be 
 
 ### Adding and removing users
 
-Although Dicoogle does not provide a UI for the managing of the system users, it provides a web service endpoint for creation of new users and removal of existent ones. The actions performed in these endpoints are reflected in the _users.xml_ configuration file and, thus, persisted.
+Although Dicoogle does not provide a UI for the managing of the system users, it provides a web service endpoint for creation of new users and removal of existent ones.
 
 #### Create user
 
@@ -91,8 +91,11 @@ The removal of the user is executed with the HTTP method DELETE and the paramete
 ```
 
 <div class="note unreleased" >
-  <h5>Breaking change in Dicoogle 3</h5>
-  <p>Starting from Dicoogle 3.0.0, creating new users should be done with the `POST` method instead of `PUT` .</p>
+  <h5>Breaking changes in Dicoogle 3</h5>
+  <ul>
+    <li>Starting from Dicoogle 3.0.0, creating new users should be done with the POST method instead of PUT.</li>
+    <li>Also from Dicoogle 3.0.0 on, bugs were fixed and the actions performed in these endpoints are reflected in the _users.xml_ configuration file and, thus, persisted.</li>
+  </ul>
 </div>
 
 ------------------
