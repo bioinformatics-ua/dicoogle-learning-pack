@@ -87,7 +87,7 @@ curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=t
 The removal of the user is executed with the HTTP method DELETE and the parameters are passed as path query to the same endpoint ( `/users` ). Example:
 
 ``` bash
-  curl -X DELETE "http://localhost:8080/user/johndoe"
+curl -X DELETE "http://localhost:8080/user/johndoe"
 ```
 
 <div class="note unreleased" >
