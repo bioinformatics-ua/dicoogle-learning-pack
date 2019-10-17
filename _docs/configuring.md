@@ -94,7 +94,7 @@ curl -X DELETE "http://localhost:8080/user/johndoe"
   <h5>Breaking changes in Dicoogle 3</h5>
   <ul>
     <li>Starting from Dicoogle 3.0.0, creating new users should be done with the POST method instead of PUT.</li>
-    <li>Also from Dicoogle 3.0.0 on, bugs were fixed and the actions performed in these endpoints are reflected in the _users.xml_ configuration file and, thus, persisted.</li>
+    <li>In future versions, bugs were fixed and the actions performed in these endpoints will be reflected in the _users.xml_ configuration file and, thus, persisted.</li>
   </ul>
 </div>
 
