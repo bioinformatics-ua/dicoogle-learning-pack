@@ -52,13 +52,13 @@ Plugins can have settings of their own as well. Unlike the settings presented so
 
 As an example, the file storage allows the administrator to define a root path where incoming files are stored. Let's modify this property to point to our storage directory. In _"DicoogleDir/Plugins/settings"_, assuming Dicoogle was run at least once, you will find a file named _"file-storage.xml"_. Look for the `root-dir` element:
 
-``` xml
+```xml
 <root-dir>/tmp</root-dir>
 ```
 
 And change it to our storage:
 
-``` xml
+```xml
 <root-dir>/path/to/DicoogleDir/storage</root-dir>
 ```
 
@@ -70,16 +70,16 @@ Although Dicoogle does not provide a UI for the managing of the system users, it
 
 #### Create user
 
-To create a new user in the system, one can perform a HTTP POST in `/user` with `username` and `password` query strings. Example:
+To create a new user in the system, one can perform a HTTP PUT in `/user` with `username` and `password` query strings. Example:
 
 ``` bash
-  curl -X POST "http://localhost:8080/user?username=johndoe&password=secret"
+  curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
 ```
 
 Alternatively, one may create an administrator user, adding the flag `admin` set to `true` :
 
 ``` bash
-  curl -X POST "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
+  curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
 ```
 
 #### Remove user
@@ -89,6 +89,11 @@ The removal of the user is executed with the HTTP method DELETE and the paramete
 ``` bash
   curl -X POST "http://localhost:8080/user/johndoe"
 ```
+
+<div class="note unreleased" >
+  <h5>Breaking change in Dicoogle 3</h5>
+  <p>Starting from Dicoogle 3.0.0, creating new users should be done with the `POST` method instead of `PUT` .</p>
+</div>
 
 ------------------
 
