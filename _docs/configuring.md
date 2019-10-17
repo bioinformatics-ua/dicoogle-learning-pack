@@ -73,7 +73,7 @@ Although Dicoogle does not provide a UI for the managing of the system users, it
 To create a new user in the system, one can perform a HTTP PUT in `/user` with `username` and `password` query strings. Example:
 
 ``` bash
-  curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
+curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
 ```
 
 Alternatively, one may create an administrator user, adding the flag `admin` set to `true` :
