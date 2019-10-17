@@ -11,7 +11,7 @@ Start by navigating to the Dicoogle web app and entering the **Management** menu
 
 ![]({{ site.baseurl }}/images/screenshot_config_index.png)
 
-After selecting the configurations, the "Apply Settings" button must be pressed. 
+After selecting the configurations, the "Apply Settings" button must be pressed.
 
 ### Transfer Options
 
@@ -27,15 +27,15 @@ In the Management menu, Services and Plugins tab, it is possible to start and/or
 
 ### Configuration file
 
-All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `AETitle`:
+All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `AETitle` :
 
-```xml
+``` xml
 <AETitle>DICOOGLE-STORAGE</AETitle>
 ```
 
 And modify it to another identifier:
 
-```xml
+``` xml
 <AETitle>PERSONAL-STORAGE</AETitle>
 ```
 
@@ -64,6 +64,41 @@ And change it to our storage:
 
 As usual, the server needs to be restarted. Now the DICOM storage server can be safely enabled, and incoming C-STORE operations will save DICOM objects in it, organized as a directory tree.
 
+### Adding and removing users
+
+Although Dicoogle does not provide a UI for the managing of the system users, it provides a web service endpoint for creation of new users and removal of existent ones.
+
+#### Create user
+
+To create a new user in the system, one can perform a HTTP PUT in `/user` with `username` and `password` query strings. Example:
+
+``` bash
+curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
+```
+
+Alternatively, one may create an administrator user by adding the flag `admin` set to `true`:
+
+``` bash
+curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
+```
+
+#### Remove user
+
+The removal of the user is executed with the HTTP method DELETE and the parameters are passed as path query to the same endpoint ( `/users` ). Example:
+
+``` bash
+curl -X DELETE "http://localhost:8080/user/johndoe"
+```
+
+<div class="note unreleased" >
+  <h5>Breaking changes in Dicoogle 3</h5>
+  <ul>
+    <li>Starting from Dicoogle 3.0.0, creating new users should be done with the POST method instead of PUT.</li>
+    <li>In future versions, due to bugfixes, the actions performed in these endpoints will be reflected in the _users.xml_ configuration file and, thus, persisted.</li>
+  </ul>
+</div>
+
 ------------------
 
 This concludes the first chapter, where we have covered how to install Dicoogle in a machine, configure it, and use it for basic purposes. The next chapter is intended for developers wishing to further leverage the capabilities of Dicoogle using plugins.
+
