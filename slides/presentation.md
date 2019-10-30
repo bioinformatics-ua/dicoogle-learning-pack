@@ -4,7 +4,7 @@ background-color: #cbe0f2
 
 <br><br>
 
-# ![](img/dicoogle-logo.svg)
+# ![](img/dicoogle-logo.png)
 
 ## An Introduction
 
@@ -12,6 +12,7 @@ background-color: #cbe0f2
 <br><br><br>
 
 .footnote[.right[Eduardo Pinho &nbsp; <eduardopinho@ua.pt>]]
+.footnote[.right[Rui Lebre &nbsp; <ruilebre@ua.pt>]]
 
 ---
 
@@ -88,7 +89,7 @@ background-color: #cbe0f2
 
 ---
 
-# .center[![](img/dicoogle-logo.svg)]
+# .center[![](img/dicoogle-logo.png)]
 
 - Extensible, platform-independent, open-source PACS archive;
 - Designed to embrace advanced indexing mechanisms and knowledge extraction from medical imaging information;
@@ -108,7 +109,7 @@ background-color: #cbe0f2
 
 ---
 
-# ![](img/dicoogle-logo.svg)
+# ![](img/dicoogle-logo.png)
 
 .exhibit-text-left[
 - Plugin-based architecture
@@ -219,7 +220,7 @@ background-color: #cbe0f2
 
 <br><br>
 
-# ![](img/dicoogle-logo.svg)
+# ![](img/dicoogle-logo.png)
 
 ## Developing for Dicoogle
 
@@ -309,29 +310,34 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 - Luís Bastião ─ <bastiao@bmd-software.com>
 - Eduardo Pinho ─ <eduardopinho@ua.pt>
+- Rui Lebre ─ <ruilebre@ua.pt>
 
 ### Current Contributors
 
-- Eriksson Monteiro
 - Jorge Silva
-- Leonardo Oliveira
-- Rui Lebre
-- Tiago Godinho
+
+
+### R&D Project Managers
+
+- Carlos Costa
+- José Luís Oliveira
+
 ]
 
 .block-division-3[
 ### Past Contributors
 
 - Carlos Ferreira
-- Frederico Valente
-- Luís Ribeiro
+- David Campos
+- Eriksson Monteiro
 - Frederico Silva
+- Frederico Valente
+- Leonardo Oliveira
+- Luis Ribeiro
+- Renato Pinho
+- Samuel Campos
+- Tiago Godinho
 - and many others...
-
-### R&D Project Managers
-
-- Carlos Costa
-- José Luís Oliveira
 
 ]
 
