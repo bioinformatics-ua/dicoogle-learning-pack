@@ -122,8 +122,7 @@ background-color: #cbe0f2
   - configuration and interaction
 - Web user interface
   - single-page webapp
-- Open-source
-  - GPL 3.0
+- Open-source (GPL 3.0)
 ]
 
 <img class="exhibit-right" src="img/architecture.png" width="50%" />
@@ -136,22 +135,28 @@ background-color: #cbe0f2
 - **<i class="fa fa-github fa-lg"></i> View on GitHub**: [github.com/bioinformatics-ua/dicoogle](https://github.com/bioinformatics-ua/dicoogle)
 - **Learning Pack**: [bioinformatics-ua.github.io/dicoogle-learning-pack](https://bioinformatics-ua.github.io/dicoogle-learning-pack)
 
-Want to try it now? We have a [Live Demo](http://demo.dicoogle.com)!
+Want to try it now? We have a [live demo](http://demo.dicoogle.com) (http://demo.dicoogle.com) !
 
 ---
 
 # Getting Started
 
 - Start by [downloading](http://www.dicoogle.com/downloads/) Dicoogle and base plugins.
-   - Or build them from the sources.
-
+   
 - Requires Java 7 (Java 8 recommended).
 
 --
 
-- Copy _"dicoogle.jar"_ to a new folder (e.g. _"DicoogleDir"_).
-- Copy the plugin jar files to **Plugins** subfolder (e.g. _"DicoogleDir/Plugins"_).
-- `java -jar dicoogle.jar`
+- Extract the zip file to a new folder (e.g. _"DicoogleDir"_).
+- The folder shall contain 6 files and 1 folder:
+   - DicoogleClient.bat
+   - DicoogleServer.bat
+   - DicoogleClient.sh
+   - DicoogleServer.sh
+   - dicoogle.jar
+   - README.md
+   - Plugins
+- On your terminal, run `DicoogleClient.bat` if you are a Windows user, or `DicoogleClient.sh` if you are Linux/MacOS user
 - The [Setup](https://bioinformatics-ua.github.io/dicoogle-learning-pack/docs/setup) page of the Learning Pack will guide you with further detail.
 
 ---
@@ -176,7 +181,7 @@ username: `dicoogle` <br> password: `dicoogle`
 
 - Force Dicoogle to index the set.
 
-![](img/screenshot_index.png)
+<img src="img/screenshot_index.png" width="80%" style="display:block;margin:auto"></img>
 
 ---
 
@@ -206,6 +211,7 @@ Contact the Maintainers:
 
 - Luís Bastião Silva <bastiao@bmd-software.com> (development leader)
 - Eduardo Pinho <eduardopinho@ua.pt>
+- Rui Lebre <ruilebre@ua.pt>
 
 --
 
