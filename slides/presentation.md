@@ -122,8 +122,7 @@ background-color: #cbe0f2
   - configuration and interaction
 - Web user interface
   - single-page webapp
-- Open-source
-  - GPL 3.0
+- Open-source (GPL 3.0)
 ]
 
 <img class="exhibit-right" src="img/architecture.png" width="50%" />
