@@ -315,7 +315,7 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 ### Maintainers
 
 - Luís Bastião ─ <bastiao@bmd-software.com>
-- Eduardo Pinho ─ <eduardopinho@ua.pt>
+ - Eduardo Pinho ─ <eduardopinho@bmd-software.com>
 - Rui Lebre ─ <ruilebre@ua.pt>
 
 ### Current Contributors
