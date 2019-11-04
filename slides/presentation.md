@@ -11,7 +11,7 @@ background-color: #cbe0f2
 <br><br><br>
 <br><br><br>
 
-.footnote[.right[Eduardo Pinho &nbsp; <eduardopinho@ua.pt>]]
+ .footnote[.right[Eduardo Pinho &nbsp; <eduardopinho@bmd-software.com>]]
 .footnote[.right[Rui Lebre &nbsp; <ruilebre@ua.pt>]]
 
 ---
