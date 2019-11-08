@@ -4,14 +4,15 @@ background-color: #cbe0f2
 
 <br><br>
 
-# ![](img/dicoogle-logo.svg)
+# ![](img/dicoogle-logo.png)
 
 ## An Introduction
 
 <br><br><br>
 <br><br><br>
 
-.footnote[.right[The Dicoogle team]]
+.footnote[.right[Eduardo Pinho &nbsp; <eduardopinho@bmd-software.com>]]
+.footnote[.right[Rui Lebre &nbsp; <ruilebre@ua.pt>]]
 
 ---
 
@@ -50,11 +51,11 @@ background-color: #cbe0f2
    - Medical reports: can be structured or unstructured.
 
 .center[
-  <img src="img/metadata.png" width="30%" />
+  <img src="img/metadata.png" width="33%" />
 &nbsp; &nbsp;
-  <img src="img/ct-scan.png" width="18%" />
+  <img src="img/ct-scan.png" width="20%" />
 &nbsp; &nbsp;
-  <img src="img/medical-report-icon.png" width="18%" />
+  <img src="img/medical-report-icon.png" width="21%" />
 ]
 ---
 
@@ -63,19 +64,15 @@ background-color: #cbe0f2
 - The requirements of medical imaging systems are ever increasing.
   - Imaging data output becomes larger and more frequent (Big Data).
   - New and enhanced modalities are emerging (whole-slide microscopy, PET/MRI, ...).
-  - Federated data sharing \& collaboration (telemedicine)
 - Information retrieval is important
-  - Data exploration (patient-centric, DICOM usage, ...)
   - Improved radiology workflows, teaching, researching.
   - New ways to search over medical imaging data.
-
 --
 
-.bad[
-- The great majority of installed information systems do not allow such kind of analysis (limited indexing capabilities).
+- The great majority of installed information system do not allow such kind of analysis (limited indexing capabilities).
 - Few systems enable institutions to continuously monitor and measure the efficiency of medical imaging data produced.
 - DICOM compliance is insufficient for state-of-the-art retrieval capabilities (free text search, query-by-example, ...).
-]
+
 
 ---
 
@@ -87,11 +84,12 @@ background-color: #cbe0f2
    - Image recognition (computer-assisted detection, content-based image retrieval, ...);
 - Knowledge extraction.
    - Obtain healthcare quality indicators.
-   - Analyses of workflow and productivity.
+   - Analyses of the workflow and productivity.
+
 
 ---
 
-# .center[![](img/dicoogle-logo.svg)]
+# .center[![](img/dicoogle-logo.png)]
 
 - Extensible, platform-independent, open-source PACS archive;
 - Designed to embrace advanced indexing mechanisms and knowledge extraction from medical imaging information;
@@ -111,7 +109,7 @@ background-color: #cbe0f2
 
 ---
 
-# ![](img/dicoogle-logo.svg)
+# ![](img/dicoogle-logo.png)
 
 .exhibit-text-left[
 - Plugin-based architecture
@@ -120,8 +118,10 @@ background-color: #cbe0f2
   - Easy to interact with core functionalities
   - _Dicoogle SDK_
 - Built-in DICOM QR + Storage
-- Web service driven (configuration and interaction)
-- Web user interface; single-page webapp
+- Web service driven
+  - configuration and interaction
+- Web user interface
+  - single-page webapp
 - Open-source (GPL 3.0)
 ]
 
@@ -135,31 +135,28 @@ background-color: #cbe0f2
 - **<i class="fa fa-github fa-lg"></i> View on GitHub**: [github.com/bioinformatics-ua/dicoogle](https://github.com/bioinformatics-ua/dicoogle)
 - **Learning Pack**: [bioinformatics-ua.github.io/dicoogle-learning-pack](https://bioinformatics-ua.github.io/dicoogle-learning-pack)
 
-Want to try it now? We have a live demo! <http://demo.dicoogle.com>
+Want to try it now? We have a [live demo](http://demo.dicoogle.com) (http://demo.dicoogle.com) !
 
 ---
 
 # Getting Started
 
 - Start by [downloading](http://www.dicoogle.com/downloads/) Dicoogle and base plugins.
-   - Or build them from the sources.
-
+   
 - Requires Java 7 (Java 8 recommended).
 
 --
 
-- Extract **dicoogle.jar** and **Plugins** subfolder to a new folder (e.g. _"DicoogleDir"_).
-
-```
- .
- ├── DicoogleDir
- ├── Plugins
- |   ├── ...
- |   ├── lucene.jar
- |   └── filestorage.jar
-```
-
-- `java -jar dicoogle.jar`
+- Extract the zip file to a new folder (e.g. _"DicoogleDir"_).
+- The folder shall contain 6 files and 1 folder:
+   - DicoogleClient.bat
+   - DicoogleServer.bat
+   - DicoogleClient.sh
+   - DicoogleServer.sh
+   - dicoogle.jar
+   - README.md
+   - Plugins
+- On your terminal, run `DicoogleClient.bat` if you are a Windows user, or `DicoogleClient.sh` if you are Linux/MacOS user
 - The [Setup](https://bioinformatics-ua.github.io/dicoogle-learning-pack/docs/setup) page of the Learning Pack will guide you with further detail.
 
 ---
@@ -184,7 +181,7 @@ username: `dicoogle` <br> password: `dicoogle`
 
 - Force Dicoogle to index the set.
 
-![](img/screenshot_index.png)
+<img src="img/screenshot_index.png" width="80%" style="display:block;margin:auto"></img>
 
 ---
 
@@ -210,7 +207,11 @@ username: `dicoogle` <br> password: `dicoogle`
 
 #### 3. Other issues?
 
-Use our [Contact Us](http://www.dicoogle.com/about) form.
+Contact the Maintainers:
+
+- Luís Bastião Silva <bastiao@bmd-software.com> (development leader)
+- Eduardo Pinho <eduardopinho@ua.pt>
+- Rui Lebre <ruilebre@ua.pt>
 
 --
 
@@ -225,7 +226,7 @@ background-color: #cbe0f2
 
 <br><br>
 
-# ![](img/dicoogle-logo.svg)
+# ![](img/dicoogle-logo.png)
 
 ## Developing for Dicoogle
 
@@ -241,9 +242,8 @@ background-color: #cbe0f2
 
 # Plugin-based Development
 
-A plugin is:
+.col-2[A plugin is:
 
-.col-2[
 - An extension to Dicoogle.
 - Developed and bundled separately.
 - Loaded at Dicoogle runtime.
@@ -282,6 +282,8 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 - **RESTlet**: web services implemented using RESTlet server resources.
 
+--
+
 - **~~Graphical~~**: obsolete
 
 - **Web UI**: Implemented in JavaScript; extend the web user interface.
@@ -313,30 +315,35 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 ### Maintainers
 
 - Luís Bastião ─ <bastiao@bmd-software.com>
-- Eduardo Pinho ─ <eduardopinho@ua.pt>
+ - Eduardo Pinho ─ <eduardopinho@bmd-software.com>
+- Rui Lebre ─ <ruilebre@ua.pt>
 
 ### Current Contributors
 
-- Eriksson Monteiro
 - Jorge Silva
-- Rui Lebre
+
+
+### R&D Project Managers
+
+- Carlos Costa
+- José Luís Oliveira
+
 ]
 
 .block-division-3[
 ### Past Contributors
 
 - Carlos Ferreira
-- Frederico Valente
-- Luís Ribeiro
+- David Campos
+- Eriksson Monteiro
 - Frederico Silva
+- Frederico Valente
 - Leonardo Oliveira
+- Luis Ribeiro
+- Renato Pinho
+- Samuel Campos
 - Tiago Godinho
 - and many others...
-
-### R&D Project Managers
-
-- Carlos Costa
-- José Luís Oliveira
 
 ]
 
