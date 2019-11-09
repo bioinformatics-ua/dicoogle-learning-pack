@@ -312,18 +312,18 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 # Our Developers
 
 .block-division-2-3[
-### Maintainers
+#### Maintainers
 
 - Luís Bastião ─ <bastiao@bmd-software.com>
- - Eduardo Pinho ─ <eduardopinho@bmd-software.com>
+- Eduardo Pinho ─ <eduardopinho@bmd-software.com>
 - Rui Lebre ─ <ruilebre@ua.pt>
 
-### Current Contributors
+#### Current Contributors
 
 - Jorge Silva
 
 
-### R&D Project Managers
+#### R&D Project Managers
 
 - Carlos Costa
 - José Luís Oliveira
@@ -331,7 +331,7 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 ]
 
 .block-division-3[
-### Past Contributors
+#### Past Contributors
 
 - Carlos Ferreira
 - David Campos
