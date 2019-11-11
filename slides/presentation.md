@@ -347,6 +347,12 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 ]
 
---
+---
 
-**<i class="fa fa-github fa-lg"></i> You can be a contributor! [github.com/bioinformatics-ua/dicoogle](https://github.com/bioinformatics-ua/dicoogle)**
+# <i class="fa fa-github fa-lg"></i> Contribute 
+
+- ** You can be a contributor! [github.com/bioinformatics-ua/dicoogle](https://github.com/bioinformatics-ua/dicoogle)**
+
+- We have a label <a class="d-inline-block issue-label" style="background-color: #88ed88; color: #000000" title="good first issue" href="https://github.com/bioinformatics-ua/dicoogle/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">good first issue</a> identifying the simplest issues to solve
+
+- Find the most appropriate issue for you and start contributing!
