@@ -181,7 +181,7 @@ username: `dicoogle` <br> password: `dicoogle`
 
 - Force Dicoogle to index the set.
 
-<img src="img/screenshot_index.png" width="80%" style="display:block;margin:auto"></img>
+<img src="img/screenshot_index.png" width="80%" style="display:block;margin:auto" />
 
 ---
 
