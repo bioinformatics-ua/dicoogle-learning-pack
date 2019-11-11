@@ -84,7 +84,7 @@ background-color: #cbe0f2
    - Image recognition (computer-assisted detection, content-based image retrieval, ...);
 - Knowledge extraction.
    - Obtain healthcare quality indicators.
-   - Analyses of the workflow and productivity.
+   - Workflow and productivity analysis.
 
 
 ---
