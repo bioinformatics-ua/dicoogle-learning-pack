@@ -210,7 +210,7 @@ username: `dicoogle` <br> password: `dicoogle`
 Contact the Maintainers:
 
 - Luís Bastião Silva <bastiao@bmd-software.com> (development leader)
-- Eduardo Pinho <eduardopinho@ua.pt>
+- Eduardo Pinho <eduardopinho@bmd-software.com>
 - Rui Lebre <ruilebre@ua.pt>
 
 --
