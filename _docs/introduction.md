@@ -29,5 +29,5 @@ In this guide, we will cover the use case of a PACS with a local file system sto
 
 #### What technologies are used by Dicoogle?
 
-Dicoogle is developed in Java SE. The core and SDK sub-projects are built using Maven. Dicoogle is powered by [dcm4che2](https://dcm4che.atlassian.net/wiki/display/d2/dcm4che2+DICOM+Toolkit) for DICOM-related functionalities. Web services are provided over an embedded [Eclipse Jetty](http://www.eclipse.org/jetty/) server. Support for web service development using [Restlet API](https://restlet.com/) is also included. The user interface is a single-page web application powered by [React](https://facebook.github.io/react/) and [Bootstrap](http://getbootstrap.com/) components.
+Dicoogle is developed in Java SE. The core and SDK sub-projects are built using Maven. Dicoogle is powered by [dcm4che2](https://dcm4che.atlassian.net/wiki/display/d2/dcm4che2+DICOM+Toolkit) for DICOM-related functionalities. Web services are provided over an embedded [Eclipse Jetty](http://www.eclipse.org/jetty/) server. Support for web service development using [Restlet API](https://restlet.talend.com/) is also included. The user interface is a single-page web application powered by [React](https://reactjs.org) and [Bootstrap](http://getbootstrap.com/) components.
 
