@@ -201,8 +201,6 @@ Before we start using IntelliJ IDEA, let's create a new folder similar to our "D
 ```
 
 Basically, we are preparing a working directory for debugging purposes, containing only the necessary plugins (don't forget all the plugins!). If some data is needed, include it as well.
-
-
 Open the source code's root folder with IntelliJ IDEA. 
 
 ![Opening source folder]({{ site.baseurl }}/images/screenshot_debug_open_folder.png)
