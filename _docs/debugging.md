@@ -120,8 +120,6 @@ The same source code can be downloaded from GitHub in the [Releases](https://git
 You can download [Visual Studio Code](https://code.visualstudio.com) for free from the official website. Please ensure that you have the latest stable version. In order to debug Java programs, we also need the ["Java Extension Pack"](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack), which can be installed directly from the IDE, in the Extensions Marketplace. Please install this extension pack and reload Visual Studio Code afterwards.
 
 ![The Java Extension Pack from the Extension Marketplace.]({{ site.baseurl }}/images/screenshot_debug_extension.png)
-
-
 #### Preparing the workspace
 
 Before we start using Visual Studio Code, let's create a new folder similar to our "DicoogleDir" folder, with the following hierarchy:
