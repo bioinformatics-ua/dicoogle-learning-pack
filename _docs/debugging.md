@@ -177,9 +177,6 @@ We can now press the "Start Debugging" button on the Debug tab to run Dicoogle t
 ![Finally!]({{ site.baseurl }}/images/screenshot_debug_finally.png)
 
 It is now possible to slowly step through the code and observe the state of your plugin. More information on debugging with Visual Studio Code is available at the official website [here](https://code.visualstudio.com/docs/editor/debugging).
-
-
-
 ### IntelliJ IDEA
 
 #### Preparing the IDE
