@@ -210,8 +210,6 @@ Open the source code's root folder with IntelliJ IDEA.
 Next, we will configure the Remote Debug in IntelliJ. On the top right corner, open "Add Configuration". From the "+" icon, choose "Remote", as shown in the screenshot below. You can use the default settings from the IntelliJ IDEA Remote run/debug template.
 
 ![Add remote configuration]({{ site.baseurl }}/images/screeshot_add_configuration_intellij.png)
-
-
 #### Using the debugger
 
 At this point, all the required settings are completed. To start debugging, start Dicoogle with the flag ```-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005```. Example:
