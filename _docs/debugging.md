@@ -223,8 +223,6 @@ To make sure that everything is properly set up, let's add a breakpoint or two i
 We can now press the Debug button on top right corner (or by clicking F5) to start debugging. After a few moments, the program should stop at the given breakpoints.
 
 ![Click debug]({{ site.baseurl }}/images/start_debugging_intellij.png)
-
-
 In this example, we added some breakpoints in pt.ua.dicoogle.server.web.servlets.accounts.LoginServlet > doPost(), which means that the program should stop when you try to login in Dicoogle on the browser:
 
 ![Finally!]({{ site.baseurl }}/images/screenshot_debug_finally_intellij.png)
