@@ -20,7 +20,7 @@ will be more up-to-date with changes in web plugin support.</p>
 We will start by creating a Dicoogle web plugin project. Before we start, we must fulfill the following requirements:
 
 - Node.js (LTS or Stable) ─ required for executing the building tools. 
-- npm (at least version 2 required, 3 is recommended) ─ the JavaScript package manager.
+- npm (at least version 3 required) ─ the JavaScript package manager.
 
 Now, we will install two packages globally, using the following command:
 
@@ -48,9 +48,8 @@ The application will now be asking you a series of questions about the project.
 - The **project name** will be the name of the npm project, and also the unique name of the plugin. We can leave the default by pressing Enter.
 - The **description** is just a small text about the plugin, and is completely optional.
 - Next you will be asked about the **type** of web plugin. For this example, we will select the `settings` type.
-- Afterwards, you may select whether you want a JavaScript or a TypeScript project. A JavaScript project will include [Babel](babeljs.io) to guarantee the existence of features that were standardized in ECMAScript 2015 and ECMAScript 2016. A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead. Any of the two kinds of projects should work fine, but you might prefer the JavaScript project if you don't know anything about TypeScript. On the other hand, a TypeScript project will provide you better IDE integration with static type checking and auto-complete facilities.
+- Afterwards, you may select whether you want a JavaScript or a TypeScript project. An _ECMAScript2016+ project with Babel_ will include [Babel](https://babeljs.io) to guarantee the existence of features that were already standardized in ECMAScript. A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead. TypeScript has its own supported set of JavaScript features, and useful type definitions around the Dicoogle development environment are included in the project. ECMAScript2016+ is closer to traditional JavaScript, but can be easily extended with Babel plugins. Any of the two kinds of projects should work fine, but you might prefer the JavaScript project if you don't know anything about TypeScript. On the other hand, a TypeScript project will provide you better IDE integration with static type checking and auto-complete facilities.
 - Since version 0.6.0 of the generator, the **minimum supported version** of Dicoogle can also be specified. Dicoogle 2.5.0 provides a few more mechanisms for retrieving contextual information of the web application. Unless you are still using 2.4.0, you may select **2.5.0** here.
-- You may also choose whether to create an _ECMAScript2016+ project with Babel_ as the transpiler, or a _TypeScript_ project. TypeScript has its own supported set of JavaScript features, and useful type definitions around the Dicoogle development environment are included in the project. ECMAScript2016+ is closer to traditional JavaScript, but can be easily extended with Babel plugins.
 - The **caption** is a label that is shown in the web application. We will set this one to _"AE Title"_.
 - Finally, you are requested additional information about the project, which can be added in case of the project being put into a public repository. They are all optional.
 
@@ -226,7 +225,7 @@ The rest of this page contains further details about Dicoogle web plugins and ho
 
 ### Dicoogle Webcore
 
-The Dicoogle webcore is one of the components of the webapp that serves as a backbone to web UI plugins. The essence of this architecture is that Dicoogle web pages will contain stub slots where plugins can be attached to. The webcore implements this logic, and the source code can be found [here](https://github.com/bioinformatics-ua/dicoogle/tree/master/webcore). 
+The Dicoogle webcore is one of the components of the webapp that serves as a backbone to web UI plugins. The essence of this architecture is that Dicoogle web pages will contain stub slots where plugins can be attached to. The webcore implements this logic, and the source code can be found [here](https://github.com/bioinformatics-ua/dicoogle/tree/dev/webcore). 
 
 ### Plugin descriptor
 
@@ -426,4 +425,4 @@ Full list of events that can be used by plugins and the webapp. _(Work in Progre
 
 ---------
 
-Further details about web UI plugins may be obtained in the [webcore project](https://github.com/bioinformatics-ua/dicoogle/tree/master/webcore). 
+Further details about web UI plugins may be obtained in the [webcore project](https://github.com/bioinformatics-ua/dicoogle/tree/dev/webcore). 
