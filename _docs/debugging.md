@@ -107,7 +107,7 @@ git clone https://github.com/bioinformatics-ua/dicoogle.git
 In this situation, you may consider checking out a released version to ensure compatibility:
 
 ```sh
-git checkout 2.5.4
+git checkout 3.0.2
 ```
 
 The same source code can be downloaded from GitHub in the [Releases](https://github.com/bioinformatics-ua/dicoogle/releases) page. For the plugins, we suppose that you already have their respective source code.
