@@ -46,8 +46,8 @@ public class MyPluginSet implements PluginSet {
     }
 
     @Override
-    public Collection<QueryInterface> getQueryPlugins() {
-        return Collections.singleton((QueryInterface) this.query);
+    public Collection<? extends QueryInterface> getQueryPlugins() {
+        return Collections.singleton(this.query);
     }
     
     @Override
@@ -55,7 +55,7 @@ public class MyPluginSet implements PluginSet {
         return "mine";
     }
 
-    // ... implement the remaining methods
+    // ... implement the remaining methods (optional)
 }
 ```
 
@@ -79,7 +79,7 @@ public class MyQueryPlugin
 }
 ```
 
-This object contains the set of methods that you can use. Here is the full list of methods in version 2.4.0:
+This object contains the set of methods that you can use. Here is the full list of methods in version 3.0.2:
 
 ```java
 IndexerInterface requestIndexPlugin(String name);
@@ -112,10 +112,25 @@ Here is a list of questions frequently made when developing plugins for Dicoogle
 
 ### How do I query for DICOM meta-data?
 
-There should be at least one DIM content provider in a deployed instance of Dicoogle. Let us assume that the plugin is named "lucene". First retrieve the appropriate `QueryInterface`, then call the query method with the intended query. For DICOM meta-data providers, the query should follow the Apache Lucene query language.
+There should be at least one DIM content provider in a deployed instance of Dicoogle.
+A list of DIM providers can be retrieved by fetching the server settings.
 
 ```java
-QueryInterface provider = this.platform.getQueryPlugin("lucene");
+String dimProvider = platform.getSettings().getArchiveSettings().getDIMProviders().get(0);
+```
+
+With the open plugins, this provider will be named "lucene".
+However, it is recommended that plugins retrieve the provider name
+from the server settings or from a configuration file,
+rather than hard-coding "lucene" as the provider.
+
+First retrieve the appropriate `QueryInterface`,
+then call the query method with the intended query.
+For DICOM meta-data providers,
+the query should follow the Apache Lucene query language.
+
+```java
+QueryInterface provider = this.platform.getQueryPlugin(dimProvider);
 Iterable<SearchResult> results = provider.query("Modality:CT AND AXIAL");
 for (SearchResult res: results) {
    // use results
@@ -123,8 +138,6 @@ for (SearchResult res: results) {
 ```
 
 The outcome is a sequence of search results, which is possibly lazy. You should not traverse the outcome more than once. In order to manipulate the list further, please save the results into a list such as `ArrayList`.
-
-At the moment, plugins that rely on DICOM content are recommended to support a configurable DIM query source, rather than hard-coding "lucene" as the provider. Future versions of Dicoogle should provide a means to retrieve the default DIM query source directly from the core platform, as this is a planned feature.
 
 ### How do I access files in storage?
 
@@ -156,7 +169,7 @@ if (results.hasNext()) {
 }
 ```
 
-### How do I read and write settings?
+### How do I read and write plugin-level settings?
 
 All plugins and plugin sets implement the method [`setSettings`](https://github.com/bioinformatics-ua/dicoogle/blob/master/sdk/src/main/java/pt/ua/dicoogle/sdk/DicooglePlugin.java#L73), which is also similar to a callback. The platform will call this method with a configuration holder after instantiation.
 
@@ -198,7 +211,7 @@ public ConfigurationHolder getSettings() {
 
 Also note that, in the latest version of Dicoogle, the plugin will be disabled if this method throws an unchecked exception.
 
-This regards plugin-specific settings. In order to read and write global Dicoogle settings, the platform API provides the necessary methods.
+This is regarding plugin-specific settings. In order to read and write global Dicoogle server settings, the Dicoogle platform API provides `getServerSettings()`.
 
 ### How do I create new web services?
 
