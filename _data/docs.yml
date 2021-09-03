@@ -5,6 +5,7 @@
   - using
   - configuring
 #  - extra-plugins
+  - migrating-3
 - title: Plugin Development
   docs:
   - developing-plugins
