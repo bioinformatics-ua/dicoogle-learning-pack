@@ -116,6 +116,38 @@ it can be used to make quick estimations of
 a process covering an entire directory,
 or to obtain a tree-like vision of the storage.
 
+#### No automatic query processing
+
+In Dicoogle 2, when a user wrote a free text query on the search bar,
+without any keyword terms such as `Modality:CT`,
+that query would be preprocessed to search for that content
+by multiple known DICOM attributes
+(SOPInstanceUID, SeriesInstanceUID, AccessionNumber, PatientID, PatientName,
+and many many others).
+For instance, the query `PID123` would expand into a query
+which included the term `PatientID:PID123` and many others,
+thus capturing the files which had `PID123` in one of these attributes.
+This process would also replace certain characters such as `^` into whitespace,
+as it was often desirable when searching by person names.
+
+In Dicoogle 3, this preprocessing is no longer done.
+The `/search` endpoint still has the old behavior
+behind the `expand` query string parameter,
+but it is not used by the web application.
+This is because query processing
+should be under full control of the query provider itself,
+and often the existing process was either unnecessary
+or even detrimental to a good query provider behavior. 
+
+Implementers of query providers which are also a source of DICOM data
+may want to incorporate some form of query preprocessing internally
+if they wish for free text queries to work like before.
+Query providers based on Lucene
+only need the right document construction logic
+and indexing configurations
+for these queries to work
+without any form of query expansion.
+
 #### `QueryInterface#query` can throw `QueryException`
 
 The new exception type `QueryException`
