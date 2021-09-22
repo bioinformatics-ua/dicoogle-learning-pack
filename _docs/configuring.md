@@ -33,7 +33,10 @@ In the Storage Servers tab, the administrator can record the known list of DICOM
 
 ### Configuration file
 
-All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_ in the configuration folder. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `aetitle`:
+All configurations previously mentioned are stored in a single XML file.
+Once Dicoogle is run at least once, you will find a file named _"server.xml"_ in the configuration folder `confs`.
+Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title).
+Look for the XML element `aetitle`:
 
 ``` xml
     <dicom-services>
@@ -55,13 +58,13 @@ The server needs to be restarted after this modification. When that is done, you
   The structure of the server settings file <em>config.xml</em> has changed in Dicoogle 3.
   The instructions above refer to this new format.
   When migrating an existing installation,
-  Dicoogle will automatically try to migrate the old settings file
-  to the new one in <em>conf/config.xml</em>.
+  Dicoogle will automatically try to migrate the old settings file <em>config.xml</em>
+  into the new one in <em>confs/server.xml</em>.
   </p>
 </div>
 
 <div class="note warning">
-  <h5>Take extra care when modifying config.xml!</h5>
+  <h5>Take extra care when modifying configuration files by hand!</h5>
   <p>An incorrect configuration may prevent Dicoogle from running entirely. Consider backing up this file before modifying it. In order to revert all changes to the defaults, simply delete the file and let Dicoogle generate it again.</p>
 </div>
 
