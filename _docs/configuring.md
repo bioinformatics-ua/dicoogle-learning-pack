@@ -95,13 +95,13 @@ Although Dicoogle does not provide a UI for the managing of the system users, it
 To create a new user in the system, one can perform a HTTP PUT in `/user` with `username` and `password` query strings. Example:
 
 ``` bash
-curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
+curl -X POST "http://localhost:8080/user?username=johndoe&password=secret"
 ```
 
 Alternatively, one may create an administrator user by adding the flag `admin` set to `true`:
 
 ``` bash
-curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
+curl -X POST "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
 ```
 
 #### Remove user
@@ -114,9 +114,10 @@ curl -X DELETE "http://localhost:8080/user/johndoe"
 
 <div class="note unreleased" >
   <h5>Breaking changes in Dicoogle 3</h5>
-  <ul>
-    <li>Starting from Dicoogle 3.0.0, creating new users should be done with the POST method instead of PUT.</li>
-    <li>In future versions, due to bugfixes, the actions performed in these endpoints will be reflected in the _users.xml_ configuration file and, thus, persisted.</li>
+  
+  Some APIs may have changed starting from Dicoogle 3.0.0.
+  For instance, creating new users was done with the PUT method instead of POST.
+  Be sure to update all integration software when migrating.
   </ul>
 </div>
 

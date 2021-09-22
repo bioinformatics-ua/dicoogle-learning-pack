@@ -106,6 +106,20 @@ it can be used to make quick estimations of
 a process covering an entire directory,
 or to obtain a tree-like vision of the storage.
 
+#### User creation Web API changes
+
+Creating new users via the Web API
+must now be done with the **POST** method instead of **PUT**.
+
+Example:
+
+```none
+POST {root}/user?username=johndoe&password=secret
+```
+
+Be sure to update all integration software
+to follow the matching specification of the Web API.
+
 #### No automatic query processing
 
 In Dicoogle 2, when a user wrote a free text query on the search bar,
