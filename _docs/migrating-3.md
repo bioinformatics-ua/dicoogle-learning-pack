@@ -82,24 +82,14 @@ So, `getGraphicalPlugins` must be completely removed in all plugin sets.
 In order to develop extensions to the user interface,
 see the section on [Web UI plugins]({{ site.baseurl }}/docs/webplugins).
 
-#### Default implementations for interface getters
+#### Server settings API with changes
 
-Most methods in the plugin set
-now have default implementations which do nothing
-or return an empty list of plugins:
-
-- `getIndexPlugins`
-- `getQueryPlugins`
-- `getStoragePlugins`
-- `getRestPlugins`
-- `getJettyPlugins`
-- `shutdown`
-
-If your plugin project does not have any plugins of a specific type,
-it is safe to remove these methods,
-as they are redundant.
-In the case of `shutdown`,
-it can be removed if it was going to be left empty anyway.
+If your plugin was fetching the server's settings
+via the Dicoogle platform interface,
+the object returned is now significantly different,
+and so some changes may be needed.
+See the [`ServerSettingsReader`](https://github.com/bioinformatics-ua/dicoogle/blob/3.0.2/sdk/src/main/java/pt/ua/dicoogle/sdk/settings/server/ServerSettingsReader.java)
+class for more information.
 
 #### New method `StorageInterface#list`
 
@@ -185,11 +175,21 @@ if (queryInterface instanceof QueryDimInterface) {
 }
 ```
 
-#### Server settings API have changes
+#### Default implementations for interface getters
 
-If your plugin was fetching the server's settings
-via the Dicoogle platform interface,
-the object returned is now significantly different,
-and so some changes may be needed.
-See the [`ServerSettingsReader`](https://github.com/bioinformatics-ua/dicoogle/blob/3.0.2/sdk/src/main/java/pt/ua/dicoogle/sdk/settings/server/ServerSettingsReader.java)
-class for more information.
+Most methods in the plugin set
+now have default implementations which do nothing
+or return an empty list of plugins:
+
+- `getIndexPlugins`
+- `getQueryPlugins`
+- `getStoragePlugins`
+- `getRestPlugins`
+- `getJettyPlugins`
+- `shutdown`
+
+If your plugin project does not have any plugins of a specific type,
+it is safe to remove these methods,
+as they are redundant.
+In the case of `shutdown`,
+it can be removed if it was going to be left empty anyway.
