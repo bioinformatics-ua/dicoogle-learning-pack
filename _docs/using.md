@@ -81,11 +81,20 @@ It is also possible to see a larger preview of the image by pressing the eye but
 
 ### Exporting Results
 
- On this page, there is also an _Export_ button, which is used to export the entire list of results into a comma-separated values (CSV) file. Once clicked, a new form is presented, where we need to specify which tags to consider in the CSV file. These are DICOM tag keywords, as specified in chapter 6 of the [DICOM standard, PS3.6](http://dicom.nema.org/medical/dicom/current/output/chtml/part06/chapter_6.html). Each tag is separated by a new line. For this example, we will request a few attributes:
+In this page, there is also an _Export_ button,
+which is used to export the entire list of results into a comma-separated values (CSV) file.
+Once clicked, a new form is presented, where we need to specify which tags to consider in the CSV file.
+These are DICOM tag keywords, as specified in chapter 6 of the [DICOM standard, PS3.6](http://dicom.nema.org/medical/dicom/current/output/chtml/part06/chapter_6.html).
+The text input for the fields to export
+will automatically suggest DICOM attribute names
+as you type them in.
+For this example, we will request a few attributes:
 
 ![The "Export to CSV" form.]({{ site.baseurl }}/images/screenshot_export.png)
 
 Now, you may click on the blue _Export_ button, and the browser will download the resulting CSV file.
+If you intend to export results with the same list of fields,
+you can save the list as a preset for later use.
 
 ### What else?
 
