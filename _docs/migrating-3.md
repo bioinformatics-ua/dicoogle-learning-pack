@@ -1,6 +1,6 @@
 ---
 title: Migration to Dicoogle 3
-permalink: /docs/migration-3/
+permalink: /docs/migrating-3/
 layout: docs
 ---
 
