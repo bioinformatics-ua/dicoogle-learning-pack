@@ -207,3 +207,33 @@ it is safe to remove these methods,
 as they are redundant.
 In the case of `shutdown`,
 it can be removed if it was going to be left empty anyway.
+
+### New way to inject platform interface
+
+In Dicoogle 2,
+plugin sets and respective plugin implementations
+would retrieve the Dicoogle platform interface
+by adding `implements DicoogleCommunicatorInterface` to the class
+and overriding the method `setPlatformProxy`.
+
+In Dicoogle 3,
+there is an alternative which requires less code:
+add a non-static field of type `DicooglePlatformInterface` to the class
+and add the annotation [`@pt.ua.dicoogle.sdk.annotation.InjectPlatformProxy`][InjectPlatformProxy].
+
+```java
+public class MyPluginSet implements PluginSet {
+    @InjectPlatformProxy
+    private DicooglePlatformInterface platform;
+}
+```
+
+The field will be set by Dicoogle automatically,
+some time after construction during the plugin loading phase.
+
+The previous way of obtaining a proxy to the platform interface still works.
+Note that, as was before,
+only plugin sets and plugins registered by those sets
+can obtain this interface through these two mechanisms.
+
+[InjectPlatformProxy]: https://github.com/bioinformatics-ua/dicoogle/blob/3.0.2/sdk/src/main/java/pt/ua/dicoogle/sdk/annotation/InjectPlatformProxy.java

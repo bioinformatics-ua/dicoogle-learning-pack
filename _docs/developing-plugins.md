@@ -79,6 +79,26 @@ public class MyQueryPlugin
 }
 ```
 
+As an alternative, you can skip these steps
+and add the [`@InjectPlatformProxy`][InjectPlatformProxy] annotation
+on the attribute:
+
+```java
+import pt.ua.dicoogle.sdk.annotation.InjectPlatformProxy;
+
+public class MyQueryPlugin implements QueryInterface {
+    @InjectPlatformProxy
+    private DicooglePlatformInterface platform;
+
+    // ... other content
+
+    @Override
+    void setPlatformProxy(DicooglePlatformInterface platform) {
+        this.platform = platform;
+    }
+}
+```
+
 This object contains the set of methods that you can use. Here is the full list of methods in version 3.0.2:
 
 ```java
@@ -105,6 +125,8 @@ List<Task<Report>> index(URI path);
 List<Report> indexBlocking(URI path);
 ServerSettingsReader getSettings();
 ```
+
+[InjectPlatformProxy]: https://github.com/bioinformatics-ua/dicoogle/blob/3.0.2/sdk/src/main/java/pt/ua/dicoogle/sdk/annotation/InjectPlatformProxy.java
 
 ## Frequently Asked Questions
 
