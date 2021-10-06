@@ -122,13 +122,14 @@ to follow the matching specification of the Web API.
 
 #### No automatic query processing
 
-In Dicoogle 2, when a user wrote a free text query on the search bar,
-without any keyword terms such as `Modality:CT`,
+In Dicoogle 2, when a user wrote a free text query on the search bar
+without any field (keyword) terms such as `CT`,
 that query would be preprocessed to search for that content
 by multiple known DICOM attributes
-(SOPInstanceUID, SeriesInstanceUID, AccessionNumber, PatientID, PatientName,
-and many many others).
-For instance, the query `PID123` would expand into a query
+(SOPInstanceUID, StudyInstanceUID, SeriesInstanceUID,
+AccessionNumber, Modality, PatientID, PatientName,
+and many others).
+For instance, the query `PID123` would expand into a boolean union query
 which included the term `PatientID:PID123` and many others,
 thus capturing the files which had `PID123` in one of these attributes.
 This process would also replace certain characters such as `^` into whitespace,
