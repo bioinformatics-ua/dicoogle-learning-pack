@@ -166,7 +166,7 @@ is when the parameter `query` is syntactically incorrect.
 #### New extended trait `QueryDimInterface` 
 
 Query interface objects may now also implement `QueryDimInterface`.
-This extended form providess a way
+This extended form provides a way
 to query at different levels in the DICOM Information Model.
 
 Before this interface,
