@@ -4,6 +4,12 @@ permalink: /docs/webplugins/
 layout: docs
 ---
 
+<div class="note unreleased" >
+<h5>Guidance for Dicoogle 3 coming soon</h5>
+<p>This section is under reconstruction to become fully up to date with the latest version of Dicoogle.
+You can keep track of the current progress in <a href="https://github.com/bioinformatics-ua/dicoogle-learning-pack/issues/26">this issue</a>.</p>
+</div>
+
 Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. The first section of this page is a tutorial that will guide you into making your first Dicoogle web plugin: a settings component for reading and modifying the DICOM server's AE title. The second section will provide additional details about integrating web plugins and the APIs made available to them.
 
 <div class="note unreleased" >
