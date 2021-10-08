@@ -39,7 +39,25 @@ Typically though, no special intervention is needed.
 When booting, Dicoogle 3 will migrate an existing `config.xml` file
 to use the new format, and save it in `confs/server.xml`.
 If you validate that the migration was successful,
-the file `config.xml` is then same to remove.
+the file `config.xml` is then safe to remove.
+
+#### Users file must be recreated
+
+The file `users.xml` keeps track of registered users in the archive,
+including their roles and privileges.
+In Dicoogle 3, this file's semantics were changed
+to use a stronger password hashing algorithm.
+This makes a `users.xml` file in a Dicoogle 2 installation incompatible,
+and _must not_ be transferred into Dicoogle 3.
+Instead, let Dicoogle create a new users file
+and insert new users if necessary.
+
+It is also possible to encrypt this file
+so that the list cannot be tampered nor viewed
+if the configuration file becomes compromised.
+If this option is enabled in the configuration file
+mentioned in the previous section,
+then the file name will be called `users.xml.enc` instead of `users.xml`.
 
 #### Plugins for Dicoogle 2 are not compatible with Dicoogle 3 
 
