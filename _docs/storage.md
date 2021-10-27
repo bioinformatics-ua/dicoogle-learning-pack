@@ -33,14 +33,6 @@ public interface StorageInterface extends DicooglePlugin {
     public String getScheme();
     
     /**
-     * Checks whether the file in the given path can be handled by this storage plugin.
-     *
-     * @param location a URI containing a scheme to be verified
-     * @return true if this storage plugin is in charge of URIs in the given form 
-     */
-    public boolean handles(URI location);
-    
-    /**
      * Provides a means of iteration over existing objects at a specified location.
      * This method is particularly nice for use in for-each loops.
      * The provided scheme is not relevant at this point, but the developer must avoid calling
@@ -79,10 +71,15 @@ public interface StorageInterface extends DicooglePlugin {
     public URI store(DicomInputStream inputStream, Object ... parameters) throws IOException;
     
     /** Removes an element at the given URI.
-     * 
-     * @param location the URI of the stored data
      */
     public void remove(URI location);
+
+    /** Lists the elements at the given location in the storage's file tree.
+     * Unlike `StorageInterface#at`, this method is not recursive and
+     * can yield intermediate URIs representing other directories rather than
+     * objects.
+     */
+    public default Stream<URI> list(URI location) throws IOException { ... }
 }
 ```
 
@@ -154,12 +151,23 @@ public String getScheme() {
 }
 ```
 
-`handles(URI)` was made to verify whether the given URI can relate to an item (existent or inexistent) in this storage.
-Since this is mean to be based uniquely on the scheme of the URI, one should use the implementation below: 
+`list()` was introduced in Dicoogle 3,
+enabling storage interfaces to provide a list of entries
+at a particular position in the storage tree.
+Note that this is different from the method `at()`:
+`list` is optional and provides a _shallow_ list of files and directories directly below the given directory,
+whereas `at` is required and provides a full list of all files (leaf items) in storage at the given base directory.
+Implementers may ignore this method,
+but implemeting it may grant additional features to end applications.
+Consumers of this method should catch `UnsupportedOperationException`
+to handle situations in which the method is not implemented.
+
+`handles(URI)` is a deprecated method,
+which was made to verify whether the given URI can relate to an item (existent or inexistent) in this storage.
+Since this was meant to be based uniquely on the scheme of the URI,
+implementers should ignore it,
+and consumers should instead check for equality of the scheme:
 
 ```java
-public boolean handles(URI location) {
-    Objects.requireNonNull(location);
-    return Objects.equals(this.getScheme(), location.getScheme());
-}
+boolean handles = Objects.equals(storageInterface.getScheme(), uri.getScheme());
 ```
