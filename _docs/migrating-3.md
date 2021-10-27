@@ -6,7 +6,7 @@ layout: docs
 
 Dicoogle 3 was released in 2019,
 with the purpose of taking down obsolete constructs
-and bringing new features which influence the archive's overall performance.
+and bringing new features which improve the archive's overall performance.
 This page will guide users and developers
 towards migrating their PACS and extension software
 for the major version 3 of Dicoogle.
