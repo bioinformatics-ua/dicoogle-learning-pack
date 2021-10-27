@@ -156,7 +156,11 @@ A new question should arise here: _How do we interact with Dicoogle from here?_
 ### Interacting with Dicoogle
 
 Interfacing with the Dicoogle instance is done through the Dicoogle client API, in the [`dicoogle-client`](https://github.com/bioinformatics-ua/dicoogle-client-js) package.
-The package can be included in separate applications, but when developing web plugins, we don't have to. Instead, a global variable `Dicoogle` is exposed with all of the features. The operations available are all listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/interfaces/_types_dicoogle_client_d_.dicoogleclient.dicoogleaccess.html). In particular, we are looking for two methods:
+The package can be included by independent applications.
+But when developing web plugins, we don't have to.
+Instead, a global variable `Dicoogle` is automatically exposed with all of the features.
+The operations available are all listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html).
+In particular, we are looking for two methods:
 
 - [`Dicoogle.getAETitle()`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#getaetitle) ─ to retrieve the AE title currently set on the archive.
 - [`Dicoogle.setAETitle(aetitle)`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#setaetitle) ─ to set the title of the archive's AE.
