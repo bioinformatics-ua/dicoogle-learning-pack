@@ -7,11 +7,12 @@ In this page, we will have an instance of Dicoogle running on your machine for t
 
 ### Install Requirements
 
-Before we proceed, make sure that you have an up-to-date version of the Java Virtual Machine. It can be downloaded [here](https://java.com/en/download/), or it can be installed using your typical system package manager. Although Java 7 is still supported, we highly recommend having Java 8 at this time.
+Before we proceed, make sure that you have an up-to-date version of the Java Virtual Machine. It can be downloaded [here](https://java.com/en/download/), or it can be installed using your typical system package manager.
+Java 8 is recommended, although Java 11 is also supported as of Dicoogle 3.
 
 ### Obtain Dicoogle and Plugins
 
-The website has a [Downloads](http://www.dicoogle.com/downloads) section, where you can download Dicoogle and some plugins for free. As an alternative, you can build it from the sources. Once that is done, be sure that you have these three files:
+The website has a [Downloads](http://www.dicoogle.com/downloads) section, where you can download Dicoogle 3 and some plugins for free. As an alternative, you can build it from the sources. Once that is done, be sure that you have these three files:
 
 - The main platform program (_"dicoogle.jar"_). 
 

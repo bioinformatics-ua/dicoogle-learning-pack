@@ -33,22 +33,38 @@ In the Storage Servers tab, the administrator can record the known list of DICOM
 
 ### Configuration file
 
-All configurations previously mentioned are stored in a single XML file. Once Dicoogle is run at least once, you will find a file named _"config.xml"_. Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title). Look for the XML element `AETitle` :
+All configurations previously mentioned are stored in a single XML file.
+Once Dicoogle is run at least once, you will find a file named _"server.xml"_ in the configuration folder `confs`.
+Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title).
+Look for the XML element `aetitle`:
 
 ``` xml
-<AETitle>DICOOGLE-STORAGE</AETitle>
+    <dicom-services>
+        <aetitle>DICOOGLE-STORAGE</aetitle>
+    <dicom-services>
 ```
 
 And modify it to another identifier:
 
 ``` xml
-<AETitle>PERSONAL-STORAGE</AETitle>
+<aetitle>PERSONAL-STORAGE</aetitle>
 ```
 
 The server needs to be restarted after this modification. When that is done, you will see that the server's AE Title has changed.
 
+<div class="note unreleased">
+  <h5>Migrating settings from Dicoogle 2 to Dicoogle 3</h5>
+  <p>
+  The structure of the server settings file <em>config.xml</em> has changed in Dicoogle 3.
+  The instructions above refer to this new format.
+  When migrating an existing installation,
+  Dicoogle will automatically try to migrate the old settings file <em>config.xml</em>
+  into the new one in <em>confs/server.xml</em>.
+  </p>
+</div>
+
 <div class="note warning">
-  <h5>Take extra care when modifying config.xml!</h5>
+  <h5>Take extra care when modifying configuration files by hand!</h5>
   <p>An incorrect configuration may prevent Dicoogle from running entirely. Consider backing up this file before modifying it. In order to revert all changes to the defaults, simply delete the file and let Dicoogle generate it again.</p>
 </div>
 
@@ -79,13 +95,13 @@ Although Dicoogle does not provide a UI for the managing of the system users, it
 To create a new user in the system, one can perform a HTTP PUT in `/user` with `username` and `password` query strings. Example:
 
 ``` bash
-curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret"
+curl -X POST "http://localhost:8080/user?username=johndoe&password=secret"
 ```
 
 Alternatively, one may create an administrator user by adding the flag `admin` set to `true`:
 
 ``` bash
-curl -X PUT "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
+curl -X POST "http://localhost:8080/user?username=johndoe&password=secret&admin=true"
 ```
 
 #### Remove user
@@ -98,9 +114,10 @@ curl -X DELETE "http://localhost:8080/user/johndoe"
 
 <div class="note unreleased" >
   <h5>Breaking changes in Dicoogle 3</h5>
-  <ul>
-    <li>Starting from Dicoogle 3.0.0, creating new users should be done with the POST method instead of PUT.</li>
-    <li>In future versions, due to bugfixes, the actions performed in these endpoints will be reflected in the _users.xml_ configuration file and, thus, persisted.</li>
+  
+  Some APIs may have changed starting from Dicoogle 3.0.0.
+  For instance, creating new users was done with the PUT method instead of POST.
+  Be sure to update all integration software when migrating.
   </ul>
 </div>
 

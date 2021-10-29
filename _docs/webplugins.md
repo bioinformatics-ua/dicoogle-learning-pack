@@ -4,6 +4,12 @@ permalink: /docs/webplugins/
 layout: docs
 ---
 
+<div class="note unreleased" >
+<h5>Guidance for Dicoogle 3 coming soon</h5>
+<p>This section is under reconstruction to become fully up to date with the latest version of Dicoogle.
+You can keep track of the current progress in <a href="https://github.com/bioinformatics-ua/dicoogle-learning-pack/issues/26">this issue</a>.</p>
+</div>
+
 Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. The first section of this page is a tutorial that will guide you into making your first Dicoogle web plugin: a settings component for reading and modifying the DICOM server's AE title. The second section will provide additional details about integrating web plugins and the APIs made available to them.
 
 <div class="note unreleased" >
@@ -20,7 +26,7 @@ will be more up-to-date with changes in web plugin support.</p>
 We will start by creating a Dicoogle web plugin project. Before we start, we must fulfill the following requirements:
 
 - Node.js (LTS or Stable) ─ required for executing the building tools. 
-- npm (at least version 3 required) ─ the JavaScript package manager.
+- npm (at least version 6 required) ─ the JavaScript package manager, usually installed alongside Node.js.
 
 Now, we will install two packages globally, using the following command:
 
@@ -150,10 +156,14 @@ A new question should arise here: _How do we interact with Dicoogle from here?_
 ### Interacting with Dicoogle
 
 Interfacing with the Dicoogle instance is done through the Dicoogle client API, in the [`dicoogle-client`](https://github.com/bioinformatics-ua/dicoogle-client-js) package.
-The package can be included in separate applications, but when developing web plugins, we don't have to. Instead, a global variable `Dicoogle` is exposed with all of the features. The operations available are all listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/interfaces/_types_dicoogle_client_d_.dicoogleclient.dicoogleaccess.html). In particular, we are looking for two methods:
+The package can be included by independent applications.
+But when developing web plugins, we don't have to.
+Instead, a global variable `Dicoogle` is automatically exposed with all of the features.
+The operations available are all listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html).
+In particular, we are looking for two methods:
 
-- [`Dicoogle.getAETitle(fn)`](https://bioinformatics-ua.github.io/dicoogle-client-js/interfaces/_types_dicoogle_client_d_.dicoogleclient.dicoogleaccess.html#getaetitle) ─ to retrieve the AE title currently set on the archive.
-- [`Dicoogle.setAETitle(aetitle, fn)`](https://bioinformatics-ua.github.io/dicoogle-client-js/interfaces/_types_dicoogle_client_d_.dicoogleclient.dicoogleaccess.html#setaetitle) ─ to set the title of the archive's AE.
+- [`Dicoogle.getAETitle()`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#getaetitle) ─ to retrieve the AE title currently set on the archive.
+- [`Dicoogle.setAETitle(aetitle)`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#setaetitle) ─ to set the title of the archive's AE.
 
 With a bit of client-side programming, one may come up with something like this:
 
@@ -176,7 +186,7 @@ render(parent, slot) {
     parent.appendChild(lblFeedback);
 
     // request for the current AE title
-    Dicoogle.getAETitle((err, aetitle) => {
+    Dicoogle.getAETitle().then((err, aetitle) => {
         if (err) {
             console.error("Service failure", err);
             return;

@@ -13,7 +13,7 @@ As Dicoogle is an archive, the means of indexing and retrieving information are 
 
 Indexing is a process in which documents are recorded for future retrieval. In Dicoogle, this is performed in the background by deploying indexing tasks (this can be done with the user interface, as mentioned in [Indexing a Directory]({{ site.baseurl }}/docs/using#indexing-a-directory)).
 
-Indexer plugins are made by implementing [`pt.ua.dicoogle.sdk.IndexerInterface`](https://github.com/bioinformatics-ua/dicoogle/blob/2.4.0/sdk/src/main/java/pt/ua/dicoogle/sdk/IndexerInterface.java).
+Indexer plugins are made by implementing [`pt.ua.dicoogle.sdk.IndexerInterface`](https://github.com/bioinformatics-ua/dicoogle/blob/3.0.2/sdk/src/main/java/pt/ua/dicoogle/sdk/IndexerInterface.java).
 
 Let's have a look at this interface and examine each method.
 
@@ -120,7 +120,7 @@ The remaining methods should be easier to implement:
 
 ## Query Provider
 
-As the other side of the coin, [`pt.ua.dicoogle.sdk.QueryInterface`](https://github.com/bioinformatics-ua/dicoogle/blob/2.4.0/sdk/src/main/java/pt/ua/dicoogle/sdk/QueryInterface.java) enables users and developers to search over the created index. The interface contains a single method:
+As the other side of the coin, [`pt.ua.dicoogle.sdk.QueryInterface`](https://github.com/bioinformatics-ua/dicoogle/blob/3.0.2/sdk/src/main/java/pt/ua/dicoogle/sdk/QueryInterface.java) enables users and developers to search over the created index. The interface contains a single method:
 
 ```java
 /**
