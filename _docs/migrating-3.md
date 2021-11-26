@@ -67,6 +67,13 @@ As such, the old plugins that were used in Dicoogle 2
 must not be directly copied to a Dicoogle 3 deployment,
 because that is not going to work.
 
+The appearance of the following error message on boot
+is a sign that at least one plugin is incompatible:
+
+```none
+Exception in thread "main" java.lang.SecurityException: sealing violation: package pt.ua.dicoogle.sdk is sealed
+```
+
 If you are not the developer,
 you will need to reach out to the maintainers of the plugins
 and request that they are ported to work on Dicoogle 3.
