@@ -4,12 +4,6 @@ permalink: /docs/webplugins/
 layout: docs
 ---
 
-<div class="note unreleased" >
-<h5>Guidance for Dicoogle 3 coming soon</h5>
-<p>This section is under reconstruction to become fully up to date with the latest version of Dicoogle.
-You can keep track of the current progress in <a href="https://github.com/bioinformatics-ua/dicoogle-learning-pack/issues/26">this issue</a>.</p>
-</div>
-
 Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. The first section of this page is a tutorial that will guide you into making your first Dicoogle web plugin: a menu component to show a list of problems in the PACS. The second section will provide additional details about integrating web plugins and the APIs made available to them.
 
 <div class="note unreleased" >
@@ -51,8 +45,8 @@ npm install -g yo generator-dicoogle-webplugin
 While still on a command line, execute the following commands:
 
 ```sh
-mkdir webplugin-troubleshoot
-cd webplugin-troubleshoot
+mkdir webplugin-healthcheck
+cd webplugin-healthcheck
 yo dicoogle-webplugin
 ```
 
@@ -64,20 +58,15 @@ The application will now be asking you a series of questions about the project.
 - Afterwards, you may need to choose whether to generate a JavaScript or a TypeScript project.
   An _ECMAScript2016+ project with Babel_ will include [Babel](https://babeljs.io)
   to guarantee the existence of features that were already standardized in ECMAScript.
-  A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead.
-  TypeScript has its own supported set of JavaScript features,
-  and useful type definitions around the Dicoogle development environment are included in the project.
-  ECMAScript2016+ will let you write JavaScript directly,
-  but can more easily be extended with Babel plugins.
-  Any of the two kinds of projects should work fine for Dicoogle,
-  but you might prefer the JavaScript project if you are not comfortable with TypeScript.
-  On the other hand, a TypeScript project will provide you
-  better IDE integration with static type checking and auto-complete facilities.
+  A [TypeScript](https://www.typescriptlang.org/) project will have its source code in TypeScript,
+  and will be configured to use a TypeScript compiler instead.
+  Either one will work fine for this project,
+  so choose the one which you are the most comfortable with.
 - The **minimum supported version** of Dicoogle can also be specified.
   The higher the version, the more mechanisms will be provided.
   When developing for the latest version,
   pick _the most recent one_ of the options given.
-- The **caption** is a label that is shown in the web application. We will set this one to _"Troubleshoot"_.
+- The **caption** is a label that is shown in the web application. We will set this one to _"Health Check"_.
 - Finally, you are requested additional information about the project, which can be added in case of the project being put into a public repository. They are all optional.
 
 After the process is complete, you will have a brand new project in your working directory.
@@ -93,14 +82,14 @@ npm install
 This will yield, among others, a file named _"module.js"_. This one and _"package.json"_ make the full plugin.
 
 We will now install this plugin as a standalone web plugin. Create a folder _"WebPlugins"_ in your _"DicoogleDir"_ folder.
-Afterwards, create a directory _"troubleshoot"_ in _"WebPlugins"_ and copy the two files above into this folder. The directory tree should look like this:
+Afterwards, create a directory _"healthcheck"_ in _"WebPlugins"_ and copy the two files above into this folder. The directory tree should look like this:
 
 ```
  DicoogleDir
  ├── Plugins
  |   └── ...
  ├── WebPlugins
- |   └── troubleshoot
+ |   └── healthcheck
  |       ├── package.json
  |       └── module.js
  ├── storage
@@ -109,7 +98,8 @@ Afterwards, create a directory _"troubleshoot"_ in _"WebPlugins"_ and copy the t
  └── dicoogle.jar
 ```
 
-Start Dicoogle and enter the web application, into the _Management_ menu. The _Services & Plugins_ sub-menu should now have our plugin.
+Start Dicoogle and enter the web application.
+Our plugins should now appear on the sidebar.
 
 ![]({{ site.baseurl }}/images/screenshot_webplugin_menu_hello.png)
 
@@ -169,7 +159,7 @@ Instead of creating a div, we will create a header and other elements to provide
 render(parent, slot) {
     // create header
     const head = document.createElement('h3');
-    head.text = 'Troubleshoot';
+    head.text = 'Health Check';
     parent.appendChild(head);
 
     // create main info span
@@ -194,7 +184,7 @@ Instead, a global variable `Dicoogle` is automatically exposed with all of the f
 The operations available are listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html).
 In particular, we are looking for methods to retrieve information about the plugins:
 
-- [`Dicoogle.getAETitle()`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#getaetitle) ─ to retrieve the AE title currently set on the archive.
+- [`Dicoogle.getPlugins()`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#getplugins) ─ to retrieve a detailed list of plugins installed.
 
 With a bit of client-side programming, one may come up with something like this:
 
@@ -202,7 +192,7 @@ With a bit of client-side programming, one may come up with something like this:
 render(parent: HTMLElement, slot: SlotHTMLElement) {
     // create header
     const head = document.createElement('h3');
-    head.innerText = 'Troubleshoot';
+    head.innerText = 'Health Check';
     parent.appendChild(head);
 
     // create main info span
@@ -255,8 +245,7 @@ render(parent: HTMLElement, slot: SlotHTMLElement) {
 ```
 
 Let's repeat the installation process by running `npm install` and copying the updated _"module.js"_ file to the deployment folder. We may now enter the web application again and see that the changes have taken effect.
-<!-- TODO UPDATE IMAGE-->
-![]({{ site.baseurl }}/images/screenshot_webplugin_menu_troubleshoot.png)
+![]({{ site.baseurl }}/images/screenshot_webplugin_menu_healthcheck.png)
 
 <div class="note info">
   <h5>Web plugins are cached by the browser!</h5>
@@ -311,41 +300,6 @@ An example of a valid "package.json":
 ### Module
 
 In addition, a JavaScript module must be implemented, containing the entire logic and rendering of the plugin.
-The script that is to be loaded by Dicoogle must be in the CommonJS format (similar to the Node.js module standard),
-using either `module.exports` or the export named `default`.
-The developer may also choose to create the module under the UMD format, although this is not required. The developer
-can make multiple node-flavored CommonJS modules and use tools like Webpack to bundle them and embed dependencies.
-Some of those however, can be required without embedding. In particular, some modules such as "react", "react-dom",
-and "dicoogle-client" can be imported externally through `require`, and so should be marked as external dependencies.
-
-The exported module must be a single constructor function or class, in which instances must have a `render(parent, slot)` method:
-
-```javascript
-class MyPlugin {
-
-  /** Render and attach the contents of a new plugin instance to the given DOM element.
-  * @param {DOMElement} parent the parent element of the plugin component
-  * @param {DOMElement} slot the DOM element of the Dicoogle slot
-  */
-  render(parent, slot) {
-      // ...
-  }
-}
-```
-
-<div class="note unreleased" >
-<h5>On support for React components</h5>
-<p>The latest version allows users to render React elements by returning them from the render method instead of attaching
-bare DOM elements to the parent div. However, this feature is unstable and known not to work very well. Future versions
-may allow a smooth approach to developing web plugins in a pure React environment. In the meantime, it is possible to
-use React by calling <code>ReactDOM.render</code> directly on <code>parent</code>.</p>
-</div>
-
-All modules will have access to the `Dicoogle` plugin-local alias for interfacing with Dicoogle.
-Query plugins can invoke `issueQuery(...)` to perform a query and expose the results on the page (via result plugins).
-Other REST services exposed by Dicoogle are easily accessible with `request(...)`.
-See the [Dicoogle JavaScript client package](https://github.com/bioinformatics-ua/dicoogle-client-js) and the Dicoogle
-Web API section below for a more thorough documentation.
 
 Modules are meant to work independently, but can have embedded libraries if so is desired. In
 addition, if the underlying web page is known to contain specific libraries, then these can also be used without being
@@ -390,20 +344,98 @@ For example:
   and the `context` should be ["browser"](https://parceljs.org/features/targets/#context).
 - If using [Babel](https://babeljs.io) directly, ensure that [`targets.esmodules`](https://babeljs.io/docs/en/options#targetsesmodules) is set to `false`.
 
+All modules will have access to the `Dicoogle` plugin-local alias for interfacing with Dicoogle.
+Other REST services exposed by Dicoogle are easily accessible with `request(...)`.
+See the [Dicoogle JavaScript client package](https://github.com/bioinformatics-ua/dicoogle-client-js) and the Dicoogle
+Web API section below for a more thorough documentation.
+
 ### Types of Web Plugins
 
-As previously mentioned, we are requested to specify a a type of plugin, often with the "slot-id" property. This type defines
-how webplugins are attached to the application. The following  Note that not all of them are fully supported at the moment.
+As previously mentioned, we are requested to specify a a type of plugin, often with the "slot-id" property.
+This type defines how webplugins are attached to the application.
+The following kinds of web UI plugins are supported:
 
-- **menu**: Menu plugins are used to augment the main menu. A new entry is added to the side bar (named by the plugin's caption
-  property), and the component is created when the user navigates to that entry.
-- **result-option**: Result option plugins are used to provide advanced operations to a result entry. If the user activates
-  _"Advanced Options"_ in the search results view, these plugins will be attached into a new column, one for each visible result entry.
-- **result-batch**: Result batch plugins are used to provide advanced operations over an existing list of results. These plugins will
-  attach a button (named with the plugin's caption property), which will pop-up a division below the search result view.
+- **menu**: Menu plugins are used to augment the main menu.
+  A new entry is added to the side bar (named by the plugin's caption property),
+  and the component is created when the user navigates to that entry.
+- **result-option**: Result option plugins are used to provide advanced operations to a result entry.
+  If the user activates _"Advanced Options"_ in the search results view,
+  these plugins will be attached into a new column, one for each visible result entry.
+- **result-batch**: Result batch plugins are used to provide advanced operations over an existing list of results.
+  These plugins will attach a button (named with the plugin's caption property),
+  which will pop-up a division below the search result view.
 - **settings**: Settings plugins can be used to provide addition management information and control. These plugins will be attached to
   the _"Plugins & Services"_ tab in the _Management_ menu.
 
+### Module format and compatibility
+
+<div class="note info">
+  <h5>Stick to generator-dicoogle-webplugins and you will be fine</h5>
+  <p>
+    By using the project scaffolding tool,
+    you will have a complete project with all the necessary operations
+    to build a compatible module without any other concerns.
+  </p>
+  <p>
+    The details described in this section
+    are for those who wish to understand how it works in greater detail.
+  </p>
+</div>
+
+The script file module.js, that will be loaded by Dicoogle,
+must exist as a Node.js compatible module.
+This allows the Dicoogle back-end to encapsulate it with the boilerplate
+that registers the plugin via the Dicoogle webcore system by the web app.
+
+The exported module must be a single constructor function or class,
+in which instances must have a `render(parent, slot)` method:
+
+```javascript
+class MyPlugin {
+
+  /** Render and attach the contents of a new plugin instance to the given DOM element.
+  * @param {DOMElement} parent the parent element,
+  *                     created exclusively for each plugin component
+  * @param {DOMElement} slot the DOM element of the Dicoogle slot
+  */
+  render(parent, slot) {
+      // ...
+  }
+}
+```
+
+The export can either be made as an assignment to `module.exports`:
+
+```javascript
+module.exports = MyPlugin;
+```
+
+Or through the export named `default` with the ES module interoperability flag:
+
+```javascript
+module.exports = {
+  __esModule: true,
+  default: MyPlugin,
+};
+```
+
+The developer can make multiple node-flavored CommonJS modules
+and use tools like Webpack to bundle them and embed dependencies
+into a single module.js file.
+However, some dependencies can be obtained from Dicoogle without embedding them.
+In particular,  modules such as `"react"`, `"react-dom"`, and `"dicoogle-client"`
+can be imported externally through `require`,
+and so should be marked as _external dependencies_.
+
+The developer may also choose to deliver a UMD module, although this is not necessary.
+
+<div class="note unreleased" >
+<h5>On support for React components</h5>
+<p>The latest version allows users to render React elements by returning them from the render method instead of attaching
+bare DOM elements to the parent div. However, this feature is unstable and known not to work very well. Future versions
+may allow a smooth approach to developing web plugins in a pure React environment. In the meantime, it is possible to
+use React by calling <code>ReactDOM.render</code> directly on <code>parent</code>.</p>
+</div>
 
 ### Dicoogle Web API
 
