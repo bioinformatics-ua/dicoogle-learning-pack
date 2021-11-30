@@ -4,20 +4,17 @@ permalink: /docs/webplugins/
 layout: docs
 ---
 
-<div class="note unreleased" >
-<h5>Guidance for Dicoogle 3 coming soon</h5>
-<p>This section is under reconstruction to become fully up to date with the latest version of Dicoogle.
-You can keep track of the current progress in <a href="https://github.com/bioinformatics-ua/dicoogle-learning-pack/issues/26">this issue</a>.</p>
-</div>
-
-Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. The first section of this page is a tutorial that will guide you into making your first Dicoogle web plugin: a settings component for reading and modifying the DICOM server's AE title. The second section will provide additional details about integrating web plugins and the APIs made available to them.
+Dicoogle web user interface plugins, or just web plugins, are frontend-oriented pluggable components that live in the web application. The first section of this page is a tutorial that will guide you into making your first Dicoogle web plugin: a menu component to show a list of problems in the PACS. The second section will provide additional details about integrating web plugins and the APIs made available to them.
 
 <div class="note unreleased" >
 <h5>On web UI plugin support</h5>
-<p>The Dicoogle web UI plugin architecture is currently not fully covered by the Dicoogle project's stability guarantees.
-More kinds of web plugins are planned, but not fully supported. Features known to work well with the latest
-stable release of Dicoogle will be documented here in the Learning Pack. When working with development
-versions, the <a href="https://github.com/bioinformatics-ua/dicoogle/tree/master/webcore/README.md">README pages</a> in the webcore sub-project
+<p>The Dicoogle web UI plugin architecture is currently not under the project's stability guarantees.
+That is, each new release of Dicoogle might not be fully compatible with all web plugins.
+Features known to work well with the latest stable release of Dicoogle
+will be documented here in the Learning Pack.
+When working with development versions,
+the <a href="https://github.com/bioinformatics-ua/dicoogle/tree/master/webcore/README.md">README pages</a>
+in the webcore sub-project
 will be more up-to-date with changes in web plugin support.</p>
 </div>
 
@@ -28,7 +25,13 @@ We will start by creating a Dicoogle web plugin project. Before we start, we mus
 - Node.js (LTS or Stable) ─ required for executing the building tools. 
 - npm (at least version 6 required) ─ the JavaScript package manager, usually installed alongside Node.js.
 
-Now, we will install two packages globally, using the following command:
+Now, we will need two components to generate the barebones web plugin project.
+The first one is the executable for [Yeoman](http://yeoman.io),
+a project scaffolding application with a generator ecosystem.
+The second one is a Dicoogle web plugin project generator,
+developed specifically to facilitate the development of this kind of plugins.
+
+Install the following two packages globally, using the following command:
 
 ```sh
 npm install -g yo generator-dicoogle-webplugin
@@ -39,13 +42,11 @@ npm install -g yo generator-dicoogle-webplugin
 <p>On Unix systems, you may need to fix the <a href="https://docs.npmjs.com/getting-started/installing-npm-packages-globally">npm permissions</a>. Although it is not recommended, you can also execute the command as super user (with <code>sudo</code>).</p>
 </div>
 
-This will install the packages `yo` and `generator-dicoogle-webplugin`. The first one is the executable for [Yeoman](http://yeoman.io), a project scaffolding application with a generator ecosystem. The second one is a Dicoogle web plugin project generator, developed specifically to facilitate the development of this kind of plugins.
-
 While still on a command line, execute the following commands:
 
 ```sh
-mkdir webplugin-aetitle
-cd webplugin-aetitle
+mkdir webplugin-healthcheck
+cd webplugin-healthcheck
 yo dicoogle-webplugin
 ```
 
@@ -53,10 +54,19 @@ The application will now be asking you a series of questions about the project.
 
 - The **project name** will be the name of the npm project, and also the unique name of the plugin. We can leave the default by pressing Enter.
 - The **description** is just a small text about the plugin, and is completely optional.
-- Next you will be asked about the **type** of web plugin. For this example, we will select the `settings` type.
-- Afterwards, you may select whether you want a JavaScript or a TypeScript project. An _ECMAScript2016+ project with Babel_ will include [Babel](https://babeljs.io) to guarantee the existence of features that were already standardized in ECMAScript. A [TypeScript](https://www.typescriptlang.org/) project will be configured to use a TypeScript compiler instead. TypeScript has its own supported set of JavaScript features, and useful type definitions around the Dicoogle development environment are included in the project. ECMAScript2016+ is closer to traditional JavaScript, but can be easily extended with Babel plugins. Any of the two kinds of projects should work fine, but you might prefer the JavaScript project if you don't know anything about TypeScript. On the other hand, a TypeScript project will provide you better IDE integration with static type checking and auto-complete facilities.
-- Since version 0.6.0 of the generator, the **minimum supported version** of Dicoogle can also be specified. Dicoogle 2.5.0 provides a few more mechanisms for retrieving contextual information of the web application. Unless you are still using 2.4.0, you may select **2.5.0** here.
-- The **caption** is a label that is shown in the web application. We will set this one to _"AE Title"_.
+- Next you will be asked about the **type** of web plugin. For this example, we will select the `menu` type.
+- Afterwards, you may need to choose whether to generate a JavaScript or a TypeScript project.
+  An _ECMAScript2016+ project with Babel_ will include [Babel](https://babeljs.io)
+  to guarantee the existence of features that were already standardized in ECMAScript.
+  A [TypeScript](https://www.typescriptlang.org/) project will have its source code in TypeScript,
+  and will be configured to use a TypeScript compiler instead.
+  Either one will work fine for this project,
+  so choose the one which you are the most comfortable with.
+- The **minimum supported version** of Dicoogle can also be specified.
+  The higher the version, the more mechanisms will be provided.
+  When developing for the latest version,
+  pick _the most recent one_ of the options given.
+- The **caption** is a label that is shown in the web application. We will set this one to _"Health Check"_.
 - Finally, you are requested additional information about the project, which can be added in case of the project being put into a public repository. They are all optional.
 
 After the process is complete, you will have a brand new project in your working directory.
@@ -72,14 +82,14 @@ npm install
 This will yield, among others, a file named _"module.js"_. This one and _"package.json"_ make the full plugin.
 
 We will now install this plugin as a standalone web plugin. Create a folder _"WebPlugins"_ in your _"DicoogleDir"_ folder.
-Afterwards, create a directory _"aetitle"_ in _"WebPlugins"_ and copy the two files above into this folder. The directory tree should look like this:
+Afterwards, create a directory _"healthcheck"_ in _"WebPlugins"_ and copy the two files above into this folder. The directory tree should look like this:
 
 ```
  DicoogleDir
  ├── Plugins
  |   └── ...
  ├── WebPlugins
- |   └── aetitle
+ |   └── healthcheck
  |       ├── package.json
  |       └── module.js
  ├── storage
@@ -88,20 +98,25 @@ Afterwards, create a directory _"aetitle"_ in _"WebPlugins"_ and copy the two fi
  └── dicoogle.jar
 ```
 
-Start Dicoogle and enter the web application, into the _Management_ menu. The _Services & Plugins_ sub-menu should now have our plugin.
+Start Dicoogle and enter the web application.
+Our plugins should now appear on the sidebar.
 
-![]({{ site.baseurl }}/images/screenshot_webplugin_settings_hello.png)
+![]({{ site.baseurl }}/images/screenshot_webplugin_menu_hello.png)
 
-<div class="note info">
-  <h5>Dicoogle web plugins are currently an experimental feature.</h5>
-  <p>Although these plugins are known to work for a variety of use cases, some of the features may be unstable or have bugs. If the web plugin does not appear, consider logging out of Dicoogle and logging back in. Refreshing the page may also help. Furthermore, it is often worth checking the server log for the list of plugins that were loaded.</p>
-</div>
+Once we know that it works, it's time to head back to our troubleshoot project.
 
-Once we know that it works, it's time to head back to our aetitle project.
+### Implementing a Dicoogle troubleshooting panel
 
-### Implementing an AE Title configurator
+At this point, we now want to implement the intended functionality
+The plugin should show a few boxes depending on potential issues found in the server:
 
-At this point, we now want to implement the intended functionality. The plugin should show a text box to see and modify the server's AE Title. The main question that arises would be: _Where do I implement that?_ Let's have a look at the generated source code in _"src/index.js"_ (assuming the _Babel_ project, the TypeScript project would contain the file _"src/index.ts"_ with similar content).
+- Whether no storage provider is installed;
+- Whether no query or indexing provider is installed;
+- Whether some of the plugins are dead (did not load properly).
+
+The main question that arises would be: _Where do I implement that?_
+Let's have a look at the generated source code in _"src/index.js"_
+(assuming the _Babel_ project, the TypeScript project would contain the file _"src/index.ts"_ with similar content).
 
 ```javascript
 /* global Dicoogle */
@@ -127,27 +142,34 @@ export default class MyPlugin {
 
 There may be many parts that are not quite understandable here, but the essentials are:
 
-- The whole plugin is represented as a class, and this is the module's default export. Typically, you do not have to touch this.
-- The constructor can be used to initialize certain parts of the plugin before any rendering takes place. It is not always needed.
-- The `render` method is the most important portion of the plugin: it is where new HTML elements are created and written to the web app's document. The example shows how this can be done with the standard [Document Object Model (DOM) Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model).
-- In order to develop plugins safely, the elements should be attached as children to the `parent` element.
+- The whole plugin is represented as a class, and this is the module's default export.
+  Typically, you do not have to touch this.
+- The constructor can be used to initialize certain parts of the plugin
+  before any rendering takes place.
+  It is not always needed.
+- The `render` method is the most important portion of the plugin:
+  it is where new HTML elements are created and written to the web app's document.
+  The example shows how this can be done with the standard [Document Object Model (DOM) Web API](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model).
+- In order to develop plugins safely,
+  the elements should be attached as children to the `parent` element.
 
-Instead of creating a div, we will create a text box and a label to provide feedback to the user.
+Instead of creating a div, we will create a header and other elements to provide information to the user.
 
 ```javascript
 render(parent, slot) {
-    // create text input
-    const txtAetitle = document.createElement('input');
-    this.txtAetitle = txtAetitle;
-    txtAetitle.type = 'text';
-    txtAetitle.className = 'form-control';
-    txtAetitle.disabled = true;
-    parent.appendChild(txtAetitle);
-    
-    // create feedback label
-    this.lblFeedback = document.createElement('span');
-    parent.appendChild(this.lblFeedback);
+    // create header
+    const head = document.createElement('h3');
+    head.text = 'Health Check';
+    parent.appendChild(head);
 
+    // create main info span
+    const baseInfo = document.createElement('span');
+    this.baseInfo = baseInfo;
+    parent.appendChild(baseInfo);
+    
+    // create list of issues found
+    this.ul = document.createElement('ul');
+    parent.appendChild(this.ul);
 }
 ```
 
@@ -159,74 +181,77 @@ Interfacing with the Dicoogle instance is done through the Dicoogle client API, 
 The package can be included by independent applications.
 But when developing web plugins, we don't have to.
 Instead, a global variable `Dicoogle` is automatically exposed with all of the features.
-The operations available are all listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html).
-In particular, we are looking for two methods:
+The operations available are listed in the [Dicoogle Client documentation](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html).
+In particular, we are looking for methods to retrieve information about the plugins:
 
-- [`Dicoogle.getAETitle()`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#getaetitle) ─ to retrieve the AE title currently set on the archive.
-- [`Dicoogle.setAETitle(aetitle)`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#setaetitle) ─ to set the title of the archive's AE.
+- [`Dicoogle.getPlugins()`](https://bioinformatics-ua.github.io/dicoogle-client-js/classes/_index_.dicoogleaccess.html#getplugins) ─ to retrieve a detailed list of plugins installed.
 
 With a bit of client-side programming, one may come up with something like this:
 
 ```javascript
-render(parent, slot) {
-    // create text input
-    const txtAetitle = document.createElement('input');
-    txtAetitle.type = 'text';
-    txtAetitle.className = 'form-control';
-    txtAetitle.style = `
-        display: inline-block;
-        width: 16em;
-        margin-right: 1em;
-    `;
-    txtAetitle.disabled = true;
-    parent.appendChild(txtAetitle);
-    
-    // create feedback label
-    const lblFeedback = document.createElement('span');
-    parent.appendChild(lblFeedback);
+render(parent: HTMLElement, slot: SlotHTMLElement) {
+    // create header
+    const head = document.createElement('h3');
+    head.innerText = 'Health Check';
+    parent.appendChild(head);
 
-    // request for the current AE title
-    Dicoogle.getAETitle().then((err, aetitle) => {
-        if (err) {
-            console.error("Service failure", err);
-            return;
+    // create main info span
+    const baseInfo = document.createElement('span');
+    baseInfo.innerText = 'Checking Dicoogle health...';
+    parent.appendChild(baseInfo);
+
+    // request for the full list of plugins
+    Dicoogle.getPlugins().then(({ plugins, dead }) => {
+        const problems = [];
+
+        // check for no storage
+        if (plugins.filter(p => p.type === 'storage').length === 0) {
+            problems.push("No storage providers are installed");
         }
-        // put value in text box and make it editable
-        txtAetitle.value = aetitle;
-        txtAetitle.disabled = false;
 
-        // add a handle to pressing the enter key
-        txtAetitle.addEventListener('keyup', function(event) {
-            event.preventDefault();
-            if (event.keyCode == 13) {
-                // handle submitting a new AE title
-                const aetitle = txtAetitle.value;
-                lblFeedback.innerText = "...";
-                Dicoogle.setAETitle(aetitle, (err) => {
-                    if (err) {
-                        console.error("Service failure", err);
-                        lblFeedback.innerText = "Service failed";
-                        return;
-                    }
-                    lblFeedback.innerText = "\u2714";
-                    // make tick mark disappear after a small while
-                    setTimeout(() => {
-                        lblFeedback.innerText = "";
-                    }, 700);
-                });
+        // check for no DICOM query provider
+        if (plugins.filter(p => p.type === 'query' && p.dim).length === 0) {
+            problems.push("No DICOM data query providers are installed");
+        }
+
+        // check for no DICOM index provider
+        if (plugins.filter(p => p.type === 'index' && p.dim).length === 0) {
+            problems.push("No DICOM data indexers are installed");
+        }
+
+        if (dead.length > 0) {
+            problems.push("The following plugins are dead: " + dead
+                .map(p => `${p.name} (${p.cause.message})`).join(', '))
+        }
+
+        // update DOM with problems
+        if (problems.length === 0) {
+            baseInfo.innerText = "\u2713 No issues were found!";
+        } else {
+            baseInfo.innerText = `\u26a0 There are ${problems.length} ${problems.length === 1 ? "issue" : "issues"} in this installation.`;
+
+            // create list of issues found
+            const ul = document.createElement('ul');
+            for (const problem of problems) {
+                // one list item per problem
+                let problemItem = document.createElement('li');
+                problemItem.innerText = problem;
+                ul.appendChild(problemItem);
             }
-        });
+            parent.appendChild(ul);
+        }
     });
 }
 ```
 
 Let's repeat the installation process by running `npm install` and copying the updated _"module.js"_ file to the deployment folder. We may now enter the web application again and see that the changes have taken effect.
-
-![]({{ site.baseurl }}/images/screenshot_webplugin_settings_aetitle.png)
+![]({{ site.baseurl }}/images/screenshot_webplugin_menu_healthcheck.png)
 
 <div class="note info">
   <h5>Web plugins are cached by the browser!</h5>
-  <p>If you find that the plugins are not being updated properly, you may have to temporarily disable caching in your browser. This shouldn't come up as an issue in production, since web plugins do not change frequently.</p>
+  <p>If you find that the plugins are not being updated properly,
+  you may have to temporarily clean up or disable caching in your browser.
+  This shouldn't come up as an issue in production, since web plugins do not change frequently.</p>
 </div>
 
 ## Further information
@@ -275,50 +300,6 @@ An example of a valid "package.json":
 ### Module
 
 In addition, a JavaScript module must be implemented, containing the entire logic and rendering of the plugin.
-The final module script must be exported in CommonJS format (similar to the Node.js module standard), or using
-the standard ECMAScript default export, when transpiled with Babel.
-The developer may also choose to create the module under the UMD format, although this is not required. The developer
-can make multiple node-flavored CommonJS modules and use tools like browserify to bundle them and embed dependencies.
-Some of those however, can be required without embedding. In particular, some modules such as "react", "react-dom",
-and "dicoogle-client" can be imported externally, and so must be marked as external dependencies.
-
-The exported module must be a single constructor function (or class), in which instances must have a `render(parent, slot)` method:
-
-```javascript
-/** Render and attach the contents of a new plugin instance to the given DOM element.
- * @param {DOMElement} parent the parent element of the plugin component
- * @param {DOMElement} slot the DOM element of the Dicoogle slot
- * @return Alternatively, return a React element while leaving `parent` intact. (Experimental, still unstable!)
- */
-function render(parent, slot) {
-    // ...
-}
-```
-
-<div class="note unreleased" >
-<h5>On support for React components</h5>
-<p>The latest version allows users to render React elements by returning them from the render method instead of attaching
-bare DOM elements to the parent div. However, this feature is unstable and known not to work very well. Future versions
-may allow a smooth approach to developing web plugins in a pure React environment. In the mean time, it is possible to
-use React by calling <code>render</code> directly on <code>parent</code>.</p>
-</div>
-
-Furthermore, the `onResult` method must be implemented if the plugin is for a "result" slot:
-
-```javascript
-/** Handle result retrieval here by rendering them.
- * @param {object} results an object containing the results retrieved from Dicoogle's search service 
- */
-function onResult(results) {
-    // ...
-}
-```
-
-All modules will have access to the `Dicoogle` plugin-local alias for interfacing with Dicoogle.
-Query plugins can invoke `issueQuery(...)` to perform a query and expose the results on the page (via result plugins).
-Other REST services exposed by Dicoogle are easily accessible with `request(...)`.
-See the [Dicoogle JavaScript client package](https://github.com/bioinformatics-ua/dicoogle-client-js) and the Dicoogle
-Web API section below for a more thorough documentation.
 
 Modules are meant to work independently, but can have embedded libraries if so is desired. In
 addition, if the underlying web page is known to contain specific libraries, then these can also be used without being
@@ -339,13 +320,13 @@ module.exports = function() {
 };
 ```
 
-Exporting a class in ECMAScript 6 also works (since classes are syntatic sugar for ES5 constructors).
-The code below can be converted to ES5 using Babel:
+Exporting a class in ECMAScript 2015 also works, since classes are mostly syntatic sugar for ES5 constructors.
+See the following example using the standard ECMAScript module system:
 
 ```javascript
 export default class MyPluginModule() {
 
-  render(parent) {
+  render(parent, _slot) {
     let e = document.create('span');
     e.innerHTML = 'Hello Dicoogle!';
     parent.appendChild(e);
@@ -353,20 +334,108 @@ export default class MyPluginModule() {
 };
 ```
 
+This one will work if it converted to CommonJS with the right configuration.
+For example:
+
+- When using [Webpack](https://webpack.js.org),
+  the `output.libraryTarget` property (`output.library.type` since Webpack 5) should be set to [`'commonjs2'`](https://webpack.js.org/configuration/output/#type-commonjs2).
+- When using [Parcel](https://parceljs.org),
+  the target's `outputFormat` property should be [`'commonjs'`](https://parceljs.org/features/targets/#outputformat)
+  and the `context` should be ["browser"](https://parceljs.org/features/targets/#context).
+- If using [Babel](https://babeljs.io) directly, ensure that [`targets.esmodules`](https://babeljs.io/docs/en/options#targetsesmodules) is set to `false`.
+
+All modules will have access to the `Dicoogle` plugin-local alias for interfacing with Dicoogle.
+Other REST services exposed by Dicoogle are easily accessible with `request(...)`.
+See the [Dicoogle JavaScript client package](https://github.com/bioinformatics-ua/dicoogle-client-js) and the Dicoogle
+Web API section below for a more thorough documentation.
+
 ### Types of Web Plugins
 
-As previously mentioned, we are requested to specify a a type of plugin, often with the "slot-id" property. This type defines
-how webplugins are attached to the application. The following  Note that not all of them are fully supported at the moment.
+As previously mentioned, we are requested to specify a a type of plugin, often with the "slot-id" property.
+This type defines how webplugins are attached to the application.
+The following kinds of web UI plugins are supported:
 
-- **menu**: Menu plugins are used to augment the main menu. A new entry is added to the side bar (named by the plugin's caption
-  property), and the component is created when the user navigates to that entry.
-- **result-option**: Result option plugins are used to provide advanced operations to a result entry. If the user activates
-  _"Advanced Options"_ in the search results view, these plugins will be attached into a new column, one for each visible result entry.
-- **result-batch**: Result batch plugins are used to provide advanced operations over an existing list of results. These plugins will
-  attach a button (named with the plugin's caption property), which will pop-up a division below the search result view.
+- **menu**: Menu plugins are used to augment the main menu.
+  A new entry is added to the side bar (named by the plugin's caption property),
+  and the component is created when the user navigates to that entry.
+- **result-option**: Result option plugins are used to provide advanced operations to a result entry.
+  If the user activates _"Advanced Options"_ in the search results view,
+  these plugins will be attached into a new column, one for each visible result entry.
+- **result-batch**: Result batch plugins are used to provide advanced operations over an existing list of results.
+  These plugins will attach a button (named with the plugin's caption property),
+  which will pop-up a division below the search result view.
 - **settings**: Settings plugins can be used to provide addition management information and control. These plugins will be attached to
   the _"Plugins & Services"_ tab in the _Management_ menu.
 
+### Module format and compatibility
+
+<div class="note info">
+  <h5>Stick to generator-dicoogle-webplugins and you will be fine</h5>
+  <p>
+    By using the project scaffolding tool,
+    you will have a complete project with all the necessary operations
+    to build a compatible module without any other concerns.
+  </p>
+  <p>
+    The details described in this section
+    are for those who wish to understand how it works in greater detail.
+  </p>
+</div>
+
+The script file module.js, that will be loaded by Dicoogle,
+must exist as a Node.js compatible module.
+This allows the Dicoogle back-end to encapsulate it with the boilerplate
+that registers the plugin via the Dicoogle webcore system by the web app.
+
+The exported module must be a single constructor function or class,
+in which instances must have a `render(parent, slot)` method:
+
+```javascript
+class MyPlugin {
+
+  /** Render and attach the contents of a new plugin instance to the given DOM element.
+  * @param {DOMElement} parent the parent element,
+  *                     created exclusively for each plugin component
+  * @param {DOMElement} slot the DOM element of the Dicoogle slot
+  */
+  render(parent, slot) {
+      // ...
+  }
+}
+```
+
+The export can either be made as an assignment to `module.exports`:
+
+```javascript
+module.exports = MyPlugin;
+```
+
+Or through the export named `default` with the ES module interoperability flag:
+
+```javascript
+module.exports = {
+  __esModule: true,
+  default: MyPlugin,
+};
+```
+
+The developer can make multiple node-flavored CommonJS modules
+and use tools like Webpack to bundle them and embed dependencies
+into a single module.js file.
+However, some dependencies can be obtained from Dicoogle without embedding them.
+In particular,  modules such as `"react"`, `"react-dom"`, and `"dicoogle-client"`
+can be imported externally through `require`,
+and so should be marked as _external dependencies_.
+
+The developer may also choose to deliver a UMD module, although this is not necessary.
+
+<div class="note unreleased" >
+<h5>On support for React components</h5>
+<p>The latest version allows users to render React elements by returning them from the render method instead of attaching
+bare DOM elements to the parent div. However, this feature is unstable and known not to work very well. Future versions
+may allow a smooth approach to developing web plugins in a pure React environment. In the meantime, it is possible to
+use React by calling <code>ReactDOM.render</code> directly on <code>parent</code>.</p>
+</div>
 
 ### Dicoogle Web API
 
