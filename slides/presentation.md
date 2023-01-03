@@ -93,7 +93,8 @@ background-color: #cbe0f2
 
 - Extensible, platform-independent, open-source PACS archive;
 - Designed to embrace advanced indexing mechanisms and knowledge extraction from medical imaging information;
-- Over 25 million images were indexed in Aveiro, Portugal;
+- Can index hundreds of millions of images in a single archive;
+- Used in more than 90 countries;
 - Has fulfilled a multitude of use cases in research and industry.
 
 --
@@ -135,15 +136,15 @@ background-color: #cbe0f2
 - **<i class="fa fa-github fa-lg"></i> View on GitHub**: [github.com/bioinformatics-ua/dicoogle](https://github.com/bioinformatics-ua/dicoogle)
 - **Learning Pack**: [bioinformatics-ua.github.io/dicoogle-learning-pack](https://bioinformatics-ua.github.io/dicoogle-learning-pack)
 
-Want to try it now? We have a [live demo](http://demo.dicoogle.com) (http://demo.dicoogle.com) !
+Want to try it now? We have a [live demo (demo.dicoogle.com)](https://demo.dicoogle.com)!
 
 ---
 
 # Getting Started
 
-- Start by [downloading](http://www.dicoogle.com/downloads/) Dicoogle and base plugins.
+- Start by [downloading](https://www.dicoogle.com/downloads/) Dicoogle and base plugins.
    
-- Requires Java 7 (Java 8 recommended).
+- Requires Java 8 (Java 11+ may also work).
 
 --
 
@@ -181,13 +182,13 @@ username: `dicoogle` <br> password: `dicoogle`
 
 - Force Dicoogle to index the set.
 
-<img src="img/screenshot_index.png" width="80%" style="display:block;margin:auto" />
+<img src="img/screenshot_index.png" style="width: 100%;display:block;margin:auto" />
 
 ---
 
 # Using Dicoogle
 
-![](img/screenshot_search.png)
+<img src="img/screenshot_search.png" style="width: 100%;display:block;margin:auto" />
 
 ---
 
@@ -210,7 +211,7 @@ username: `dicoogle` <br> password: `dicoogle`
 Contact the Maintainers:
 
 - Luís Bastião Silva <bastiao@bmd-software.com> (development leader)
-- Eduardo Pinho <eduardopinho@bmd-software.com>
+- Eduardo Pinho <eduardopinho@bmd-software.com> (co-leader)
 - Rui Lebre <ruilebre@ua.pt>
 
 --
@@ -284,8 +285,6 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 --
 
-- **~~Graphical~~**: obsolete
-
 - **Web UI**: Implemented in JavaScript; extend the web user interface.
 
 ---
@@ -320,8 +319,9 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 #### Current Contributors
 
-- Jorge Silva
-
+- Rui Jesus
+- Tibério Baptista
+- André Almeida
 
 #### R&D Project Managers
 
@@ -339,6 +339,7 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 - Frederico Silva
 - Frederico Valente
 - Leonardo Oliveira
+- Jorge Silva
 - Luis Ribeiro
 - Renato Pinho
 - Samuel Campos
