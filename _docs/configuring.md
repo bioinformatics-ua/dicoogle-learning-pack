@@ -118,7 +118,6 @@ curl -X DELETE "http://localhost:8080/user/johndoe"
   Some APIs may have changed starting from Dicoogle 3.0.0.
   For instance, creating new users was done with the PUT method instead of POST.
   Be sure to update all integration software when migrating.
-  </ul>
 </div>
 
 ------------------
