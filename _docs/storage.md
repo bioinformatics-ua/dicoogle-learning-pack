@@ -146,8 +146,24 @@ children.
 scheme like this:
 
 ```java
+@Override
 public String getScheme() {
     return "file";
+}
+```
+
+Dicoogle will identify whether a particular item in storage (existent or not yet existent)
+should be handled by this plugin through the URI scheme.
+By default, this check is done through an exact match.
+That is, `file://CT/I0001.dcm` is handled by the plugin with `getScheme()` above,
+but `file+ssl://CT/I0001.dcm` is not.
+If you need to change this behavior, you can override the `handles(URI)` method.
+
+```java
+@Override
+public boolean handles(URI location) {
+    String scheme = location.getScheme();
+    return scheme.equals("file") || scheme.equals("file+ssl");
 }
 ```
 
@@ -161,13 +177,3 @@ Implementers may ignore this method,
 but implemeting it may grant additional features to end applications.
 Consumers of this method should catch `UnsupportedOperationException`
 to handle situations in which the method is not implemented.
-
-`handles(URI)` is a deprecated method,
-which was made to verify whether the given URI can relate to an item (existent or inexistent) in this storage.
-Since this was meant to be based uniquely on the scheme of the URI,
-implementers should ignore it,
-and consumers should instead check for equality of the scheme:
-
-```java
-boolean handles = Objects.equals(storageInterface.getScheme(), uri.getScheme());
-```
