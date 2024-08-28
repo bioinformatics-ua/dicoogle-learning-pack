@@ -6,7 +6,7 @@ This is the source code repository for the Dicoogle Learning Pack, the official 
 
 ## Building
 
-First install `jekyll` and `bundle` using Ruby gems.
+First install `jekyll` and `bundle` using Ruby gems (v2 or v3).
 
 ```sh
 gem install jekyll bundler
