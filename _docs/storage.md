@@ -21,9 +21,12 @@ Programmatically, the storage interface is currently defined as below:
 ```java
 /** Storage plugin interface. These types of plugins provide an abstraction to reading and writing from
  * files or data blobs.
+ * 
+ * @author Luís A. Bastião Silva <bastiao@ua.pt>
+ * @author Frederico Valente
  */
-public interface StorageInterface extends DicooglePlugin {    
-    
+public interface StorageInterface extends DicooglePlugin {
+
     /**
      * Gets the scheme URI of this storage plugin.
      *
@@ -31,26 +34,68 @@ public interface StorageInterface extends DicooglePlugin {
      * @return a string denoting the scheme that this plugin associates to
      */
     public String getScheme();
-    
+
     /**
-     * Provides a means of iteration over existing objects at a specified location.
+     * Checks whether the file in the given path can be handled by this storage plugin.
+     *
+     * The default implementation checks that the given location URI
+     * has the exact same scheme as the scheme returned by {@link #getScheme()}.
+     *
+     * @param location a URI containing a scheme to be verified
+     * @return true if this storage plugin is in charge of URIs in the given form 
+     */
+    public default boolean handles(URI location) {
+        return Objects.equals(this.getScheme(), location.getScheme());
+    }
+
+    /**
+     * Provides a means of iteration over all existing objects at a specified location,
+     * including those in sub-directories.
      * This method is particularly nice for use in for-each loops.
-     * The provided scheme is not relevant at this point, but the developer must avoid calling
-     * this method with a path of a different schema.
      * 
+     * The provided scheme is not relevant at this point, but the developer must avoid calling this method
+     * with a path of a different scheme.
+     *
      * <pre>
-     * for(StorageInputStream dicomObj : storagePlugin.at("file://dataset/")){
-     *      // use dicomObj here
+     * URI uri = URI.create("file://dataset/");
+     * for (StorageInputStream dicomObj: storagePlugin.at(uri)) {
+     *     System.err.println(dicomObj.getURI());
      * }
      * </pre>
      * 
      * @param location the location to read
-     * @param parameters a variable list of extra parameters for the retrieve
+     * @param parameters a variable list of extra retrieval parameters
      * @return an iterable of storage input streams
      * @see StorageInputStream
      */
-    public Iterable<StorageInputStream> at(URI location, Object ... parameters);
-    
+    public Iterable<StorageInputStream> at(URI location, Object... parameters);
+
+    /**
+     * Obtains an item stored at the exact location specified.
+     *
+     * The provided scheme is not relevant at this point,
+     * but the developer must avoid calling this method
+     * with a path of a different scheme.
+     *
+     * <pre>
+     * URI uri = URI.create("file://dataset/CT/001.dcm");
+     * StorageInputStream item = storagePlugin.get(uri);
+     * if (item != null) {
+     *      System.err.println("Item at " + dicomObj.getURI() + " is available");
+     * }
+     * </pre>
+     *
+     * The default implementation calls {@linkplain #at}
+     * and returns the first item if its URI matches the location requested.
+     * Implementations may wish to override this method for performance reasons.
+     *
+     * @param location the URI of the item to retrieve
+     * @param parameters a variable list of extra retrieval parameters
+     * @return a storage item if it was found, <code>null</code> otherwise
+     * @see StorageInputStream
+     */
+    default public StorageInputStream get(URI location, Object... parameters) { ... }
+
     /**
      * Stores a DICOM object into the storage.
      *
@@ -58,7 +103,7 @@ public interface StorageInterface extends DicooglePlugin {
      * @param parameters a variable list of extra parameters for the retrieve
      * @return The URI of the previously stored Object.
      */
-    public URI store(DicomObject dicomObject, Object ... parameters);
+    public URI store(DicomObject dicomObject, Object... parameters);
 
     /**
      * Stores a new element into the storage.
@@ -68,16 +113,36 @@ public interface StorageInterface extends DicooglePlugin {
      * @return the URI of the stored data
      * @throws IOException if an I/O error occurs
      */
-    public URI store(DicomInputStream inputStream, Object ... parameters) throws IOException;
-    
+    public URI store(DicomInputStream inputStream, Object... parameters) throws IOException;
+
     /** Removes an element at the given URI.
+     * 
+     * @param location the URI of the stored data
      */
     public void remove(URI location);
 
     /** Lists the elements at the given location in the storage's file tree.
-     * Unlike `StorageInterface#at`, this method is not recursive and
+     * Unlike {@link StorageInterface#at}, this method is not recursive and
      * can yield intermediate URIs representing other directories rather than
      * objects.
+     * 
+     * Directories can be distinguished from regular files
+     * by the presence of a trailing forward slash in the URI.
+     * 
+     * The provided scheme is not relevant at this point, but the developer
+     * must avoid calling this method with a path of a different scheme.
+     * 
+     * @param location the base storage location to list
+     * 
+     * @return a standard stream of URIs representing entries in the given base
+     * location
+     * @throws UnsupportedOperationException if this storage does not support
+     * listing directories
+     * @throws NoSuchFileException if the given location does not exist in the
+     * storage
+     * @throws NotDirectoryException if the given location does not refer to a
+     * listable entry (a directory)
+     * @throws IOException if some other I/O error occurs
      */
     public default Stream<URI> list(URI location) throws IOException { ... }
 }
@@ -164,6 +229,21 @@ If you need to change this behavior, you can override the `handles(URI)` method.
 public boolean handles(URI location) {
     String scheme = location.getScheme();
     return scheme.equals("file") || scheme.equals("file+ssl");
+}
+```
+
+`get()` was introduced in Dicoogle 3.4,
+enabling the retrieval of a single item in storage.
+This method has a default implementation based on `at()`,
+but can be overridden for a more efficient routine.
+
+```java
+public default StorageInputStream get(URI location, Object ... parameters) {
+    File file = new File(location);
+    if (!file.exists()) {
+        return null;
+    }
+    return new MyStorageInputStream(file);
 }
 ```
 
