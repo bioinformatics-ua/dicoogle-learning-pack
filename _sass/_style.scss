@@ -90,7 +90,7 @@ aside a:hover, a:focus {
 
 article a {
   color: #337ab7;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .grid .unit {
@@ -100,7 +100,7 @@ article a {
 body {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.7857;
   letter-spacing: 0.025em;
   color: #333333;
@@ -108,7 +108,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: rgb(81,81,81) !important;
+  color: rgb(81,81,81);
 }
 
 .main-nav {
@@ -423,23 +423,6 @@ aside {
         color: #0ac;
     }
   }
-}
-
-
-.note {
-  -webkit-border-radius: 0px !important;
-  border-radius: 0px !important;
-  -webkit-box-shadow: none !important; 
-  -moz-box-shadow: none !important;
-  box-shadow: none !important; 
-}
-
-.note h5 {
-  color: white !important;
-}
-
-.note p {
-  color: #EAEAEA !important;
 }
 
 .unreleased:after {

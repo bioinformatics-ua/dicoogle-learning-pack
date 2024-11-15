@@ -7,9 +7,7 @@
   margin-left: 0px;
   padding: 20px 20px 24px;
   padding-left: 50px;
-  @include border-radius(5px 5px 5px 5px);
   position: relative;
-  @include box-shadow(0 3px 5px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.3));
   background-color: #7f8033;
 }
 
@@ -36,15 +34,19 @@
   }
 
   h5 {
+    color: white;
     line-height: 1.5em;
-    font-weight: 900;
+    font-weight: 700;
     font-style: normal;
+    letter-spacing: -0.5px;
   }
 
   p {
+    color: #EAEAEA;
     font-weight: 400;
     font-size: .9em;
   }
+  
 
   a {
     font-weight: 800;
