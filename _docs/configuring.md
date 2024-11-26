@@ -35,22 +35,8 @@ In the Storage Servers tab, the administrator can record the known list of DICOM
 
 All configurations previously mentioned are stored in a single XML file.
 Once Dicoogle is run at least once, you will find a file named _"server.xml"_ in the configuration folder `confs`.
-Currently, some configurations can only be changed by editing this file. As an example, let us modify this instance's application entity title (AE Title).
-Look for the XML element `aetitle`:
-
-``` xml
-    <dicom-services>
-        <aetitle>DICOOGLE-STORAGE</aetitle>
-    <dicom-services>
-```
-
-And modify it to another identifier:
-
-``` xml
-<aetitle>PERSONAL-STORAGE</aetitle>
-```
-
-The server needs to be restarted after this modification. When that is done, you will see that the server's AE Title has changed.
+Eventually, there may still be a few configurations which can only be changed by editing this file.
+The server needs to be restarted after any modifications to this file.
 
 <div class="note unreleased">
   <h5>Migrating settings from Dicoogle 2 to Dicoogle 3</h5>
@@ -92,7 +78,7 @@ Although Dicoogle does not provide a UI for the managing of the system users, it
 
 #### Create user
 
-To create a new user in the system, one can perform a HTTP PUT in `/user` with `username` and `password` query strings. Example:
+To create a new user in the system, one can perform an HTTP request to `/user` with `username` and `password` query string parameters. Example:
 
 ``` bash
 curl -X POST "http://localhost:8080/user?username=johndoe&password=secret"
@@ -118,6 +104,33 @@ curl -X DELETE "http://localhost:8080/user/johndoe"
   Some APIs may have changed starting from Dicoogle 3.0.0.
   For instance, creating new users was done with the PUT method instead of POST.
   Be sure to update all integration software when migrating.
+</div>
+
+### Connecting Dicoogle to a viewer
+
+Next is a tutorial on how to interface Dicoogle with the open-source DICOM viewer Weasis.
+Any DICOM viewer supporting DICOM Query/Retrieve DIMSE services can be used in a similar way.
+
+1. If not already installed, [download and install Weasis](https://weasis.org/en/getting-started/index.html). The examples that follow are for version 4.5.1.
+2. Open Weasis and navigate to the _Preferences_ menu.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_1.png)
+3. In the _DICOM Network_ tab, add a new **DICOM Node**. Insert the correct AE title of your Dicoogle instance here. This is `DICOOGLE-STORAGE` by default. The hostname should be the same as the Dicoogle server, so it is `localhost` or `127.0.0.1` if it is installed in your own machine. For the port, insert the Query/Retrieve service port, which is 1045 by default. For usage type, select **Retrieve**.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_2.png)
+4. We can also add a dedicated **DICOM calling node**. This will be called by Dicoogle for the transfer of imaging data. Choose an AE title for the Weasis SCP. In this example we went for `WEASIS`. Input the listening hostname depending on the topology of your PACS: if both Weasis and Dicoogle are on your machine, use "localhost" or `127.0.0.1`. If they are in separate machines, bind the hostname to the common network (e.g. `192.168.0.0`, or `0.0.0.0` if you are sure that the network is secure). Then choose a port available on your workstation. For this example, we will pick 12221. For usage type, select **Retrieve**.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_3.png)
+5. Now we head to the Dicoogle Management menu, and enter **Storage Servers**. Press **Add New**.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_4.png)
+6. In the new modal, insert the same AE title and service port chosen in step 4. The hostname should be the address of the workstation containing Weasis. Press **Add**.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_5.png)
+7. Finally, we can test that everything is in order by searching for a study via Weasis. Press the DICOM import button. ![]({{ site.baseurl }}/images/weasis_import_dicom_icon.png), and select the configured DICOM query node and DICOM calling node.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_6.png)
+8. If everything is correctly configured, the queried studies should appear on the list. Select each study to import and press the **Import** button to work with them in Weasis.
+  ![]({{ site.baseurl }}/images/screenshot_weasis_7.png)
+  
+<div class="note info">
+  <p>If the last step of importing the DICOM data fails, double check that the calling node is correctly confiured in Weasis, and that the storage server is correctly configured in Dicoogle.</p>
+
+  <p>For more information, see also the Weasis tutorial on <a href="https://weasis.org/en/tutorials/dicom-import/index.html#dicom-queryretrieve">importing DICOM data via Query/Retrieve</a>.</p>
 </div>
 
 ------------------
