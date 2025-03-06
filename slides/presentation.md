@@ -11,8 +11,8 @@ background-color: #cbe0f2
 <br><br><br>
 <br><br><br>
 
-.footnote[.right[Eduardo Pinho &nbsp; <eduardopinho@bmd-software.com>]]
-.footnote[.right[Rui Lebre &nbsp; <ruilebre@ua.pt>]]
+.footnote.right[Eduardo Pinho &nbsp; <eduardopinho@bmd-software.com>]
+.footnote.right[Rui Lebre &nbsp; <ruilebre@ua.pt>]
 
 ---
 
@@ -212,7 +212,6 @@ Contact the Maintainers:
 
 - Luís Bastião Silva <bastiao@bmd-software.com>
 - Eduardo Pinho <eduardopinho@bmd-software.com> (co-leader)
-- Rui Lebre <ruilebre@ua.pt>
 
 --
 
@@ -315,13 +314,11 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 - Luís Bastião ─ <bastiao@bmd-software.com>
 - Eduardo Pinho ─ <eduardopinho@bmd-software.com>
-- Rui Lebre ─ <ruilebre@ua.pt>
 
 #### Current Contributors
 
 - Rui Jesus
 - Tibério Baptista
-- André Almeida
 
 #### R&D Project Managers
 
@@ -330,18 +327,20 @@ Web UI plugins are different ([read more](https://bioinformatics-ua.github.io/di
 
 ]
 
-.block-division-3[
+.block-division-3.smaller-text[
 #### Past Contributors
 
+- André Almeida
 - Carlos Ferreira
 - David Campos
 - Eriksson Monteiro
 - Frederico Silva
 - Frederico Valente
-- Leonardo Oliveira
 - Jorge Silva
+- Leonardo Oliveira
 - Luis Ribeiro
 - Renato Pinho
+- Rui Lebre
 - Samuel Campos
 - Tiago Godinho
 - and many others...

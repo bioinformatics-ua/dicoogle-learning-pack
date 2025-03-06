@@ -97,6 +97,10 @@ li {
   color: #600;
 }
 
+.smaller-text {
+  font-size: 15px;
+}
+
 .issue-label {
   height: 20px;
   padding: .15em 4px;
